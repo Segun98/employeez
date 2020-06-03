@@ -5,7 +5,8 @@ interface String {
   sizes: string;
   type: string;
 }
-export default function Index() {
+
+export default function Index(){
   const [manifest, setmanifest] = useState<Array<String>>([]);
   useEffect(() => {
     fetchdata();
@@ -14,22 +15,21 @@ export default function Index() {
   async function fetchdata() {
     const res = await fetch("manifest.json");
     const data = await res.json();
-    setmanifest(data);
+    setmanifest(data.icons);
   }
-console.log(manifest);
-
+ 
 
   return (
     <div>
       <h3 style={{ textAlign: "center" }}>Hello World!!!</h3>
       <div style={{textAlign:"center", marginTop:"100px"}}>
-        {/* {manifest.map((data, index) => (
+        {manifest.map((data, index) => (
           <div key={index}>
             <li>{data.src}</li>
             <li>{data.type}</li>
             <li>{data.type}</li>
           </div>
-        ))} */}
+        ))}
       </div>
     </div>
   );

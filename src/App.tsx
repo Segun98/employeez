@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/header";
 import Loading from "./components/loading";
 
-const Index = React.lazy(() => import("./components/index"));
-const About = React.lazy(() => import("./components/about"));
+const Index = React.lazy(() => import("./pages/index"));
+const About = React.lazy(() => import("./pages/about"));
 
 function App() {
   return (
