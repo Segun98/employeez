@@ -4,19 +4,24 @@ import { ThemeProvider, CSSReset } from "@chakra-ui/core";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/header";
 import Loading from "./components/loading";
-import { createStore } from "redux";
-import  allReducers from "./reducers/index";
+import { createStore, compose } from "redux";
+import allReducers from "./reducers/index";
 import { Provider } from "react-redux";
 
 const Index = React.lazy(() => import("./pages/index"));
 const About = React.lazy(() => import("./pages/about"));
 const Dashboard = React.lazy(() => import("./pages/dashboard"));
 
-let store = createStore(allReducers);
 
-// console.log(store.subscribe(()=> store.getState()))
+//REDUX DEV TOOLS
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(allReducers, composeEnhancers());
 
-// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
 function App() {
   return (
