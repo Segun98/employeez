@@ -41,7 +41,7 @@ export default function About() {
   }
 
   return (
-    <div>
+    <div style={{margin:"auto", width:"50%"}}>
       <h3 style={{ textAlign: "center" }}>About Page</h3>
       <div style={{ textAlign: "center" }}>
         {Transaction.map((t,index) => (
@@ -81,8 +81,6 @@ export default function About() {
             setName(e.target.value);
           }}
         />
-        <br />
-        <br />
         <label htmlFor="price">Price</label>
         <Input
           type="number"
@@ -92,7 +90,6 @@ export default function About() {
             setPrice(e.target.value);
           }}
         />
-        <br />
         <br />
         <Button type="submit" variantColor="blue">
           Submit

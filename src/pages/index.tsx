@@ -1,40 +1,65 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import axios from "axios";
+import { getToken, setToken } from "../utils/accesstoken";
 
-
-interface String {
-  src: string;
-  sizes: string;
-  type: string;
-}
-interface DefaultRootState {
-  count: Number;
+interface props {
+  _id: string;
+  customer_name: string;
 }
 
-export default function Index(){
-  const [manifest, setmanifest] = useState<Array<String>>([]);
-  const number = useSelector<DefaultRootState, any>((state) => state.count);
+export default function Index() {
+  const [customers, setCustomers] = useState<Array<props>>([]);
   useEffect(() => {
-    fetchdata();
+    fetchRefreshToken();
+    // eslint-disable-next-line
   }, []);
 
-  async function fetchdata() {
-    const res = await fetch("manifest.json");
-    const data = await res.json();
-    setmanifest(data.icons);
+  async function fetchRefreshToken() {
+    const instance = axios.create({
+      withCredentials: true,
+    });
+
+    try {
+      const res = await instance.post(
+        "http://localhost:8080/api/refreshtokens"
+      );
+       setToken(res.data.accessToken);      
+       fetchdata();
+    } catch (error) {
+      console.log(error.message);
+    }
   }
- 
+
+  async function fetchdata() {
+    const instance = axios.create({
+      withCredentials: true,
+    });
+    let accessToken = getToken();
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `${accessToken ? `bearer ${accessToken}` : ""}`,
+      },
+    };
+
+    try {
+      const res = await instance.get(
+        "http://localhost:8080/api/customers",
+        config
+      );
+       setCustomers(res.data.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
   return (
     <div>
       <h3 style={{ textAlign: "center" }}>Hello World!!!</h3>
-      <p>{number}</p>
-      <div style={{textAlign:"center", marginTop:"100px"}}>
-        {manifest.map((data, index) => (
-          <div key={index}>
-            <li>{data.src}</li>
-            <li>{data.type}</li>
-            <li>{data.type}</li>
+      <div style={{ textAlign: "center", marginTop: "100px" }}>
+        {customers.map((customer) => (
+          <div key={customer._id}>
+            <p>{customer.customer_name}</p>
           </div>
         ))}
       </div>

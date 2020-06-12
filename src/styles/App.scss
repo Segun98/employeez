@@ -6,6 +6,14 @@
   box-sizing: border-box;
 }
 
+body {
+  line-height: 1.6;
+}
+
+li {
+  list-style: none;
+}
+
 .spinner-cont {
   display: flex;
   align-items: center;
@@ -37,4 +45,12 @@
     transform: rotate(360deg);
 
   }
+}
+
+
+/* SIGN UP PAGE  */
+
+.form-wrap {
+  margin: auto;
+  width: 50%;
 }
