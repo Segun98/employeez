@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Add, Delete, Completed } from "./../actions/index";
 import { Button, Input } from "@chakra-ui/core";
+import Header from "../components/header";
 
 interface props {
   id: number;
@@ -41,18 +42,20 @@ export default function About() {
   }
 
   return (
-    <div style={{margin:"auto", width:"50%"}}>
+    <div>
+      <Header />
+      <br/>
       <h3 style={{ textAlign: "center" }}>About Page</h3>
-      <div style={{ textAlign: "center" }}>
-        {Transaction.map((t,index) => (
+      <div style={{ margin: "auto", width: "50%" }}>
+        {Transaction.map((t, index) => (
           <ul key={t.id}>
             <Button
               variantColor="pink"
               onClick={() => {
-               dispatch(Completed(index))
+                dispatch(Completed(index));
               }}
             >
-              {t.completed? "Completed" : "Pending"}
+              {t.completed ? "Completed" : "Pending"}
             </Button>
             <li
               style={{ textDecoration: t.completed ? "line-through" : "none" }}
@@ -71,9 +74,10 @@ export default function About() {
           </ul>
         ))}
       </div>
-      <form onSubmit={addTransaction}>
+      <form onSubmit={addTransaction} style={{ margin: "auto", width: "50%" }}>
         <label htmlFor="name">Name</label>
         <Input
+          isRequired
           type="text"
           id="name"
           value={name}
@@ -83,6 +87,7 @@ export default function About() {
         />
         <label htmlFor="price">Price</label>
         <Input
+          isRequired
           type="number"
           id="price"
           value={price}

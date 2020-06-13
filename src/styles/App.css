@@ -1,0 +1,303 @@
+@import url("https://fonts.googleapis.com/css?family=Sen&display=swap");
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  line-height: 1.6;
+  background: #f5f6f7;
+  font-family: "Sen", sans-serif !important;
+}
+
+li {
+  list-style: none;
+}
+
+.spinner-cont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 90vh;
+}
+
+.spinner {
+  width: 100px;
+  height: 100px;
+  border: 3px dashed #333;
+  padding: 50px;
+  border-radius: 50%;
+  -webkit-animation: spinner infinite ease 3s;
+          animation: spinner infinite ease 3s;
+  position: relative;
+}
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+/* SIGN UP PAGE  */
+.form-wrap {
+  margin: auto;
+  width: 50%;
+}
+
+/* home page */
+.home-page {
+  height: 100vh;
+}
+
+.header_wrap {
+  -webkit-box-shadow: 1px 2px 2px 1px #383f4d;
+          box-shadow: 1px 2px 2px 1px #383f4d;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+header {
+  margin: 12px auto;
+  width: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  color: #383f4d;
+}
+
+header .logo {
+  color: #764abc;
+  font-size: 1.2rem;
+}
+
+header aside {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+header aside .privacy {
+  margin: 0 10px;
+}
+
+header aside .login_button {
+  color: #764abc;
+}
+
+header aside div {
+  cursor: pointer;
+}
+
+.intro-wrap {
+  text-align: center;
+}
+
+.intro {
+  margin: 70px auto;
+  width: 85%;
+}
+
+.intro .intro-image {
+  display: block;
+  margin-top: 20px;
+}
+
+.intro h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  font-weight: bolder;
+  color: #764abc;
+}
+
+.intro p {
+  text-align: center;
+}
+
+.intro span {
+  color: #764abc;
+}
+
+.intro Button {
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+@media only screen and (min-width: 700px) {
+  header {
+    width: 80%;
+  }
+  header .logo {
+    font-size: 1.3rem;
+  }
+  header aside {
+    font-size: 1rem;
+  }
+  header aside .privacy {
+    margin: 0 15px;
+  }
+  .intro {
+    margin: 90px auto;
+    width: 70%;
+  }
+  .intro .intro-image {
+    margin-top: 50px;
+  }
+  .intro h2 {
+    font-size: 1.7rem;
+  }
+  .intro p {
+    margin: auto;
+    width: 60%;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  header .logo {
+    font-size: 1.3rem;
+  }
+  header aside {
+    font-size: 1.1rem;
+  }
+  header aside .privacy {
+    margin: 0 25px;
+  }
+  .intro {
+    margin: 120px auto;
+    width: 60%;
+  }
+  .intro .intro-image {
+    margin-top: 70px;
+  }
+  .intro h2 {
+    font-size: 1.9rem;
+  }
+  .intro p {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (min-width: 1100px) {
+  .intro {
+    margin: 90px auto;
+    width: 90%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .intro .intro-image {
+    margin-top: 0px;
+    width: 90%;
+  }
+  .intro h2 {
+    font-size: 2.3rem;
+    text-align: left;
+    color: #764abc;
+  }
+  .intro p {
+    font-size: 1.2rem;
+    text-align: left;
+    margin: auto;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  header .logo {
+    font-size: 1.5rem;
+  }
+  header aside {
+    font-size: 1.3rem;
+  }
+  header aside .privacy {
+    margin: 0 35px;
+  }
+  .intro {
+    margin: 120px auto;
+  }
+  .intro h2 {
+    font-size: 2.3rem;
+  }
+  .intro p {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  header {
+    width: 70%;
+  }
+  header .logo {
+    font-size: 1.6rem;
+  }
+  header aside {
+    font-size: 1.4rem;
+  }
+  header aside .privacy {
+    margin: 0 45px;
+  }
+  .intro {
+    margin: 170px auto;
+    width: 60%;
+  }
+  .intro .intro-image {
+    width: 80%;
+    margin-left: 20px;
+  }
+  .intro h2 {
+    font-size: 2.4rem;
+  }
+  .intro p {
+    font-size: 1.3rem;
+  }
+}
+/*# sourceMappingURL=App.css.map */

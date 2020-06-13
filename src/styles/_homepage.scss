@@ -1,0 +1,245 @@
+/* home page */
+.home-page {
+    height: 100vh;
+}
+
+.header_wrap {
+    box-shadow: 1px 2px 2px 1px $textcolor;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+header {
+    margin: 12px auto;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    color: $textcolor;
+
+    .logo {
+        color: $purple;
+        font-size: 1.2rem;
+    }
+
+    aside {
+        display: flex;
+        justify-content: space-between;
+
+        .privacy {
+            margin: 0 10px;
+        }
+
+        .login_button {
+            color: $purple;
+        }
+
+        div {
+            cursor: pointer;
+        }
+    }
+}
+
+.intro-wrap {
+    text-align: center;
+}
+
+.intro {
+    margin: 70px auto;
+    width: 85%;
+
+    .intro-image {
+        display: block;
+        margin-top: 20px;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        font-weight: bolder;
+        color: $purple;
+    }
+
+    p {
+        text-align: center;
+    }
+
+    span {
+        color: $purple;
+    }
+
+    Button {
+        margin-top: 20px;
+        border-radius: 10px;
+    }
+}
+
+@media only screen and (min-width:700px) {
+    header {
+        width: 80%;
+
+        .logo {
+            font-size: 1.3rem;
+        }
+
+        aside {
+            font-size: 1rem;
+
+            .privacy {
+                margin: 0 15px;
+            }
+        }
+    }
+
+    .intro {
+        margin: 90px auto;
+        width: 70%;
+
+        .intro-image {
+            margin-top: 50px;
+        }
+
+        h2 {
+            font-size: 1.7rem;
+        }
+
+        p {
+            margin: auto;
+            width: 60%;
+        }
+    }
+}
+
+
+
+@media only screen and (min-width:1000px) {
+    header {
+        .logo {
+            font-size: 1.3rem;
+        }
+
+        aside {
+            font-size: 1.1rem;
+
+            .privacy {
+                margin: 0 25px;
+            }
+        }
+    }
+
+    .intro {
+        margin: 120px auto;
+        width: 60%;
+
+        .intro-image {
+            margin-top: 70px;
+        }
+
+        h2 {
+            font-size: 1.9rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+        }
+    }
+}
+
+@media only screen and (min-width:1100px) {
+
+    .intro {
+        margin: 90px auto;
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .intro-image {
+            margin-top: 0px;
+            width: 90%;
+        }
+
+        h2 {
+            font-size: 2.3rem;
+            text-align: left;
+            color: $purple;
+        }
+
+        p {
+            font-size: 1.2rem;
+            text-align: left;
+            margin: auto;
+            width: 100%;
+        }
+    }
+}
+
+
+@media only screen and (min-width:1300px) {
+    header {
+        .logo {
+            font-size: 1.5rem;
+        }
+
+        aside {
+            font-size: 1.3rem;
+
+            .privacy {
+                margin: 0 35px;
+            }
+        }
+    }
+
+    .intro {
+        margin: 120px auto;
+
+
+        h2 {
+            font-size: 2.3rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+
+        }
+    }
+}
+
+
+@media only screen and (min-width:2000px) {
+    header {
+        width: 70%;
+
+        .logo {
+            font-size: 1.6rem;
+        }
+
+        aside {
+            font-size: 1.4rem;
+
+            .privacy {
+                margin: 0 45px;
+            }
+        }
+    }
+
+    .intro {
+        margin: 170px auto;
+        width: 60%;
+
+        .intro-image {
+            width: 80%;
+            margin-left: 20px;
+        }
+
+        h2 {
+            font-size: 2.4rem;
+        }
+
+        p {
+            font-size: 1.3rem;
+
+        }
+    }
+}

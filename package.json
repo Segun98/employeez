@@ -19,6 +19,7 @@
     "emotion-theming": "^10.0.27",
     "fetch-cookie": "^0.9.1",
     "graphql-request": "^2.0.0",
+    "moment": "^2.26.0",
     "node-fetch": "^2.6.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",

@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import { FormControl, FormLabel, Input, Button } from "@chakra-ui/core";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { setToken, getToken} from './../utils/accesstoken';
+import { setToken, getToken } from "./../utils/accesstoken";
+import Header from "./../components/header";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
+
   let history = useHistory();
-  
+
   async function handleSubmit(e: any) {
     e.preventDefault();
     const instance = axios.create({
@@ -33,16 +35,16 @@ export const Login = () => {
         payload,
         config
       );
-      
+
       if (res.data.message === "successfully logged in") {
         setEmail("");
         setPassword("");
-        setToken(res.data.accesstoken)
+        setToken(res.data.accesstoken);
         setSuccess("Login successful!");
         if (getToken()) {
-          history.push("/");
-        }        
-        return true
+          history.push("/dashboard");
+        }
+        return true;
       }
       setError(res.data);
     } catch (error) {
@@ -54,6 +56,7 @@ export const Login = () => {
   }
   return (
     <div>
+      <Header />
       <br />
       <h2 style={{ textAlign: "center" }}> Login </h2>
       <br />
@@ -81,7 +84,7 @@ export const Login = () => {
               }}
             />
           </FormControl>
-          <br/>
+          <br />
           <Button type="submit">Submit</Button>
         </form>
       </section>
