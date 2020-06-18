@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const editCustomer = () => {
+export const EditCustomer = () => {
     return (
         <div>
             <h3>edit customers</h3>
@@ -8,4 +8,4 @@ export const editCustomer = () => {
     )
 }
 
-export default editCustomer
+export default EditCustomer

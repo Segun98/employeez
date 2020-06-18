@@ -1,0 +1,69 @@
+/* SIGN UP PAGE AND LOGIN PAGES */
+.form-wrap {
+    margin: 20px auto;
+    width: 90%;
+    button {
+        border-radius: 5px;
+        height: 30px;
+        margin-top: 10px;
+    }
+    form {
+        margin-top: 10px;
+    }
+
+}
+
+.login-wrap {
+    display: flex;
+    flex-direction: column-reverse;
+    margin: auto;
+    width: 90%;
+}
+
+@media only screen and (min-width: 700px){
+    .form-wrap {
+        margin: 30px auto;
+        width: 70%;
+    
+    }
+    
+    .login-wrap {
+        width: 70%;
+    }
+}
+
+@media only screen and (min-width: 700px){
+    .form-wrap {
+        width: 100%;
+        margin-left: -30px;
+    }
+    
+    .login-wrap {
+        width: 90%;
+        flex-direction: row;
+        margin-top: 50px;
+        align-items: center;
+        img{
+            width: 80%;
+        }
+    }
+}
+@media only screen and (min-width: 1300px){
+    .login-wrap {
+        width: 70%;
+        margin-top: 70px;
+    }
+}
+
+@media only screen and (min-width: 2300px){
+    .login-wrap {
+        width: 60%;
+        margin-top: 100px;
+    }
+    .form-wrap {
+        width: 70%;
+    }
+}
+
+
+

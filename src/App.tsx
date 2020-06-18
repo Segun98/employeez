@@ -6,27 +6,29 @@ import {
   Route,
   Switch,
   Redirect,
-  useHistory,
 } from "react-router-dom";
 import Loading from "./components/loading";
 import { createStore, compose } from "redux";
-import allReducers from "./reducers/index";
+import allReducers from "./redux/reducers/index";
 import { Provider } from "react-redux";
-import { getToken, setToken } from "./utils/accesstoken";
+import { setToken } from "./utils/accesstoken";
 import axios from "axios";
+import Signup from "./pages/Signup";
+import Index from "./pages";
+import About from "./pages/about";
+import Login from "./pages/Login";
+import { useAuth } from "./Context/authcontext";
 
-const Index = React.lazy(() => import("./pages/index"));
-const About = React.lazy(() => import("./pages/about"));
 const Dashboard = React.lazy(() => import("./pages/dashboard"));
-const editDashboard = React.lazy(() => import("./pages/editDashboard"));
+const EditDashboard = React.lazy(() => import("./pages/editDashboard"));
 const Employees = React.lazy(() => import("./pages/employees"));
+const AddEmployee = React.lazy(() => import("./pages/AddEmployee"));
 const Employee = React.lazy(() => import("./pages/Employee"));
-const editEmployee = React.lazy(() => import("./pages/editEmployee"));
+const EditEmployee = React.lazy(() => import("./pages/editEmployee"));
 const Customers = React.lazy(() => import("./pages/customers"));
 const Customer = React.lazy(() => import("./pages/Customer"));
-const editCustomer = React.lazy(() => import("./pages/editCustomer"));
-const Login = React.lazy(() => import("./pages/Login"));
-// const Signup = React.lazy(() => import("./pages/Signup"));
+const AddCustomer = React.lazy(() => import("./pages/AddCustomer"));
+const EditCustomer = React.lazy(() => import("./pages/editCustomer"));
 
 //REDUX DEV TOOLS
 declare global {
@@ -40,69 +42,10 @@ const store = createStore(allReducers, composeEnhancers());
 function App() {
   useEffect(() => {
     fetchdata();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  async function fetchdata() {
-    const instance = axios.create({
-      withCredentials: true,
-    });
-
-    try {
-      const res = await instance.post(
-        "http://localhost:8080/api/refreshtokens"
-      );
-      setToken(res.data.accessToken);
-      console.clear();
-    } catch (error) {
-      console.log(error.message);
-      console.clear();
-    }
-    console.clear();
-  }
-  return (
-    <>
-      <Provider store={store}>
-        <Router>
-          <ThemeProvider>
-            <CSSReset />
-            <Switch>
-              <Suspense fallback={<Loading />}>
-                <Route path="/" exact component={Index} />
-                <Route path="/login" component={Login} />
-                {/* <Route path="/signup" component={Signup} /> */}
-                <Route path="/about" component={About} />
-                <PrivateRoute path="/dashboard" component={Dashboard} />
-                <PrivateRoute
-                  path="/dashboard/edit"
-                  component={editDashboard}
-                />
-                <PrivateRoute path="/employees" component={Employees} />
-                <PrivateRoute path="/employee/:id" component={Employee} />
-                <PrivateRoute
-                  path="/employee/edit/:id"
-                  component={editEmployee}
-                />
-                <PrivateRoute path="/customers" component={Customers} />
-                <PrivateRoute path="/customer/:id" component={Customer} />
-                <PrivateRoute
-                  path="/customer/edit/:id"
-                  component={editCustomer}
-                />
-              </Suspense>
-            </Switch>
-          </ThemeProvider>
-        </Router>
-      </Provider>
-    </>
-  );
-}
-const PrivateRoute = ({ component: Component, ...rest }: any) => {
-  let history = useHistory();
-
-  useEffect(() => {
-    fetchdata();
-    // eslint-disable-next-line
-  }, []);
+  const { setisAuth }: any = useAuth()!;
 
   async function fetchdata() {
     const instance = axios.create({
@@ -115,20 +58,61 @@ const PrivateRoute = ({ component: Component, ...rest }: any) => {
       );
       if (res.data.accessToken) {
         setToken(res.data.accessToken);
-        console.clear();
-        return history.goBack();
+        setisAuth(true);
       }
     } catch (error) {
       console.log(error.message);
-      console.clear();
+      // setisAuth(false);
+      console.clear()
     }
-    console.clear();
   }
+  return (
+    <>
+      <Provider store={store}>
+        <Router>
+          <ThemeProvider>
+            <CSSReset />
+            <Switch>
+              <Suspense fallback={<Loading />}>
+                <Route path="/" exact component={Index} />
+                <Route path="/login" component={Login} />
+                <Route path="/signup" component={Signup} />
+                <Route path="/about" component={About} />
+                <PrivateRoute path="/dashboard" exact component={Dashboard} />
+                <PrivateRoute
+                  path="/dashboard/edit"
+                  component={EditDashboard}
+                />
+                <PrivateRoute path="/employees" exact component={Employees} />
+                <PrivateRoute path="/add-employee" component={AddEmployee} />
+                <PrivateRoute path="/employee/:id" component={Employee} />
+                <PrivateRoute
+                  path="/edit-employee/:id"
+                  component={EditEmployee}
+                />
+                <PrivateRoute path="/customers" component={Customers} />
+                <PrivateRoute path="/add-customer" component={AddCustomer} />
+                <PrivateRoute path="/customer/:id" component={Customer} />
+                <PrivateRoute
+                  path="/edit-customer/:id"
+                  component={EditCustomer}
+                />
+              </Suspense>
+            </Switch>
+          </ThemeProvider>
+        </Router>
+      </Provider>
+    </>
+  );
+}
+const PrivateRoute = ({ component: Component, ...rest }: any) => {
+  //coming from context
+  const { isAuth }: any = useAuth()!;
   return (
     <Route
       {...rest}
       render={(props) => {
-        if (getToken()) {
+        if (isAuth) {
           return <Component {...rest} {...props} />;
         } else {
           return (

@@ -1,0 +1,140 @@
+/* employees directory page */
+
+.employees-page {
+    .dashboard-auto {
+        width: 60%;
+        margin-top: 25px;
+    }
+
+    header {
+        display: flex;
+        margin-top: -20px;
+        align-items: baseline;
+
+        Input {
+            width: 200px;
+            height: 30px;
+        }
+
+        ;
+
+        Button {
+            height: 30px;
+            border-radius: 7px;
+            width: 75px;
+            font-size: 0.8rem;
+        }
+    }
+
+    .dashboard-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: $textcolor;
+        margin: auto;
+        width: 90%;
+        padding: 20px 0;
+
+        img {
+            border: 1px solid $bordecolor;
+            border-radius: 50%;
+            padding: 5px;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: bolder;
+        }
+
+        p {
+            font-size: 0.7rem;
+            text-align: center;
+            color: $purple;
+            width: 100%;
+        }
+
+        h5 {
+            font-size: 0.8rem;
+        }
+    }
+}
+
+@media only screen and (min-width:700px) {
+    .employees-page {
+
+        header {
+            width: 60%;
+            margin-top: 10px;
+
+            Input {
+                width: 250px;
+            }
+
+            ;
+        }
+
+        .dashboard-item {
+            width: 95%;
+        }
+
+    }
+}
+
+
+
+@media only screen and (min-width:1300px) {
+    .employees-page {
+
+        header {
+            Input {
+                width: 350px;
+            }
+
+            Button {
+                height: 33px;
+                width: 90px;
+            }
+
+        }
+
+        .dashboard-item {
+            width: 90%;
+        }
+
+    }
+}
+
+
+@media only screen and (min-width:2000px) {
+    .employees-page {
+        .dashboard-auto {
+            width: 50%;
+        }
+
+        header {
+            width: 50%;
+
+            Input {
+                width: 400px;
+            }
+
+            Button {
+                height: 35px;
+                width: 100px;
+                font-size: 0.9rem;
+            }
+
+        }
+    }
+}
+
+.addemployee-page .add-employee-submit {
+    text-align: center;
+    margin-top: 7px;
+
+    Button {
+        font-size: 0.8rem;
+        border-radius: 7px;
+    }
+}

@@ -4,14 +4,14 @@
 }
 
 .header_wrap {
-    box-shadow: 1px 2px 2px 1px $textcolor;
+    border-bottom: 1px solid rgba(32, 33, 36, 0.28);
     padding-top: 5px;
     padding-bottom: 5px;
 }
 
 header {
     margin: 12px auto;
-    width: 90%;
+    width: 95%;
     display: flex;
     justify-content: space-between;
     align-items: baseline;
@@ -26,16 +26,14 @@ header {
         display: flex;
         justify-content: space-between;
 
-        .privacy {
-            margin: 0 10px;
-        }
-
-        .login_button {
+        .header_wrap-dashboard {
             color: $purple;
         }
 
         div {
             cursor: pointer;
+            margin: 0 7px;
+            font-size: 0.8rem;
         }
     }
 }
@@ -85,6 +83,11 @@ header {
 
         aside {
             font-size: 1rem;
+
+            div {
+                margin: 0 7px;
+                font-size: 1rem;
+            }
 
             .privacy {
                 margin: 0 15px;
@@ -154,10 +157,10 @@ header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-
         .intro-image {
             margin-top: 0px;
             width: 90%;
+            margin-left: 20px;
         }
 
         h2 {

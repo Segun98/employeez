@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Add, Delete, Completed } from "./../actions/index";
+import { Add, Delete, Completed } from "../redux/actions/index";
 import { Button, Input } from "@chakra-ui/core";
 import Header from "../components/header";
 

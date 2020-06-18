@@ -61,11 +61,11 @@ export default function Index() {
             Business. Built for <span>SMEs</span> and <span>MSMEs</span>
           </p>
           <Button variantColor="purple">
-            <Link to="/login">Get Started</Link>
+            <Link to="/signup">Get Started</Link>
           </Button>
         </div>
         <div className="intro-image">
-          <img src="undraw_img.png" alt="intro-img" />
+          <img src="/images/undraw_img.png" alt="intro-img" />
         </div>
       </section>
     </div>

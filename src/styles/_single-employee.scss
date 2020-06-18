@@ -1,0 +1,54 @@
+.employee-page {
+    .dashboard-auto {
+        width: 90%;
+      }
+    .edit-section {
+        text-align: right;
+        margin-top: -20px;
+
+        Button {
+            font-size: 0.7rem;
+            width: 87px;
+            height: 30px;
+            border-radius: 7px;
+        }
+    }
+
+    .employee-page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: auto;
+        color: $textcolor;
+        margin-top: 10px;
+        border-bottom: 1px solid $bordecolor;
+
+        img {
+            width: 100px;
+            border: 1px solid $textcolor;
+            border-radius: 50%;
+            padding: 5px;
+        }
+
+        div {
+            h4 {
+                &:first-child {
+                    font-size: 1rem;
+                    font-weight: bolder;
+                }
+
+                ;
+
+                &:nth-child(2) {
+                    color: $purple;
+                }
+
+                ;
+
+                &:last-child {
+                    font-size: 0.8rem;
+                }
+            }
+        }
+    }
+}

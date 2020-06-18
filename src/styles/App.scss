@@ -12,6 +12,8 @@ $purple: rgb(118, 74, 188);
 
 $textcolor: rgb(56, 63, 77);
 
+$bordecolor: rgba(32, 33, 36, 0.28);
+
 body {
   line-height: 1.6;
   background: rgb(245, 246, 247);
@@ -56,11 +58,409 @@ li {
 }
 
 
-/* SIGN UP PAGE  */
+textarea {
+  font-family: "Sen", sans-serif;
+}
 
-.form-wrap {
+
+/* MAINHEADER.TSX*/
+
+.mainheader-head {
+  height: 100vh;
+  background: $purple;
+  color: white;
+  width: 200px;
+  margin-left: -200px;
+  transition: ease 1s;
+  position: fixed;
+  border-radius: 0 5px 5px 0;
+
+  ul {
+    margin: auto;
+    width: 80%;
+
+    li {
+      padding: 15px 0;
+      font-size: 0.9rem;
+
+      &:last-child {
+        margin-top: 19vh;
+      }
+    }
+  }
+}
+
+.mainheader-head.open-hamburger {
+  margin-left: 0px;
+  transition: ease 1s;
+  z-index: 1;
+}
+
+.aside-header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  .aside-header-wrap {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    align-items: baseline;
+    border-bottom: $bordecolor 1px solid;
+
+    h1 {
+      font-weight: bold;
+      color: $textcolor;
+
+      &:first-child {
+        margin-left: 15px;
+        font-size: 1.5rem;
+      }
+
+      &:last-child {
+        margin-right: 15px;
+      }
+    }
+  }
+
+  .hamburger {
+    margin: 0 10px;
+  }
+}
+
+/* DASHBOARD.TSX*/
+
+.edit-dashboard-btn {
+  text-align: right;
+  margin-top: -15px;
+  margin-bottom: 10px;
+
+  Button {
+    height: 30px;
+    border-radius: 5px;
+    font-size: 0.7rem;
+  }
+}
+
+.dashboard-body {
+  position: absolute;
+  top: 60px;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  z-index: -1;
+}
+
+.dashboard-wrap {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px
+}
+
+.dashboard-item-wrap .dashboard_h3-firstchild {
+  font-size: 0.9rem;
+}
+
+.dashboard-auto {
   margin: auto;
-  width: 50%;
+  width: 68%;
+}
+
+.dashboard-item {
+  text-align: justify;
+  box-shadow: 0 1px 6px 0 $bordecolor;
+  padding: 10px 0;
+  border-radius: 7px;
+  color: $textcolor;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+    transition: ease-in-out 0.5s;
+  }
+
+  p {
+    font-size: 0.8rem;
+    margin: 10px auto;
+    width: 80%;
+  }
+
+  .todo {
+    text-align: left;
+  }
+
+  .customer-no {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p {
+      font-size: 4rem;
+      margin-left: 60px;
+    }
+
+    button {
+      font-size: 0.6rem;
+      margin: auto;
+      width: 87px;
+      height: 35px;
+      border-radius: 7px;
+      margin-top: -18px;
+      margin-bottom: 9px;
+    }
+  }
+}
+
+.dashboard-item-wrap {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  width: 85%;
+  padding: 5px 0;
+
+  h3 {
+    font-size: 1rem;
+    font-weight: bold;
+    color: $purple;
+  }
+}
+
+.edit-dashboard-page textarea {
+  height: 250px;
+}
+
+;
+
+/* IPAD SCREEN */
+
+@media only screen and (min-width: 700px) {
+
+  .mainheader-head {
+    color: white;
+    width: 100px;
+    margin-left: 0px;
+    position: fixed;
+  }
+
+  .aside-header {
+    left: 130px;
+    width: 80%;
+
+    .aside-header-wrap {
+      .header-page-title {
+        font-size: 1.6rem;
+
+      }
+
+      h1 {
+        &:first-child {
+          margin-left: 18px;
+        }
+      }
+    }
+
+    .hamburger {
+      display: none;
+    }
+  }
+
+  .dashboard-body {
+    left: 50px;
+    width: 95%;
+  }
+
+  .dashboard-wrap {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  .dashboard-auto {
+    margin: auto;
+    width: 80%;
+  }
+
+  .dashboard-item {
+    p {
+      font-size: 0.9rem;
+    }
+  }
+
+  .dashboard-item-wrap {
+    width: 70%;
+  }
+
+}
+
+/* small laptop and Ipad screen */
+
+@media only screen and (min-width: 1000px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .mainheader-head {
+    width: 180px;
+  }
+
+  .aside-header {
+    left: 200px;
+
+    .aside-header-wrap {
+      h1 {
+        &:first-child {
+          font-size: 1.7rem;
+        }
+      }
+    }
+  }
+
+  .dashboard-body {
+    left: 130px;
+  }
+
+  .dashboard-wrap {
+    gap: 35px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .dashboard-auto {
+    width: 80%;
+  }
+
+  .dashboard-item-wrap {
+
+    h3 {
+      font-size: 1rem;
+    }
+  }
+
+  .dashboard-item {
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+}
+
+/* small laptop and Ipad screen */
+
+@media only screen and (min-width: 1200px) {
+  .mainheader-head {
+    width: 210px;
+  }
+
+  .aside-header {
+    left: 240px;
+  }
+
+  .dashboard-body {
+    top: 80px;
+  }
+
+  .dashboard-wrap {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .dashboard-auto {
+    width: 65%;
+  }
+
+  .dashboard-item {
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+}
+
+/* large laptop*/
+
+@media only screen and (min-width: 1400px) {
+
+  .dashboard-body {
+    left: 100px;
+    top: 100px;
+  }
+
+  .dashboard-wrap {
+    gap: 35px;
+  }
+
+  .dashboard-auto {
+    width: 70%;
+  }
+
+  .dashboard-item {
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  .dashboard-item-wrap h3 {
+    font-size: 1.2rem;
+  }
+
+
+}
+
+
+/* large laptop*/
+
+@media only screen and (min-width: 2000px) {
+
+  // .dashboard-item:first-child{
+  //   grid-column: 1/3;
+  // }
+  .mainheader-head {
+    margin-left: 400px;
+  }
+
+  .aside-header {
+    left: 650px;
+    width: 60%;
+
+    .aside-header-wrap {
+      h1 {
+        &:first-child {
+          margin-left: 18px;
+          font-size: 2rem;
+        }
+
+        &:last-child {
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+
+  .dashboard-body {
+    left: 200px;
+    top: 150px;
+  }
+
+  .dashboard-wrap {
+    gap: 35px;
+  }
+
+  .dashboard-item-wrap .dashboard_h3-firstchild {
+    font-size: 1.2rem;
+  }
+
+  .dashboard-auto {
+    width: 50%;
+  }
+
+  .dashboard-item {
+    p {
+      font-size: 1.2rem;
+    }
+  }
+
 }
 
 @import "./homepage";
+@import "./login-signup";
+@import "./employee-page";
+@import "./single-employee";
