@@ -62,6 +62,21 @@
 
 @media only screen and (min-width:700px) {
     .employees-page {
+        .dashboard-body {
+            .dashboard-auto {
+                .dashboard-wrap {
+                    .dashboard-item {
+                        text-align: center;
+
+                        p {
+                            font-size: 1rem;
+                            text-align: center;
+                        }
+
+                    }
+                }
+            }
+        }
 
         header {
             width: 60%;
@@ -75,7 +90,7 @@
         }
 
         .dashboard-item {
-            width: 95%;
+            width: 100%;
         }
 
     }

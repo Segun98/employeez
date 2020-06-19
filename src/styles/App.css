@@ -416,6 +416,15 @@ textarea {
   }
 }
 
+.customers-page .dashboard-body .dashboard-auto .dashboard-wrap .dashboard-item p {
+  font-size: 1rem;
+  color: #383f4d;
+}
+
+.customers-page .dashboard-body .dashboard-auto .dashboard-wrap .dashboard-item h2 {
+  color: #764abc;
+}
+
 /* home page */
 .home-page {
   height: 100vh;
@@ -788,6 +797,13 @@ header aside div {
 }
 
 @media only screen and (min-width: 700px) {
+  .employees-page .dashboard-body .dashboard-auto .dashboard-wrap .dashboard-item {
+    text-align: center;
+  }
+  .employees-page .dashboard-body .dashboard-auto .dashboard-wrap .dashboard-item p {
+    font-size: 1rem;
+    text-align: center;
+  }
   .employees-page header {
     width: 60%;
     margin-top: 10px;
@@ -796,7 +812,7 @@ header aside div {
     width: 250px;
   }
   .employees-page .dashboard-item {
-    width: 95%;
+    width: 100%;
   }
 }
 
@@ -869,6 +885,7 @@ header aside div {
   margin: auto;
   color: #383f4d;
   margin-top: 10px;
+  padding-bottom: 5px;
   border-bottom: 1px solid rgba(32, 33, 36, 0.28);
 }
 
@@ -890,5 +907,257 @@ header aside div {
 
 .employee-page .employee-page-header div h4:last-child {
   font-size: 0.8rem;
+}
+
+.employee-page .employee-wrap h2 {
+  color: #764abc;
+  font-weight: bolder;
+}
+
+.employee-page .employee-job-info {
+  margin: 10px 0;
+}
+
+.employee-page .employee-job-info .employee-job-info-grid:first-child {
+  background-color: #383f4d;
+}
+
+.employee-page .employee-job-info-grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[5];
+      grid-template-columns: repeat(5, 1fr);
+  place-items: center;
+  gap: 5px;
+}
+
+.employee-page .employee-job-info-grid h2 {
+  font-size: 1rem;
+}
+
+.employee-page .employee-job-info-grid h3,
+.employee-page .employee-job-info-grid h4 {
+  font-size: 0.8rem;
+}
+
+.employee-page .employee-contact-info {
+  margin: 10px 0;
+}
+
+.employee-page .employee-contact-info-grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+}
+
+.employee-page .employee-contact-info-grid h2 {
+  font-size: 1rem;
+}
+
+.employee-page .employee-contact-info-grid h3,
+.employee-page .employee-contact-info-grid h4 {
+  font-size: 0.8rem;
+}
+
+.employee-page .employee-contact-info-grid h3 {
+  width: 120px;
+  word-wrap: break-word;
+}
+
+.employee-page .employee-contact-info-grid h4 {
+  width: 120px;
+  word-wrap: break-word;
+}
+
+.employee-page .employee-personal-info {
+  margin: 10px 0;
+}
+
+.employee-page .employee-personal-info-grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+}
+
+.employee-page .employee-personal-info-grid h3 {
+  font-size: 0.8rem;
+}
+
+.employee-page .employee-notes-info {
+  margin: 10px 0;
+}
+
+.employee-page .employee-notes-info h3 {
+  text-align: left;
+}
+
+.employee-page .employee-notes-info .employee-note {
+  text-align: center;
+  border: 1px solid rgba(32, 33, 36, 0.28);
+  border-radius: 5px;
+}
+
+.employee-page .employee-notes-info .employee-note h3 {
+  padding: 5px;
+  font-size: 0.8rem;
+}
+
+@media only screen and (min-width: 700px) {
+  .employee-page {
+    overflow-x: hidden;
+  }
+  .employee-page .dashboard-auto {
+    width: 80%;
+  }
+  .employee-page .edit-section {
+    margin-top: -10px;
+  }
+  .employee-page .employee-wrap h2 {
+    margin-bottom: 5px;
+  }
+  .employee-page .employee-contact-info {
+    margin: 10px 0;
+  }
+  .employee-page .employee-contact-info-grid h3 {
+    width: 100%;
+  }
+  .employee-page .employee-contact-info-grid h4 {
+    width: 100%;
+  }
+  .employee-page .employee-notes-info .employee-note h3 {
+    font-size: 0.9rem;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .employee-page .dashboard-auto {
+    width: 75%;
+  }
+  .employee-page .edit-section {
+    margin-top: -5px;
+  }
+  .employee-page .employee-wrap h2 {
+    font-size: 1.1rem;
+  }
+  .employee-page .employee-page-header {
+    padding-bottom: 7px;
+  }
+  .employee-page .employee-page-header div h4:first-child {
+    font-size: 1.4rem;
+  }
+  .employee-page .employee-page-header div h4:nth-child(2) {
+    font-size: 1.1rem;
+  }
+  .employee-page .employee-page-header div h4:last-child {
+    font-size: 1rem;
+  }
+  .employee-page .employee-job-info-grid h3,
+  .employee-page .employee-job-info-grid h4 {
+    font-size: 1rem;
+  }
+  .employee-page .employee-contact-info-grid h3,
+  .employee-page .employee-contact-info-grid h4 {
+    font-size: 1rem;
+  }
+  .employee-page .employee-personal-info-grid h3 {
+    font-size: 1rem;
+  }
+  .employee-page .employee-notes-info .employee-note h3 {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  .employee-page .dashboard-auto {
+    width: 70%;
+  }
+  .employee-page .edit-section {
+    margin-top: -10px;
+  }
+  .employee-page .employee-wrap h2 {
+    font-size: 1.2rem;
+  }
+  .employee-page .employee-page-header div h4:first-child {
+    font-size: 1.5rem;
+  }
+  .employee-page .employee-page-header div h4:nth-child(2) {
+    font-size: 1.2rem;
+  }
+  .employee-page .employee-page-header div h4:last-child {
+    font-size: 1.1rem;
+  }
+  .employee-page .employee-job-info-grid h2 {
+    font-size: 1.5rem;
+  }
+  .employee-page .employee-job-info-grid h3,
+  .employee-page .employee-job-info-grid h4 {
+    font-size: 1.1rem;
+  }
+  .employee-page .employee-contact-info-grid h2 {
+    font-size: 1.5rem;
+  }
+  .employee-page .employee-contact-info-grid h3,
+  .employee-page .employee-contact-info-grid h4 {
+    font-size: 1.1rem;
+  }
+  .employee-page .employee-personal-info-grid h2 {
+    font-size: 1.5rem;
+  }
+  .employee-page .employee-personal-info-grid h3 {
+    font-size: 1.1rem;
+  }
+  .employee-page .employee-notes-info .employee-note h3 {
+    font-size: 1.1rem;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .employee-page .dashboard-auto {
+    width: 50%;
+  }
+  .employee-page .edit-section {
+    margin-top: -80px;
+  }
+  .employee-page .employee-wrap h2 {
+    font-size: 1.6rem;
+    margin-top: 25px;
+  }
+  .employee-page .employee-page-header img {
+    width: 200px;
+  }
+  .employee-page .employee-page-header div h4:first-child {
+    font-size: 1.7rem;
+  }
+  .employee-page .employee-page-header div h4:nth-child(2) {
+    font-size: 1.4rem;
+  }
+  .employee-page .employee-page-header div h4:last-child {
+    font-size: 1.3rem;
+  }
+  .employee-page .employee-job-info-grid h3,
+  .employee-page .employee-job-info-grid h4 {
+    font-size: 1.3rem;
+  }
+  .employee-page .employee-contact-info-grid h3,
+  .employee-page .employee-contact-info-grid h4 {
+    font-size: 1.3rem;
+  }
+  .employee-page .employee-personal-info-grid h3 {
+    font-size: 1.3rem;
+  }
+  .employee-page .employee-notes-info .employee-note h3 {
+    font-size: 1.3rem;
+  }
+}
+
+.single-customer-page .employee-job-info-grid {
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+}
+
+.single-customer-page .employee-contact-info {
+  margin: 30px 0;
 }
 /*# sourceMappingURL=App.css.map */

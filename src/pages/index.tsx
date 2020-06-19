@@ -60,9 +60,11 @@ export default function Index() {
             Employeez Helps <span>You</span> Spend More Time Running your
             Business. Built for <span>SMEs</span> and <span>MSMEs</span>
           </p>
+          <Link to="/signup">
           <Button variantColor="purple">
-            <Link to="/signup">Get Started</Link>
+            Get Started
           </Button>
+          </Link>
         </div>
         <div className="intro-image">
           <img src="/images/undraw_img.png" alt="intro-img" />

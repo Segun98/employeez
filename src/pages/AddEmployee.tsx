@@ -128,18 +128,6 @@ export const AddEmployee: React.FC = () => {
                   />
                 </div>
 
-                <div>
-                  <FormLabel htmlFor="Address">Address</FormLabel>
-                  <Input
-                    isRequired={false}
-                    type="text"
-                    name="Address"
-                    value={address}
-                    onChange={(e: any) => {
-                      setAddress(e.target.value);
-                    }}
-                  />
-                </div>
 
                 <div>
                   <FormLabel htmlFor="Work Location">Work Location</FormLabel>
@@ -147,70 +135,10 @@ export const AddEmployee: React.FC = () => {
                     isRequired={false}
                     type="text"
                     name="Work Location"
+                    placeholder= "City, e.g Lagos"
                     value={workLocation}
                     onChange={(e: any) => {
                       setWorkLocation(e.target.value);
-                    }}
-                  />
-                </div>
-
-                <div>
-                  <FormLabel htmlFor="Phone">Phone Number</FormLabel>
-                  <InputGroup>
-                    <InputLeftElement
-                      children={<Icon name="phone" color="gray.300" />}
-                    />
-                    <Input
-                      isRequired={false}
-                      type="tel"
-                      name="Phone"
-                      value={phone}
-                      onChange={(e: any) => {
-                        setPhone(e.target.value);
-                      }}
-                    />
-                  </InputGroup>
-                </div>
-
-                <div>
-                  <FormLabel htmlFor="DOB">D.O.B</FormLabel>
-                  <Input
-                    isRequired={false}
-                    type="date"
-                    name="DOB"
-                    value={dob}
-                    onChange={(e: any) => {
-                      setDob(e.target.value);
-                    }}
-                  />
-                </div>
-
-                <div>
-                  <FormLabel htmlFor="Gender">Gender</FormLabel>
-                  <RadioGroup
-                    spacing={5}
-                    isInline
-                    value={gender}
-                    onChange={(e: any) => setGender(e.target.value)}
-                  >
-                    <Radio name="Gender" value="M">
-                      Male
-                    </Radio>
-                    <Radio name="Gender" value="F">
-                      Female
-                    </Radio>
-                  </RadioGroup>
-                </div>
-
-                <div>
-                  <FormLabel htmlFor="Picture">Picture</FormLabel>
-                  <Input
-                    isRequired={false}
-                    type="file"
-                    name="Picture"
-                    value={picture}
-                    onChange={(e: any) => {
-                      setPicture(e.target.value);
                     }}
                   />
                 </div>
@@ -259,6 +187,81 @@ export const AddEmployee: React.FC = () => {
                     value={benefits}
                     onChange={(e: any) => {
                       setBenefits(e.target.value);
+                    }}
+                  />
+                </div>
+
+
+                <div>
+                  <FormLabel htmlFor="Phone">Phone Number</FormLabel>
+                  <InputGroup>
+                    <InputLeftElement
+                      children={<Icon name="phone" color="gray.300" />}
+                    />
+                    <Input
+                      isRequired={false}
+                      type="tel"
+                      name="Phone"
+                      value={phone}
+                      onChange={(e: any) => {
+                        setPhone(e.target.value);
+                      }}
+                    />
+                  </InputGroup>
+                </div>
+
+                <div>
+                  <FormLabel htmlFor="Address">Home Address</FormLabel>
+                  <Input
+                    isRequired={false}
+                    type="text"
+                    name="Address"
+                    value={address}
+                    onChange={(e: any) => {
+                      setAddress(e.target.value);
+                    }}
+                  />
+                </div>
+
+                <div>
+                  <FormLabel htmlFor="DOB">D.O.B</FormLabel>
+                  <Input
+                    isRequired={false}
+                    type="date"
+                    name="DOB"
+                    value={dob}
+                    onChange={(e: any) => {
+                      setDob(e.target.value);
+                    }}
+                  />
+                </div>
+
+                <div>
+                  <FormLabel htmlFor="Gender">Gender</FormLabel>
+                  <RadioGroup
+                    spacing={5}
+                    isInline
+                    value={gender}
+                    onChange={(e: any) => setGender(e.target.value)}
+                  >
+                    <Radio name="Gender" value="M">
+                      Male
+                    </Radio>
+                    <Radio name="Gender" value="F">
+                      Female
+                    </Radio>
+                  </RadioGroup>
+                </div>
+
+                <div>
+                  <FormLabel htmlFor="Picture">Picture</FormLabel>
+                  <Input
+                    isRequired={false}
+                    type="file"
+                    name="Picture"
+                    value={picture}
+                    onChange={(e: any) => {
+                      setPicture(e.target.value);
                     }}
                   />
                 </div>

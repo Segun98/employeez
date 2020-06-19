@@ -1,7 +1,8 @@
 .employee-page {
     .dashboard-auto {
         width: 90%;
-      }
+    }
+
     .edit-section {
         text-align: right;
         margin-top: -20px;
@@ -21,6 +22,7 @@
         margin: auto;
         color: $textcolor;
         margin-top: 10px;
+        padding-bottom: 5px;
         border-bottom: 1px solid $bordecolor;
 
         img {
@@ -51,4 +53,417 @@
             }
         }
     }
+
+    .employee-wrap {
+        h2 {
+            color: $purple;
+            font-weight: bolder;
+        }
+    }
+
+    .employee-job-info {
+        margin: 10px 0;
+
+        .employee-job-info-grid:first-child {
+            background-color: $textcolor;
+        }
+    }
+
+    .employee-job-info-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        place-items: center;
+        gap: 5px;
+
+        h2 {
+            font-size: 1rem;
+        }
+
+        h3,
+        h4 {
+            font-size: 0.8rem;
+        }
+    }
+
+    .employee-contact-info {
+        margin: 10px 0;
+    }
+
+    .employee-contact-info-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+        h2 {
+            font-size: 1rem;
+        }
+
+        h3,
+        h4 {
+            font-size: 0.8rem;
+        }
+
+        h3 {
+            width: 120px;
+            word-wrap: break-word;
+        }
+
+        ;
+
+        h4 {
+            width: 120px;
+            word-wrap: break-word;
+        }
+
+    }
+
+    .employee-personal-info {
+        margin: 10px 0;
+    }
+
+    .employee-personal-info-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+
+        h3 {
+            font-size: 0.8rem;
+        }
+    }
+
+    .employee-notes-info {
+        margin: 10px 0;
+
+        h3 {
+            text-align: left;
+        }
+
+        .employee-note {
+            text-align: center;
+            border: 1px solid $bordecolor;
+            border-radius: 5px;
+
+            h3 {
+                padding: 5px;
+                font-size: 0.8rem;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width:700px) {
+
+    .employee-page {
+        overflow-x: hidden;
+
+        .dashboard-auto {
+            width: 80%;
+        }
+
+        .edit-section {
+            margin-top: -10px;
+        }
+
+
+
+        .employee-wrap {
+            h2 {
+                margin-bottom: 5px;
+            }
+        }
+
+
+
+
+        .employee-contact-info {
+            margin: 10px 0;
+        }
+
+        .employee-contact-info-grid {
+
+
+            h3 {
+                width: 100%;
+            }
+
+            ;
+
+            h4 {
+                width: 100%;
+            }
+
+        }
+
+
+
+        .employee-notes-info {
+            .employee-note {
+                h3 {
+                    font-size: 0.9rem;
+                }
+            }
+        }
+    }
+
+}
+
+@media only screen and (min-width:1000px) {
+    .employee-page {
+        .dashboard-auto {
+            width: 75%;
+        }
+
+        .edit-section {
+            margin-top: -5px;
+        }
+
+
+
+        .employee-wrap {
+            h2 {
+                font-size: 1.1rem;
+            }
+        }
+
+        .employee-page-header {
+            padding-bottom: 7px;
+
+
+            div {
+                h4 {
+                    &:first-child {
+                        font-size: 1.4rem;
+                    }
+
+                    ;
+
+                    &:nth-child(2) {
+                        font-size: 1.1rem;
+
+                    }
+
+                    ;
+
+                    &:last-child {
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+
+
+        .employee-job-info-grid {
+
+            h3,
+            h4 {
+                font-size: 1rem;
+            }
+        }
+
+        .employee-contact-info-grid {
+
+            h3,
+            h4 {
+                font-size: 1rem;
+            }
+        }
+
+        .employee-personal-info-grid {
+            h3 {
+                font-size: 1rem;
+            }
+        }
+
+        .employee-notes-info {
+            .employee-note {
+                h3 {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+
+}
+
+
+
+@media only screen and (min-width:1300px) {
+    .employee-page {
+        .dashboard-auto {
+            width: 70%;
+        }
+
+        .edit-section {
+            margin-top: -10px;
+        }
+
+
+
+        .employee-wrap {
+            h2 {
+                font-size: 1.2rem;
+            }
+        }
+
+        .employee-page-header {
+
+            div {
+                h4 {
+                    &:first-child {
+                        font-size: 1.5rem;
+                    }
+
+                    ;
+
+                    &:nth-child(2) {
+                        font-size: 1.2rem;
+
+                    }
+
+                    ;
+
+                    &:last-child {
+                        font-size: 1.1rem;
+                    }
+                }
+            }
+        }
+
+
+        .employee-job-info-grid {
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            ;
+
+            h3,
+            h4 {
+                font-size: 1.1rem;
+            }
+        }
+
+        .employee-contact-info-grid {
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            ;
+
+            h3,
+            h4 {
+                font-size: 1.1rem;
+            }
+        }
+
+        .employee-personal-info-grid {
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            ;
+
+            h3 {
+                font-size: 1.1rem;
+            }
+        }
+
+        .employee-notes-info {
+            .employee-note {
+                h3 {
+                    font-size: 1.1rem;
+                }
+            }
+        }
+    }
+
+}
+
+
+
+
+@media only screen and (min-width:2000px) {
+    .employee-page {
+        .dashboard-auto {
+            width: 50%;
+        }
+
+        .edit-section {
+            margin-top: -80px;
+        }
+
+        .employee-wrap {
+            h2 {
+                font-size: 1.6rem;
+                margin-top: 25px;
+            }
+        }
+
+        .employee-page-header {
+            img {
+                width: 200px;
+            }
+
+            div {
+                h4 {
+                    &:first-child {
+                        font-size: 1.7rem;
+                    }
+
+                    ;
+
+                    &:nth-child(2) {
+                        font-size: 1.4rem;
+
+                    }
+
+                    ;
+
+                    &:last-child {
+                        font-size: 1.3rem;
+                    }
+                }
+            }
+        }
+
+
+        .employee-job-info-grid {
+
+            h3,
+            h4 {
+                font-size: 1.3rem;
+            }
+        }
+
+        .employee-contact-info-grid {
+
+            h3,
+            h4 {
+                font-size: 1.3rem;
+            }
+        }
+
+        .employee-personal-info-grid {
+            h3 {
+                font-size: 1.3rem;
+            }
+        }
+
+        .employee-notes-info {
+            .employee-note {
+                h3 {
+                    font-size: 1.3rem;
+                }
+            }
+        }
+    }
+
+}
+
+.single-customer-page {
+    .employee-job-info-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .employee-contact-info{
+        margin: 30px 0;
+    }
+
 }

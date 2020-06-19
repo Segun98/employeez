@@ -460,6 +460,26 @@ textarea {
 
 }
 
+.customers-page {
+  .dashboard-body {
+    .dashboard-auto {
+      .dashboard-wrap {
+        .dashboard-item {
+          p {
+            font-size: 1rem;
+            color: $textcolor;
+          }
+
+          h2 {
+            color: $purple;
+          }
+
+        }
+      }
+    }
+  }
+}
+
 @import "./homepage";
 @import "./login-signup";
 @import "./employee-page";
