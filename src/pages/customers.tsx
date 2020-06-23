@@ -15,6 +15,9 @@ export const Customers = () => {
             <Input type="search" placeholder="filter customers" />
           </form>
           <div>
+            <Link to="/customer-mail">
+              <Button variantColor="purple">Send Emails</Button>
+            </Link>
             <Link to="/add-customer">
               <Button variantColor="purple">Register</Button>
             </Link>
@@ -27,7 +30,7 @@ export const Customers = () => {
                 <h2>Segun Olanitori</h2>
                 <div>
                   <p>08102679869</p>
-                  <p>Designer</p>
+                  <p style={{ fontWeight: "bold" }}>Designer</p>
                 </div>
                 <h5>M</h5>
               </div>
@@ -38,7 +41,7 @@ export const Customers = () => {
                 <h2>Bob Harrison</h2>
                 <div>
                   <p>08102679869</p>
-                  <p>Accountant</p>
+                  <p style={{ fontWeight: "bold" }}>Accountant</p>
                 </div>
                 <h5>F</h5>
               </div>

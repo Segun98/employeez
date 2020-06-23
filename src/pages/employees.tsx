@@ -15,6 +15,9 @@ export const Employees = () => {
             <Input type="search" placeholder="filter employees" />
           </form>
           <div>
+            <Link to="/send-mail">
+              <Button variantColor="purple">Send Emails</Button>
+            </Link>
             <Link to="/add-employee">
               <Button variantColor="purple">Onboard</Button>
             </Link>

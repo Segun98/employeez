@@ -1,81 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import MainHeader from "../components/mainHeader";
 import { Button, Textarea, Spinner } from "@chakra-ui/core";
-import { getToken, setToken } from "../utils/accesstoken";
+import { getToken } from "../utils/accesstoken";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
 
-export const EditDashboard: React.FC = () => {
-  const history = useHistory();
+export const CreateDashboard: React.FC = () => {
   const [mission, setMission] = useState("");
   const [vision, setVision] = useState("");
   const [about, setAbout] = useState("");
   const [todo, setTodo] = useState("");
-  const [err, setErr] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [pageLoad, setPageLoad] = useState(true);
-
-  useEffect(() => {
-    fetchRefreshToken();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  async function fetchRefreshToken() {
-    const instance = axios.create({
-      withCredentials: true,
-    });
-
-    try {
-      const res = await instance.post(
-        "http://localhost:8080/api/refreshtokens"
-      );
-      setToken(res.data.accessToken);
-      console.clear();
-      fetchdata();
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
-  async function fetchdata() {
-    const instance = axios.create({
-      withCredentials: true,
-    });
-    let accessToken = getToken();
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `${accessToken ? `bearer ${accessToken}` : ""}`,
-      },
-    };
-
-    try {
-      const res = await instance.get(
-        "http://localhost:8080/api/dashboard",
-        config
-      );
-
-      if (res.data.data) {
-        setPageLoad(false);
-        setAbout(res.data.data.about);
-        setMission(res.data.data.mission);
-        setVision(res.data.data.vision);
-        setTodo(res.data.data.todo);
-      }
-    } catch (error) {
-      console.log(error.message);
-      setErr(true);
-    }
-  }
+  const [err, setErr] = useState(false);
 
   async function handleSubmit(e: any) {
     e.preventDefault();
-    setLoading(true);
     const payload = {
       mission,
       vision,
       about,
       todo,
     };
+
     const instance = axios.create({
       withCredentials: true,
     });
@@ -88,18 +33,20 @@ export const EditDashboard: React.FC = () => {
     };
 
     try {
+      setLoading(true);
       const res = await instance.post(
-        "http://localhost:8080/api/dashboard/update",
+        "http://localhost:8080/api/dashboard/add",
         payload,
         config
-      );      
-      if (res.data.success) {
-        return history.push("/dashboard");
+      );
+      if (res.data.status) {
+        setLoading(false);
+        window.location.href = "/dashboard";
       }
     } catch (error) {
       console.log(error.message);
-      setErr(true);
       setLoading(false);
+      setErr(true);
     }
   }
   return (
@@ -111,23 +58,14 @@ export const EditDashboard: React.FC = () => {
         <div className="dashboard-auto">
           <h3
             style={{
-              textAlign: "center",
-              display: err ? "block" : "none",
               color: "red",
+              display: err ? "block" : "none",
+              textAlign: "center",
             }}
           >
-            An error occurred, check your internet connection or refresh page
+            An error occured, check your internet connection and refresh
           </h3>
-          <div
-            className="page-loader"
-            style={{ display: pageLoad ? "flex" : "none" }}
-          >
-            <Spinner></Spinner>
-          </div>
-          <form
-            onSubmit={handleSubmit}
-            style={{ visibility: pageLoad ? "hidden" : "visible" }}
-          >
+          <form onSubmit={handleSubmit}>
             <div className="dashboard-wrap">
               <div className="dashboard-item">
                 <div className="dashboard-item-wrap">
@@ -139,6 +77,7 @@ export const EditDashboard: React.FC = () => {
                   size="sm"
                   placeholder="Tasks for today"
                   value={todo}
+                  isRequired
                   onChange={(e: any) => {
                     setTodo(e.target.value);
                   }}
@@ -155,6 +94,7 @@ export const EditDashboard: React.FC = () => {
                   size="sm"
                   placeholder="About your Organisation"
                   value={about}
+                  isRequired
                   onChange={(e: any) => {
                     setAbout(e.target.value);
                   }}
@@ -171,6 +111,7 @@ export const EditDashboard: React.FC = () => {
                   size="sm"
                   placeholder="Your Organisation's Mission"
                   value={mission}
+                  isRequired
                   onChange={(e: any) => {
                     setMission(e.target.value);
                   }}
@@ -187,6 +128,7 @@ export const EditDashboard: React.FC = () => {
                   size="sm"
                   placeholder="Your Organisation's Vision"
                   value={vision}
+                  isRequired
                   onChange={(e: any) => {
                     setVision(e.target.value);
                   }}
@@ -198,7 +140,7 @@ export const EditDashboard: React.FC = () => {
                 style={{ display: loading ? "block" : "none" }}
               ></Spinner>
               <Button type="submit" variantColor="purple">
-                Save
+                Create
               </Button>
             </section>
           </form>
@@ -208,4 +150,4 @@ export const EditDashboard: React.FC = () => {
   );
 };
 
-export default EditDashboard;
+export default CreateDashboard;

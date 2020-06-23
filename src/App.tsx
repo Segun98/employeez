@@ -20,6 +20,7 @@ import Login from "./pages/Login";
 import { useAuth } from "./Context/authcontext";
 
 const Dashboard = React.lazy(() => import("./pages/dashboard"));
+const CreateDashboard = React.lazy(() => import("./pages/CreateDashboard"));
 const EditDashboard = React.lazy(() => import("./pages/editDashboard"));
 const Employees = React.lazy(() => import("./pages/employees"));
 const AddEmployee = React.lazy(() => import("./pages/AddEmployee"));
@@ -29,6 +30,8 @@ const Customers = React.lazy(() => import("./pages/customers"));
 const Customer = React.lazy(() => import("./pages/Customer"));
 const AddCustomer = React.lazy(() => import("./pages/AddCustomer"));
 const EditCustomer = React.lazy(() => import("./pages/editCustomer"));
+const SendMail = React.lazy(() => import("./pages/SendMail"));
+const CustomerMail = React.lazy(() => import("./pages/CustomerMail"));
 
 //REDUX DEV TOOLS
 declare global {
@@ -45,8 +48,10 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  //authentication check from context
   const { setisAuth }: any = useAuth()!;
 
+  //fetch refresh tokens on page refresh
   async function fetchdata() {
     const instance = axios.create({
       withCredentials: true,
@@ -60,10 +65,12 @@ function App() {
         setToken(res.data.accessToken);
         setisAuth(true);
       }
+      console.clear();
     } catch (error) {
+      if (error.message === "Request failed with status code 401") {
+        setisAuth(false);
+      }
       console.log(error.message);
-      // setisAuth(false);
-      console.clear()
     }
   }
   return (
@@ -83,6 +90,10 @@ function App() {
                   path="/dashboard/edit"
                   component={EditDashboard}
                 />
+                <PrivateRoute
+                  path="/dashboard/create"
+                  component={CreateDashboard}
+                />
                 <PrivateRoute path="/employees" exact component={Employees} />
                 <PrivateRoute path="/add-employee" component={AddEmployee} />
                 <PrivateRoute path="/employee/:id" component={Employee} />
@@ -97,6 +108,8 @@ function App() {
                   path="/edit-customer/:id"
                   component={EditCustomer}
                 />
+                <PrivateRoute path="/send-mail" component={SendMail} />
+                <PrivateRoute path="/customer-mail" component={CustomerMail} />
               </Suspense>
             </Switch>
           </ThemeProvider>

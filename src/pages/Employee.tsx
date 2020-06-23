@@ -1,19 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import MainHeader from "../components/mainHeader";
-import { Button } from "@chakra-ui/core";
+import {
+  Button,
+  Textarea,
+  Input,
+  FormControl,
+  FormLabel,
+} from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 
 export const Employee = ({ match }: any) => {
   let name_url = match.params.id;
 
+  const [email, setEmail] = useState("");
+  const [showEMail, setShowEmail] = useState(false);
+  const handleEmail = (e: any) => {
+    e.preventDefault();
+    console.log(email);
+  };
+
   return (
     <div className="employee-page">
       <section>
-        <MainHeader name={`${name_url} Profile`} />
+        <MainHeader name={`${name_url} Profile (E)`} />
       </section>
       <section className="dashboard-body">
-        <div className="dashboard-auto">
+        <div className="dashboard-auto" style={{ position: "relative" }}>
           <div className="edit-section">
+            <Button
+              variantColor="purple"
+              onClick={() => {
+                setShowEmail(true);
+              }}
+            >
+              Send Email
+            </Button>
             <Link to="/edit-employee/segun-os">
               <Button variantColor="purple">Edit</Button>
             </Link>
@@ -111,6 +132,44 @@ export const Employee = ({ match }: any) => {
               </div>
             </section>
           </div>
+
+          <section
+            className="single-email"
+            id="single-email"
+            style={{
+              transition: "transform 1s ease-in",
+              transform: showEMail ? "scale(1)" : "scale(0)",
+            }}
+          >
+            <form onSubmit={handleEmail}>
+              <FormControl isRequired>
+                <FormLabel htmlFor="subject">Subject</FormLabel>
+                <Input type="text" placeholder="Subject" />
+                <FormLabel htmlFor="Body">Body</FormLabel>
+                <Textarea
+                  size="lg"
+                  placeholder={`Send ${name_url} an Email`}
+                  value={email}
+                  onChange={(e: any) => {
+                    setEmail(e.target.value);
+                  }}
+                ></Textarea>
+              </FormControl>
+              <div
+                className="close-mail"
+                onClick={() => {
+                  setShowEmail(false);
+                }}
+              >
+                X Hide
+              </div>
+              {/* <h3 style={{ color: "red" }}>failure</h3>
+                <h3 style={{ color: "green" }}>success</h3> */}
+              <Button type="submit" variantColor="purple">
+                Send
+              </Button>
+            </form>
+          </section>
         </div>
       </section>
     </div>

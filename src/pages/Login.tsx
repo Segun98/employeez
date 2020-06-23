@@ -9,7 +9,7 @@ import {
   InputGroup,
 } from "@chakra-ui/core";
 import axios from "axios";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { setToken } from "./../utils/accesstoken";
 import Header from "./../components/header";
 import { useAuth } from "./../Context/authcontext";
@@ -32,7 +32,6 @@ export const Login = () => {
     }
   }, [error]);
 
-  let history = useHistory();
 
   async function handleSubmit(e: any) {
     e.preventDefault();
@@ -64,7 +63,7 @@ export const Login = () => {
         setisAuth(true);
         setSuccess("Login successful!");
         setloading(false);
-        history.push("/dashboard");
+        window.location.href = "/dashboard"
         return true;
       }
       setloading(false);

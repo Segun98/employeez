@@ -271,7 +271,7 @@ export const AddEmployee: React.FC = () => {
                   <Textarea
                     isRequired={false}
                     size="sm"
-                    placeholder="useful notes about this employee"
+                    placeholder="useful notes about this employee. Performance review etc"
                     name="Notes"
                     value={notes}
                     onChange={(e: any) => {

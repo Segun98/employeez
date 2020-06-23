@@ -4,7 +4,9 @@
     }
 
     .edit-section {
-        text-align: right;
+        // text-align: right;
+        display: flex;
+        justify-content: space-between;
         margin-top: -20px;
 
         Button {
@@ -458,12 +460,91 @@
 
 }
 
+/*/customer/:id*/
+
 .single-customer-page {
     .employee-job-info-grid {
         grid-template-columns: repeat(4, 1fr);
     }
-    .employee-contact-info{
+
+    .employee-contact-info {
         margin: 30px 0;
     }
 
+}
+
+/*/send-email*/
+
+.dashboard-body {
+    .single-email {
+        top: 150px;
+        bottom: 20px;
+        text-align: left;
+        position: relative;
+        position: absolute;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 1px 6px 0 $bordecolor;;
+        label{
+            font-weight: bold;
+            color:$purple;
+            padding: 2px 5px;
+
+        }
+        Textarea {
+            height: 250px;
+            width: 300px;
+            border-radius: 5px;
+        }
+
+        Button {
+            margin-top: 5px;
+            width: 70px;
+            height: 30px;
+        }
+
+        .close-mail {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            color: $purple;
+            font-weight: bolder;
+            cursor: pointer;
+            background: white;
+        }
+    }
+}
+
+;
+
+@media only screen and (min-width:700px) {
+    .dashboard-body {
+        .single-email {
+            top: 200px;
+            right: 0;
+            Textarea {
+                width: 350px;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width:1100px) {
+    .dashboard-body {
+        .single-email {
+            Textarea {
+                height: 200px;
+                width: 500px;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width:1400px) {
+    .dashboard-body {
+        .single-email {
+           top: 300px;
+        }
+    }
 }

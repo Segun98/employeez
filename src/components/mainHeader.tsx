@@ -5,12 +5,11 @@ import { Icon } from "@chakra-ui/core";
 import { useAuth } from "./../Context/authcontext";
 
 interface props {
-  name?:string
+  name?: string;
 }
 
-const MainHeader:React.FC<props> = ({name}) => {
+const MainHeader: React.FC<props> = ({ name }) => {
   const [ham, setham] = useState(false);
-
 
   let location = useLocation();
   const { setisAuth }: any = useAuth()!;
@@ -29,10 +28,15 @@ const MainHeader:React.FC<props> = ({name}) => {
       return "Register Customer";
     } else if (location.pathname === "/customers") {
       return "Customer Directory";
-    }  else if (name) {
+    } else if (name) {
       return name;
+    } else if (location.pathname === "/send-mail") {
+      return "Employee Emails";
+    } else if (location.pathname === "/customer-mail") {
+      return "Customer Emails";
+    } else if (location.pathname === "/dashboard/create") {
+      return "Create Dashboard";
     }
-    
   }
 
   const handleLogout = async () => {
@@ -44,7 +48,6 @@ const MainHeader:React.FC<props> = ({name}) => {
       const res = await instance.post("http://localhost:8080/api/logout");
       if (res.data.message === "Logged out") {
         setisAuth(false);
-        window.location.reload()
         return true;
       }
     } catch (error) {
@@ -68,45 +71,40 @@ const MainHeader:React.FC<props> = ({name}) => {
             </li>
             <li
               style={{
-                textDecoration: location.pathname === "/dashboard"
-                  ? "underline"
-                  : "none",
+                textDecoration:
+                  location.pathname === "/dashboard" ? "underline" : "none",
               }}
             >
               <Link to="/dashboard">Dashboard</Link>
             </li>
             <li
               style={{
-                textDecoration: location.pathname === "/employees"
-                  ? "underline"
-                  : "none",
+                textDecoration:
+                  location.pathname === "/employees" ? "underline" : "none",
               }}
             >
               <Link to="/employees">Employee Directory</Link>
             </li>
             <li
               style={{
-                textDecoration: location.pathname === "/add-employee"
-                  ? "underline"
-                  : "none",
+                textDecoration:
+                  location.pathname === "/add-employee" ? "underline" : "none",
               }}
             >
               <Link to="/add-employee">Onboard Employee</Link>
             </li>
             <li
               style={{
-                textDecoration: location.pathname === "/customers"
-                  ? "underline"
-                  : "none",
+                textDecoration:
+                  location.pathname === "/customers" ? "underline" : "none",
               }}
             >
               <Link to="/customers">Customer Directory</Link>
             </li>
             <li
               style={{
-                textDecoration: location.pathname === "/add-customer"
-                  ? "underline"
-                  : "none",
+                textDecoration:
+                  location.pathname === "/add-customer" ? "underline" : "none",
               }}
             >
               <Link to="/add-customer">Register Customer</Link>
@@ -130,7 +128,10 @@ const MainHeader:React.FC<props> = ({name}) => {
               {headerName()}
             </h1>
           </div>
-          <h1 style={{ color: "rgb(118, 74, 188)" }}>Privacy Policy</h1>
+
+          <h1 style={{ color: "rgb(118, 74, 188)" }}>
+            <a href="/about#privacy">Privacy Policy</a>
+          </h1>
         </div>
       </section>
     </div>

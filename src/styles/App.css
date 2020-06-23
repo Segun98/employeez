@@ -76,6 +76,19 @@ textarea {
   font-family: "Sen", sans-serif;
 }
 
+.page-loader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  min-height: 100vh;
+}
+
 /* MAINHEADER.TSX*/
 .mainheader-head {
   height: 100vh;
@@ -425,6 +438,125 @@ textarea {
   color: #764abc;
 }
 
+/* send-mail*/
+.send-mail-page .send-mail-header {
+  text-align: center;
+  color: #764abc;
+  font-weight: bolder;
+}
+
+.send-mail-page .send-mail-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+}
+
+.send-mail-page .send-mail-wrap section {
+  margin-top: 10px;
+}
+
+.send-mail-page .send-mail-wrap label {
+  color: #764abc;
+}
+
+.send-mail-page .send-mail-wrap Textarea {
+  height: 300px;
+}
+
+.send-mail-page .send-mail-wrap .emails h3 {
+  color: #764abc;
+}
+
+.send-mail-page .send-mail-wrap .email-item {
+  font-size: 0.8rem;
+}
+
+.send-mail-page .selected-mails {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.send-mail-page .selected-mails h3 {
+  color: #764abc;
+}
+
+@media only screen and (min-width: 700px) {
+  .send-mail-page .send-mail-wrap {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 3fr;
+        grid-template-columns: 1fr 3fr;
+    grid-gap: 50px;
+    gap: 50px;
+  }
+  .send-mail-page .send-mail-wrap section {
+    margin-top: 10px;
+  }
+  .send-mail-page .send-mail-wrap .email-item {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .send-mail-page .send-mail-header {
+    margin-top: -20px;
+  }
+  .send-mail-page .send-mail-wrap {
+    grid-gap: 100px;
+    gap: 100px;
+  }
+  .send-mail-page .send-mail-wrap .email-item {
+    font-size: 1.1rem;
+  }
+}
+
+/*About Page*/
+.about-page {
+  text-align: justify;
+}
+
+.about-page h3 {
+  color: #764abc;
+}
+
+.about-page-body {
+  margin: auto;
+  width: 90%;
+  font-weight: bolder;
+}
+
+.about-page-body li {
+  list-style: circle;
+}
+
+@media only screen and (min-width: 700px) {
+  .about-page-body {
+    width: 65%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .about-page-body {
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .about-page-body {
+    width: 40%;
+  }
+}
+
 /* home page */
 .home-page {
   height: 100vh;
@@ -737,21 +869,22 @@ header aside div {
   display: -ms-flexbox;
   display: flex;
   margin-top: -20px;
-  -webkit-box-align: baseline;
-      -ms-flex-align: baseline;
-          align-items: baseline;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .employees-page header Input {
-  width: 200px;
+  width: 150px;
   height: 30px;
 }
 
 .employees-page header Button {
   height: 30px;
   border-radius: 7px;
-  width: 75px;
+  width: 83px;
   font-size: 0.8rem;
+  margin-left: 10px;
 }
 
 .employees-page .dashboard-item {
@@ -861,7 +994,12 @@ header aside div {
 }
 
 .employee-page .edit-section {
-  text-align: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   margin-top: -20px;
 }
 
@@ -1152,6 +1290,7 @@ header aside div {
   }
 }
 
+/*/customer/:id*/
 .single-customer-page .employee-job-info-grid {
   -ms-grid-columns: (1fr)[4];
       grid-template-columns: repeat(4, 1fr);
@@ -1159,5 +1298,70 @@ header aside div {
 
 .single-customer-page .employee-contact-info {
   margin: 30px 0;
+}
+
+/*/send-email*/
+.dashboard-body .single-email {
+  top: 150px;
+  bottom: 20px;
+  text-align: left;
+  position: relative;
+  position: absolute;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+          box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+}
+
+.dashboard-body .single-email label {
+  font-weight: bold;
+  color: #764abc;
+  padding: 2px 5px;
+}
+
+.dashboard-body .single-email Textarea {
+  height: 250px;
+  width: 300px;
+  border-radius: 5px;
+}
+
+.dashboard-body .single-email Button {
+  margin-top: 5px;
+  width: 70px;
+  height: 30px;
+}
+
+.dashboard-body .single-email .close-mail {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  color: #764abc;
+  font-weight: bolder;
+  cursor: pointer;
+  background: white;
+}
+
+@media only screen and (min-width: 700px) {
+  .dashboard-body .single-email {
+    top: 200px;
+    right: 0;
+  }
+  .dashboard-body .single-email Textarea {
+    width: 350px;
+  }
+}
+
+@media only screen and (min-width: 1100px) {
+  .dashboard-body .single-email Textarea {
+    height: 200px;
+    width: 500px;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .dashboard-body .single-email {
+    top: 300px;
+  }
 }
 /*# sourceMappingURL=App.css.map */
