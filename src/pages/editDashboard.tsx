@@ -92,7 +92,7 @@ export const EditDashboard: React.FC = () => {
         "http://localhost:8080/api/dashboard/update",
         payload,
         config
-      );      
+      );
       if (res.data.success) {
         return history.push("/dashboard");
       }
@@ -109,15 +109,6 @@ export const EditDashboard: React.FC = () => {
       </section>
       <section className="dashboard-body">
         <div className="dashboard-auto">
-          <h3
-            style={{
-              textAlign: "center",
-              display: err ? "block" : "none",
-              color: "red",
-            }}
-          >
-            An error occurred, check your internet connection or refresh page
-          </h3>
           <div
             className="page-loader"
             style={{ display: pageLoad ? "flex" : "none" }}
@@ -193,12 +184,24 @@ export const EditDashboard: React.FC = () => {
                 ></Textarea>
               </div>
             </div>
-            <section style={{ textAlign: "center", marginTop: "15px" }}>
+            <div style={{ textAlign: "center", marginTop: "15px" }}>
+              <h3
+                style={{
+                  textAlign: "center",
+                  display: err ? "block" : "none",
+                  color: "red",
+                }}
+              >
+                An error occurred, check your internet connection or refresh
+                page
+              </h3>
               <Spinner
                 style={{ display: loading ? "block" : "none" }}
               ></Spinner>
+            </div>
+            <section style={{ textAlign: "center", marginTop: "15px" }}>
               <Button type="submit" variantColor="purple">
-                Save
+                  Update
               </Button>
             </section>
           </form>

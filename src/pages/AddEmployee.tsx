@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MainHeader from "../components/mainHeader";
 import {
   FormControl,
@@ -11,13 +11,44 @@ import {
   InputGroup,
   InputLeftElement,
   Icon,
+  Spinner,
 } from "@chakra-ui/core";
-import {dash} from "../utils";
+import { dash } from "../utils";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+import { getToken, setToken } from "../utils/accesstoken";
+import { useAuth } from "../Context/authcontext";
 
 export const AddEmployee: React.FC = () => {
-  // const [loading, setloading] = useState(false);
-  // const [success, setSuccess] = useState("");
-  // const [error, setError] = useState("");
+  const history = useHistory();
+  useEffect(() => {
+    fetchRefreshToken();
+    // eslint-disable-next-line
+  }, []);
+
+  const { setisAuth }: any = useAuth()!;
+
+  async function fetchRefreshToken() {
+    const instance = axios.create({
+      withCredentials: true,
+    });
+
+    try {
+      const res = await instance.post(
+        "http://localhost:8080/api/refreshtokens"
+      );
+      setToken(res.data.accessToken);
+      console.clear();
+    } catch (error) {
+      if (error.message === "Request failed with status code 401") {
+        setisAuth(false);
+      }
+      console.log(error.message);
+    }
+  }
+
+  const [error, setError] = useState(false);
+  const [Loading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const [department, setDepartment] = useState("");
   const [title, setTitle] = useState("");
@@ -34,7 +65,7 @@ export const AddEmployee: React.FC = () => {
   const [benefits, setBenefits] = useState("");
   const [notes, setNotes] = useState("");
 
-  function handleSubmit(e: any) {
+  async function handleSubmit(e: any) {
     e.preventDefault();
     const payload = {
       name_url: dash(name),
@@ -49,12 +80,37 @@ export const AddEmployee: React.FC = () => {
       dob,
       gender,
       picture,
-      classif,
+      classification: classif,
       salary,
       benefits,
       notes,
     };
-    console.log(payload);
+    const instance = axios.create({
+      withCredentials: true,
+    });
+    let accessToken = getToken();
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `${accessToken ? `bearer ${accessToken}` : ""}`,
+      },
+    };
+
+    try {
+      setLoading(true);
+      const res = await instance.post(
+        "http://localhost:8080/api/employees/add",
+        payload,
+        config
+      );
+      if (res.data.status) {
+        history.push("/employees");
+      }
+    } catch (error) {
+      setLoading(false);
+      setError(true);
+      console.log(error.message);
+    }
   }
 
   return (
@@ -128,14 +184,13 @@ export const AddEmployee: React.FC = () => {
                   />
                 </div>
 
-
                 <div>
                   <FormLabel htmlFor="Work Location">Work Location</FormLabel>
                   <Input
                     isRequired={false}
                     type="text"
                     name="Work Location"
-                    placeholder= "City, e.g Lagos"
+                    placeholder="City, e.g Lagos"
                     value={workLocation}
                     onChange={(e: any) => {
                       setWorkLocation(e.target.value);
@@ -190,7 +245,6 @@ export const AddEmployee: React.FC = () => {
                     }}
                   />
                 </div>
-
 
                 <div>
                   <FormLabel htmlFor="Phone">Phone Number</FormLabel>
@@ -278,6 +332,27 @@ export const AddEmployee: React.FC = () => {
                       setNotes(e.target.value);
                     }}
                   ></Textarea>
+                </div>
+              </div>
+              <div
+                style={{
+                  textAlign: "center",
+                }}
+              >
+                <Spinner
+                  style={{
+                    display: Loading ? "block" : "none",
+                    textAlign: "center",
+                  }}
+                ></Spinner>
+                <div
+                  style={{
+                    display: error ? "block" : "none",
+                    textAlign: "center",
+                    color: "red",
+                  }}
+                >
+                  An error Ocurred, check your internet connection and refresh
                 </div>
               </div>
               <div className="add-employee-submit">

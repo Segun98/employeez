@@ -67,6 +67,7 @@ textarea {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  z-index: 1;
 }
 
 
@@ -180,6 +181,7 @@ textarea {
   border-radius: 7px;
   color: $textcolor;
   cursor: pointer;
+  width: 90%;
 
   &:hover {
     transform: scale(1.05);
@@ -195,6 +197,9 @@ textarea {
   .todo {
     text-align: left;
   }
+  // .gender-balance-content{
+    
+  // }
 
   .customer-no {
     display: flex;
@@ -342,7 +347,6 @@ textarea {
   }
 
   .dashboard-item {
-
     p {
       font-size: 1rem;
     }

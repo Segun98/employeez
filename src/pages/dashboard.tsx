@@ -4,9 +4,43 @@ import { Button, Spinner } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { getToken, setToken } from "../utils/accesstoken";
+import { Commas } from "../utils";
 import { useAuth } from "../Context/authcontext";
+import { useSelector, useDispatch } from "react-redux";
+import { getEmployees, getCustomers } from "../redux/actions/index";
+import { Doughnut } from "react-chartjs-2";
+
+interface DefaultRootState {
+  Employees: any;
+  Customers: any;
+}
 
 export const Dashboard: React.FC = () => {
+  const dispatch = useDispatch();
+  const employees = useSelector<DefaultRootState, any>(
+    (state) => state.Employees
+  );
+  const customers = useSelector<DefaultRootState, any>(
+    (state) => state.Customers
+  );
+  const customerLength = customers.result.length;
+
+  const getSalary = employees.result.map((employee: any) => employee.salary);
+  let TotalSalary = getSalary.reduce(
+    (a: any, b: any) => parseInt(a) + parseInt(b),
+    0
+  );
+
+  const employeeLength = employees.result.length;
+
+  const totalMale = employees.result.filter(
+    (employee: any) => employee.gender === "M"
+  ).length;
+
+  const totalFemale = employees.result.filter(
+    (employee: any) => employee.gender === "F"
+  ).length;
+
   const [mission, setMission] = useState("");
   const [todo, setTodo] = useState("");
   const [vision, setVision] = useState("");
@@ -66,6 +100,8 @@ export const Dashboard: React.FC = () => {
         setMission(res.data.data.mission);
         setVision(res.data.data.vision);
         setTodo(res.data.data.todo);
+        dispatch(getEmployees());
+        dispatch(getCustomers());
       }
       if (!res.data.data) {
         setPageLoad(false);
@@ -75,6 +111,28 @@ export const Dashboard: React.FC = () => {
       console.log(error.message);
     }
   }
+
+  //Pie chart Library
+
+  const MalePercentage = () => {
+    const percentage = (totalMale / employeeLength) * 100;
+    return Math.round(percentage);
+  };
+  const FemalePercentage = () => {
+    const percentage = (totalFemale / employeeLength) * 100;
+    return Math.round(percentage);
+  };
+
+  const stat = {
+    labels: [`F - ${totalFemale}`, `M - ${totalMale}`],
+    datasets: [
+      {
+        data: [FemalePercentage(), MalePercentage()],
+        backgroundColor: ["#FF6384", "#32cd32"],
+        hoverBackgroundColor: ["#FF6384", "#36A2EB"],
+      },
+    ],
+  };
 
   return (
     <div>
@@ -119,7 +177,7 @@ export const Dashboard: React.FC = () => {
               </div>
               <hr />
               <div className="customer-no">
-                <p>25</p>
+                <p>{employeeLength}</p>
                 <Link to="/employees">
                   <Button variantColor="purple">View Directory</Button>
                 </Link>
@@ -133,8 +191,17 @@ export const Dashboard: React.FC = () => {
               </div>
               <hr />
               <div className="gender-balance-content">
-                <p>M: 25</p>
-                <p>F: 25</p>
+                <Doughnut
+                  data={stat}
+                  width={8}
+                  height={5}
+                  options={{
+                    legend: {
+                      display: true,
+                      position: "bottom",
+                    },
+                  }}
+                />
               </div>
             </div>
 
@@ -145,7 +212,7 @@ export const Dashboard: React.FC = () => {
               </div>
               <hr />
               <div className="customer-no">
-                <p>79</p>
+                <p>{customerLength}</p>
                 <Link to="/customers">
                   <Button variantColor="purple">View Directory</Button>
                 </Link>
@@ -154,12 +221,12 @@ export const Dashboard: React.FC = () => {
 
             <div className="dashboard-item">
               <div className="dashboard-item-wrap">
-                <h3>Salary Expenses</h3>
+                <h3>Total Salary</h3>
                 <img src="/images/icons8-spinner-26.png" alt="icon" />
               </div>
               <hr />
               <p style={{ fontSize: "1.9rem", fontWeight: "bolder" }}>
-                320,000
+                {Commas(TotalSalary)}
               </p>
             </div>
 

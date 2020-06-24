@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MainHeader from "../components/mainHeader";
 import {
   FormControl,
@@ -11,13 +11,43 @@ import {
   InputGroup,
   InputLeftElement,
   Icon,
+  Spinner,
 } from "@chakra-ui/core";
 import { dash } from "../utils";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+import { getToken, setToken } from "../utils/accesstoken";
+import { useAuth } from "../Context/authcontext";
 
 export const AddCustomer: React.FC = () => {
-  // const [loading, setloading] = useState(false);
-  // const [success, setSuccess] = useState("");
-  // const [error, setError] = useState("");
+  const history = useHistory();
+  useEffect(() => {
+    fetchRefreshToken();
+    // eslint-disable-next-line
+  }, []);
+
+  const { setisAuth }: any = useAuth()!;
+
+  async function fetchRefreshToken() {
+    const instance = axios.create({
+      withCredentials: true,
+    });
+
+    try {
+      const res = await instance.post(
+        "http://localhost:8080/api/refreshtokens"
+      );
+      setToken(res.data.accessToken);
+      console.clear();
+    } catch (error) {
+      if (error.message === "Request failed with status code 401") {
+        setisAuth(false);
+      }
+      console.log(error.message);
+    }
+  }
+  const [Loading, setLoading] = useState(false);
+  const [err, setError] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
@@ -27,7 +57,7 @@ export const AddCustomer: React.FC = () => {
   const [gender, setGender] = useState("");
   const [notes, setNotes] = useState("");
 
-  function handleSubmit(e: any) {
+  async function handleSubmit(e: any) {
     e.preventDefault();
     const payload = {
       name_url: dash(name),
@@ -36,11 +66,36 @@ export const AddCustomer: React.FC = () => {
       address,
       occupation,
       phone,
-      dob,
+      DOB: dob,
       gender,
       notes,
     };
-    console.log(payload);
+    const instance = axios.create({
+      withCredentials: true,
+    });
+    let accessToken = getToken();
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `${accessToken ? `bearer ${accessToken}` : ""}`,
+      },
+    };
+
+    try {
+      setLoading(true);
+      const res = await instance.post(
+        "http://localhost:8080/api/customers/add",
+        payload,
+        config
+      );
+      if (res.data.status) {
+        history.push("/customers");
+      }
+    } catch (error) {
+      setLoading(false);
+      setError(true);
+      console.log(error.message);
+    }
   }
 
   return (
@@ -69,6 +124,7 @@ export const AddCustomer: React.FC = () => {
                 <div>
                   <FormLabel htmlFor="Email">Email</FormLabel>
                   <Input
+                    isRequired={false}
                     type="email"
                     name="Email"
                     value={email}
@@ -164,6 +220,27 @@ export const AddCustomer: React.FC = () => {
                       setNotes(e.target.value);
                     }}
                   ></Textarea>
+                </div>
+              </div>
+              <div
+                style={{
+                  textAlign: "center",
+                }}
+              >
+                <Spinner
+                  style={{
+                    display: Loading ? "block" : "none",
+                    textAlign: "center",
+                  }}
+                ></Spinner>
+                <div
+                  style={{
+                    display: err ? "block" : "none",
+                    textAlign: "center",
+                    color: "red",
+                  }}
+                >
+                  An error Ocurred, check your internet connection and refresh
                 </div>
               </div>
               <div className="add-employee-submit">

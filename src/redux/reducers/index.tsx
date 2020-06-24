@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
-import { count } from "./count";
-import { Transaction } from "./transaction";
+import { Employees } from "./fetchEmployees";
+import { Customers } from "./fetchCustomers";
 
-const allReducers = combineReducers({ Transaction, count });
+const allReducers = combineReducers({ Employees, Customers });
 
 export default allReducers;

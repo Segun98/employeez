@@ -11,3 +11,7 @@ export function dash(str: string) {
   const dashed = trimmed.split(" ").join("-");
   return dashed.toLowerCase();
 }
+
+export function Commas(x:number) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+}

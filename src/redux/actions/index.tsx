@@ -1,42 +1,119 @@
-export const Increment = (num:number) => {
+import axios from "axios";
+import { getToken } from "../../utils/accesstoken";
+import { FETCH_EMPLOYEES, FETCH_CUSTOMERS, LOADING, ERROR, QUERY_EMPLOYEES } from "./types";
+
+export const fetchEmployees = (employees: any) => {
   return {
-    type: "INCREMENT",
-    payload: num
+    type: FETCH_EMPLOYEES,
+    payload: employees,
   };
 };
 
-export const Decrement = () => {
+export const queryEmployees = (query: any) => {
   return {
-    type: "DECREMENT",
+    type: QUERY_EMPLOYEES,
+    payload: query,
   };
 };
 
-interface props {
-  id: number,
-  name: string,
-  price: number,
-  completed: boolean
-}
 
-
-export const Add = (newT:props) => {
+export const fetchCustomers = (customers: any) => {
   return {
-    type: "ADD",
-    payload:newT
-  };
-
-};
-
-export const Delete = (id:number) => {
-  return {
-    type: "DELETE",
-    payload: id
+    type: FETCH_CUSTOMERS,
+    payload: customers,
   };
 };
 
-export const Completed = (index:number) => {
+export const loading = () => {
   return {
-    type: "COMPLETE",
-    payload: index
+    type: LOADING,
+  };
+};
+
+export const error = (err: any) => {
+  return {
+    type: ERROR,
+    payload: err,
+  };
+};
+
+export const getEmployees = () => {
+  const instance = axios.create({
+    withCredentials: true,
+  });
+  let accessToken = getToken();
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `${accessToken ? `bearer ${accessToken}` : ""}`,
+    },
+  };
+  return async (dispatch: any) => {
+    dispatch(loading);
+    try {
+      const res = await instance.get(
+        "http://localhost:8080/api/employees",
+        config
+      );
+      const users = res.data.data;
+      dispatch(fetchEmployees(users));
+    } catch (err) {
+      dispatch(err);
+    }
+  };
+};
+
+export const searchEmployees = (id:string) => {
+  const instance = axios.create({
+    withCredentials: true,
+  });
+  let accessToken = getToken();
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `${accessToken ? `bearer ${accessToken}` : ""}`,
+    },
+  };
+  return async (dispatch: any) => {
+    try {
+      const res = await instance.get(
+        `http://localhost:8080/api/employees/search/${id}`,
+        config
+      );
+      const users = res.data.data;
+      dispatch(queryEmployees(users));
+    } catch (err) {
+      console.log(err);
+      
+    }
+  };
+};
+
+
+
+
+export const getCustomers = () => {
+  const instance = axios.create({
+    withCredentials: true,
+  });
+  let accessToken = getToken();
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `${accessToken ? `bearer ${accessToken}` : ""}`,
+    },
+  };
+  return async (dispatch: any) => {
+    dispatch(loading);
+    try {
+      const res = await instance.get(
+        "http://localhost:8080/api/customers",
+        config
+      );
+      const users = res.data.data;
+      dispatch(fetchCustomers(users));
+    } catch (err) {
+      dispatch(err);
+    }
   };
 };

@@ -8,9 +8,6 @@ import {
   Redirect,
 } from "react-router-dom";
 import Loading from "./components/loading";
-import { createStore, compose } from "redux";
-import allReducers from "./redux/reducers/index";
-import { Provider } from "react-redux";
 import { setToken } from "./utils/accesstoken";
 import axios from "axios";
 import Signup from "./pages/Signup";
@@ -32,15 +29,6 @@ const AddCustomer = React.lazy(() => import("./pages/AddCustomer"));
 const EditCustomer = React.lazy(() => import("./pages/editCustomer"));
 const SendMail = React.lazy(() => import("./pages/SendMail"));
 const CustomerMail = React.lazy(() => import("./pages/CustomerMail"));
-
-//REDUX DEV TOOLS
-declare global {
-  interface Window {
-    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
-  }
-}
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(allReducers, composeEnhancers());
 
 function App() {
   useEffect(() => {
@@ -75,46 +63,41 @@ function App() {
   }
   return (
     <>
-      <Provider store={store}>
-        <Router>
-          <ThemeProvider>
-            <CSSReset />
-            <Switch>
-              <Suspense fallback={<Loading />}>
-                <Route path="/" exact component={Index} />
-                <Route path="/login" component={Login} />
-                <Route path="/signup" component={Signup} />
-                <Route path="/about" component={About} />
-                <PrivateRoute path="/dashboard" exact component={Dashboard} />
-                <PrivateRoute
-                  path="/dashboard/edit"
-                  component={EditDashboard}
-                />
-                <PrivateRoute
-                  path="/dashboard/create"
-                  component={CreateDashboard}
-                />
-                <PrivateRoute path="/employees" exact component={Employees} />
-                <PrivateRoute path="/add-employee" component={AddEmployee} />
-                <PrivateRoute path="/employee/:id" component={Employee} />
-                <PrivateRoute
-                  path="/edit-employee/:id"
-                  component={EditEmployee}
-                />
-                <PrivateRoute path="/customers" component={Customers} />
-                <PrivateRoute path="/add-customer" component={AddCustomer} />
-                <PrivateRoute path="/customer/:id" component={Customer} />
-                <PrivateRoute
-                  path="/edit-customer/:id"
-                  component={EditCustomer}
-                />
-                <PrivateRoute path="/send-mail" component={SendMail} />
-                <PrivateRoute path="/customer-mail" component={CustomerMail} />
-              </Suspense>
-            </Switch>
-          </ThemeProvider>
-        </Router>
-      </Provider>
+      <Router>
+        <ThemeProvider>
+          <CSSReset />
+          <Switch>
+            <Suspense fallback={<Loading />}>
+              <Route path="/" exact component={Index} />
+              <Route path="/login" component={Login} />
+              <Route path="/signup" component={Signup} />
+              <Route path="/about" component={About} />
+              <PrivateRoute path="/dashboard" exact component={Dashboard} />
+              <PrivateRoute path="/dashboard/edit" component={EditDashboard} />
+              <PrivateRoute
+                path="/dashboard/create"
+                component={CreateDashboard}
+              />
+              <PrivateRoute path="/employees" exact component={Employees} />
+              <PrivateRoute path="/add-employee" component={AddEmployee} />
+              <PrivateRoute path="/employee/:id" component={Employee} />
+              <PrivateRoute
+                path="/edit-employee/:id"
+                component={EditEmployee}
+              />
+              <PrivateRoute path="/customers" component={Customers} />
+              <PrivateRoute path="/add-customer" component={AddCustomer} />
+              <PrivateRoute path="/customer/:id" component={Customer} />
+              <PrivateRoute
+                path="/edit-customer/:id"
+                component={EditCustomer}
+              />
+              <PrivateRoute path="/send-mail" component={SendMail} />
+              <PrivateRoute path="/customer-mail" component={CustomerMail} />
+            </Suspense>
+          </Switch>
+        </ThemeProvider>
+      </Router>
     </>
   );
 }
