@@ -3,6 +3,7 @@ import MainHeader from "../components/mainHeader";
 import { Button, Textarea, Spinner } from "@chakra-ui/core";
 import { getToken } from "../utils/accesstoken";
 import axios from "axios";
+import { url } from "../utils";
 
 export const CreateDashboard: React.FC = () => {
   const [mission, setMission] = useState("");
@@ -35,7 +36,7 @@ export const CreateDashboard: React.FC = () => {
     try {
       setLoading(true);
       const res = await instance.post(
-        "http://localhost:8080/api/dashboard/add",
+        `${url}/api/dashboard/add`,
         payload,
         config
       );

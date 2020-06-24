@@ -1,4 +1,4 @@
-import {FETCH_EMPLOYEES, LOADING, ERROR, QUERY_EMPLOYEES } from "../actions/types"
+import {FETCH_EMPLOYEES, LOADING, ERROR_RESPONSE, QUERY_EMPLOYEES } from "../actions/types"
 
 const initialState = {
   loading: false,
@@ -26,7 +26,7 @@ export const Employees = (state= initialState, action: any) => {
         result: action.payload,
         error: ""
       }
-      case ERROR:
+      case ERROR_RESPONSE:
       return {
         loading : false,
         result: [],

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MainHeader from "../components/mainHeader";
 import {
   Button,
@@ -6,27 +6,104 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Spinner,
 } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { getToken, setToken } from "../utils/accesstoken";
+import { useAuth } from "../Context/authcontext";
+import { useHistory } from "react-router-dom";
+import { url } from "../utils";
 
 export const Customer = ({ match }: any) => {
+  useEffect(() => {
+    fetchRefreshToken();
+    // eslint-disable-next-line
+  }, []);
   let name_url = match.params.id;
-
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [showEMail, setShowEmail] = useState(false);
+  const [data, setData] = useState<any>({});
+  const [pageLoad, setPageLoad] = useState(true);
+
   const handleEmail = (e: any) => {
     e.preventDefault();
     console.log(email);
   };
 
+  const { setisAuth }: any = useAuth()!;
+
+  async function fetchRefreshToken() {
+    const instance = axios.create({
+      withCredentials: true,
+    });
+
+    try {
+      const res = await instance.post(
+        `${url}/api/refreshtokens`
+      );
+      setToken(res.data.accessToken);
+      console.clear();
+      fetchdata();
+    } catch (error) {
+      if (error.message === "Request failed with status code 401") {
+        setisAuth(false);
+      }
+      console.log(error.message);
+    }
+  }
+
+  async function fetchdata() {
+    const instance = axios.create({
+      withCredentials: true,
+    });
+    let accessToken = getToken();
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `${accessToken ? `bearer ${accessToken}` : ""}`,
+      },
+    };
+
+    try {
+      const res = await instance.get(
+        `${url}/api/customer/profile/${name_url}`,
+        config
+      );
+
+      if (res.data.data) {
+        setPageLoad(false);
+        setData(res.data.data);
+      }
+      if (!res.data.data) {
+        setPageLoad(false);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
   return (
     <div className="single-customer-page">
       <div className="employee-page">
         <section>
-          <MainHeader name={`${name_url} Profile (C)`} />
+          <MainHeader name={`${pageLoad ? name_url : data.name} Profile (C)`} />
         </section>
         <section className="dashboard-body">
-          <div className="dashboard-auto" style={{ position: "relative" }}>
+          <div
+            className="page-loader"
+            style={{ display: pageLoad ? "flex" : "none" }}
+          >
+            <Spinner></Spinner>
+          </div>
+          <div
+            className="dashboard-auto"
+            style={{
+              position: "relative",
+              visibility: pageLoad ? "hidden" : "visible",
+            }}
+          >
             <div className="edit-section">
               <Button
                 variantColor="purple"
@@ -36,7 +113,7 @@ export const Customer = ({ match }: any) => {
               >
                 Send Email
               </Button>
-              <Link to="/edit-customer/segun-os">
+              <Link to={`/edit-customer/${data.name_url}`}>
                 <Button variantColor="purple">Edit</Button>
               </Link>
             </div>
@@ -60,10 +137,10 @@ export const Customer = ({ match }: any) => {
                 </div>
                 <hr />
                 <div className="employee-job-info-grid">
-                  <h4>Mr. John Doe</h4>
-                  <h4>M</h4>
-                  <h4>Farmer</h4>
-                  <h4>10/11/2016</h4>
+                  <h4>{data.name}</h4>
+                  <h4>{data.gender}</h4>
+                  <h4>{data.occupation}</h4>
+                  <h4>{data.DOB}</h4>
                 </div>
               </section>
 
@@ -84,22 +161,16 @@ export const Customer = ({ match }: any) => {
                 </div>
                 <hr />
                 <div className="employee-contact-info-grid">
-                  <h4>shegunolanitori@gmail.com</h4>
-                  <h4>+234-810-2679-869</h4>
-                  <h4>5, Masaba Close, CITS, Unilag</h4>
+                  <h4>{data.email}</h4>
+                  <h4>{data.phone}</h4>
+                  <h4>{data.address}</h4>
                 </div>
               </section>
 
               <section className="employee-notes-info">
                 <h2>Notes</h2>
                 <div className="employee-note">
-                  <h3>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Aliquid a nam voluptatem sunt at consequatur quo et, sint
-                    necessitatibus, iste reprehenderit quas fuga reiciendis illo
-                    exero aliquam aliquid. Aut, illo iusto ducimus ipsum saepe
-                    voluptatibus veritatis fugit odit cumque labore perferendis.
-                  </h3>
+                  <h3>{data.notes}</h3>
                 </div>
               </section>
             </div>
@@ -140,6 +211,44 @@ export const Customer = ({ match }: any) => {
                 </Button>
               </form>
             </section>
+          </div>
+          <div style={{ textAlign: "center", marginTop: "20px" }}>
+            <Button
+              variantColor="red"
+              onClick={async () => {
+                if (
+                  window.confirm(
+                    `Are you sure you want to remove ${data.name}?`
+                  )
+                ) {
+                  const instance = axios.create({
+                    withCredentials: true,
+                  });
+                  let accessToken = getToken();
+                  const config = {
+                    headers: {
+                      "Content-Type": "application/json",
+                      authorization: `${
+                        accessToken ? `bearer ${accessToken}` : ""
+                      }`,
+                    },
+                  };
+
+                  try {
+                    await instance.delete(
+                      `${url}/api/customer/remove/${name_url}`,
+                      config
+                    );
+                    history.push("/customers");
+                  } catch (error) {
+                    console.log(error.message);
+                    alert("an err occured" + error.message);
+                  }
+                }
+              }}
+            >
+              Remove Customer
+            </Button>
           </div>
         </section>
       </div>

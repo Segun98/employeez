@@ -11,6 +11,7 @@ import {
 import axios from "axios";
 import Header from "../components/header";
 import { useHistory } from "react-router-dom";
+import { url } from "../utils";
 
 export const Signup = () => {
   const [name, setName] = useState("");
@@ -47,7 +48,7 @@ export const Signup = () => {
     try {
       setloading(true);
       const res = await axios.post(
-        "http://localhost:8080/api/register",
+        `${url}/api/register`,
         payload,
         config
       );

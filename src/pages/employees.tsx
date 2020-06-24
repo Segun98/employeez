@@ -7,6 +7,7 @@ import { getEmployees, searchEmployees } from "../redux/actions/index";
 import axios from "axios";
 import { setToken } from "../utils/accesstoken";
 import { useAuth } from "../Context/authcontext";
+import { url } from "../utils";
 
 interface DefaultRootState {
   Employees: any;
@@ -35,7 +36,7 @@ export const Employees = () => {
 
     try {
       const res = await instance.post(
-        "http://localhost:8080/api/refreshtokens"
+        `${url}/api/refreshtokens`
       );
       setToken(res.data.accessToken);
       console.clear();
@@ -62,16 +63,20 @@ export const Employees = () => {
           <form
             onSubmit={(e: any) => {
               e.preventDefault();
+              if (search.length > 1){
+                dispatch(searchEmployees(search));
+              } 
             }}
           >
             <Input
-              type="search"
-              placeholder="filter employees"
+              type="text"
+              placeholder="filter employees by name, classification and job title"
               value={search}
               onChange={(e: any) => {
                 setSearch(e.target.value);
-
-                dispatch(searchEmployees(search));
+                if (search.length > 1){
+                  dispatch(searchEmployees(search));
+                } 
               }}
             />
           </form>
@@ -91,7 +96,7 @@ export const Employees = () => {
             color: "purple",
           }}
         >
-          Looks like you have no Employees, Add One by clicking the Onboard
+          No Employees, Add One by clicking the Onboard
           Button at the top
         </div>
         <div

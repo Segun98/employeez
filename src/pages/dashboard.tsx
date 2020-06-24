@@ -4,7 +4,7 @@ import { Button, Spinner } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { getToken, setToken } from "../utils/accesstoken";
-import { Commas } from "../utils";
+import { Commas, url } from "../utils";
 import { useAuth } from "../Context/authcontext";
 import { useSelector, useDispatch } from "react-redux";
 import { getEmployees, getCustomers } from "../redux/actions/index";
@@ -62,7 +62,7 @@ export const Dashboard: React.FC = () => {
 
     try {
       const res = await instance.post(
-        "http://localhost:8080/api/refreshtokens"
+        `${url}/api/refreshtokens`
       );
       setToken(res.data.accessToken);
       console.clear();
@@ -89,7 +89,7 @@ export const Dashboard: React.FC = () => {
 
     try {
       const res = await instance.get(
-        "http://localhost:8080/api/dashboard",
+        `${url}/api/dashboard`,
         config
       );
 
@@ -173,7 +173,7 @@ export const Dashboard: React.FC = () => {
             <div className="dashboard-item">
               <div className="dashboard-item-wrap">
                 <h3 className="dashboard_h3-firstchild">No Of Employees</h3>
-                <img src="/images/icons8-spinner-26.png" alt="icon" />
+                <i className="fas fa-chart-line"></i>
               </div>
               <hr />
               <div className="customer-no">
@@ -187,7 +187,7 @@ export const Dashboard: React.FC = () => {
             <div className="dashboard-item">
               <div className="dashboard-item-wrap">
                 <h3 className="dashboard_h3-firstchild">Gender Diversity</h3>
-                <img src="/images/icons8-spinner-26.png" alt="icon" />
+                <i className="fas fa-venus-mars"></i>
               </div>
               <hr />
               <div className="gender-balance-content">
@@ -208,7 +208,7 @@ export const Dashboard: React.FC = () => {
             <div className="dashboard-item">
               <div className="dashboard-item-wrap">
                 <h3 className="dashboard_h3-firstchild">No Of Customers</h3>
-                <img src="/images/icons8-spinner-26.png" alt="icon" />
+                <i className="fas fa-chart-line"></i>
               </div>
               <hr />
               <div className="customer-no">
@@ -222,7 +222,7 @@ export const Dashboard: React.FC = () => {
             <div className="dashboard-item">
               <div className="dashboard-item-wrap">
                 <h3>Total Salary</h3>
-                <img src="/images/icons8-spinner-26.png" alt="icon" />
+                <i className="far fa-money-bill-alt"></i>
               </div>
               <hr />
               <p style={{ fontSize: "1.9rem", fontWeight: "bolder" }}>
@@ -233,7 +233,7 @@ export const Dashboard: React.FC = () => {
             <div className="dashboard-item">
               <div className="dashboard-item-wrap">
                 <h3>ToDo</h3>
-                <img src="/images/icons8-spinner-26.png" alt="icon" />
+                <i className="fas fa-money-check"></i>
               </div>
               <hr />
               <p className="todo">{todo}</p>
@@ -242,7 +242,7 @@ export const Dashboard: React.FC = () => {
             <div className="dashboard-item">
               <div className="dashboard-item-wrap">
                 <h3>About</h3>
-                <img src="/images/icons8-spinner-26.png" alt="icon" />
+                <i className="far fa-address-card"></i>
               </div>
               <hr />
               <p>{about}</p>
@@ -251,7 +251,7 @@ export const Dashboard: React.FC = () => {
             <div className="dashboard-item">
               <div className="dashboard-item-wrap">
                 <h3>Mission</h3>
-                <img src="/images/icons8-spinner-26.png" alt="icon" />
+                <i className="fas fa-thumbtack"></i>
               </div>
               <hr />
               <p>{mission}</p>
@@ -260,7 +260,7 @@ export const Dashboard: React.FC = () => {
             <div className="dashboard-item">
               <div className="dashboard-item-wrap">
                 <h3>Vision</h3>
-                <img src="/images/icons8-spinner-26.png" alt="icon" />
+                <i className="fas fa-street-view"></i>
               </div>
               <hr />
               <p>{vision}</p>

@@ -2,54 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@chakra-ui/core";
 import Header from "../components/header";
-// import axios from "axios";
-// import { getToken, setToken } from "../utils/accesstoken";
+
 
 export default function Index() {
-  // useEffect(() => {
-  //   fetchRefreshToken();
-  //   // eslint-disable-next-line
-  // }, []);
-
-  // async function fetchRefreshToken() {
-  //   const instance = axios.create({
-  //     withCredentials: true,
-  //   });
-
-  //   try {
-  //     const res = await instance.post(
-  //       "http://localhost:8080/api/refreshtokens"
-  //     );
-  //      setToken(res.data.accessToken);
-  //      fetchdata();
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // }
-
-  // async function fetchdata() {
-  //   const instance = axios.create({
-  //     withCredentials: true,
-  //   });
-  //   let accessToken = getToken();
-  //   const config = {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       authorization: `${accessToken ? `bearer ${accessToken}` : ""}`,
-  //     },
-  //   };
-
-  //   try {
-  //     const res = await instance.get(
-  //       "http://localhost:8080/api/customers",
-  //       config
-  //     );
-  //      setCustomers(res.data.data);
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // }
-
   return (
     <div className="home-page">
       <Header />

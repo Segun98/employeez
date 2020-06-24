@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import { setToken } from "./../utils/accesstoken";
 import Header from "./../components/header";
 import { useAuth } from "./../Context/authcontext";
+import { url } from "../utils";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -52,7 +53,7 @@ export const Login = () => {
     try {
       setloading(true);
       const res = await instance.post(
-        "http://localhost:8080/api/login",
+        `${url}/api/login`,
         payload,
         config
       );

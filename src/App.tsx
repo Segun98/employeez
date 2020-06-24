@@ -15,6 +15,7 @@ import Index from "./pages";
 import About from "./pages/about";
 import Login from "./pages/Login";
 import { useAuth } from "./Context/authcontext";
+import { url } from "./utils";
 
 const Dashboard = React.lazy(() => import("./pages/dashboard"));
 const CreateDashboard = React.lazy(() => import("./pages/CreateDashboard"));
@@ -47,7 +48,7 @@ function App() {
 
     try {
       const res = await instance.post(
-        "http://localhost:8080/api/refreshtokens"
+        `${url}/api/refreshtokens`
       );
       if (res.data.accessToken) {
         setToken(res.data.accessToken);

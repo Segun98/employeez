@@ -227,8 +227,15 @@ textarea {
   display: flex;
   justify-content: space-between;
   margin: auto;
-  width: 85%;
+  width: 90%;
   padding: 5px 0;
+
+  i{
+    box-shadow: 0 1px 6px 0 $bordecolor;
+    border-radius: 50%;
+    padding: 7px;
+    color: pink;
+  }
 
   h3 {
     font-size: 1rem;
@@ -340,7 +347,7 @@ textarea {
   }
 
   .dashboard-item-wrap {
-
+    width: 90%;
     h3 {
       font-size: 1rem;
     }

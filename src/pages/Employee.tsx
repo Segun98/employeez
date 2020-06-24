@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MainHeader from "../components/mainHeader";
 import {
   Button,
@@ -6,26 +6,122 @@ import {
   Input,
   FormControl,
   FormLabel,
+  Spinner,
 } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { getToken, setToken } from "../utils/accesstoken";
+import { Commas, url } from "../utils";
+import { useAuth } from "../Context/authcontext";
+import { useHistory } from "react-router-dom";
+
+type ObjectType = {
+  address: string;
+  benefits: string;
+  classification: string;
+  department: string;
+  dob: string;
+  email: string;
+  gender: string;
+  name: string;
+  name_url: string;
+  note: string;
+  phone: string;
+  picture: string;
+  title: string;
+  workLocation: string;
+  salary: string;
+  hireDate: string;
+};
 
 export const Employee = ({ match }: any) => {
+  useEffect(() => {
+    fetchRefreshToken();
+    // eslint-disable-next-line
+  }, []);
   let name_url = match.params.id;
+  const history = useHistory();
 
   const [email, setEmail] = useState("");
   const [showEMail, setShowEmail] = useState(false);
+  const [data, setData] = useState<ObjectType | any>({});
+  const [pageLoad, setPageLoad] = useState(true);
   const handleEmail = (e: any) => {
     e.preventDefault();
     console.log(email);
   };
 
+  const { setisAuth }: any = useAuth()!;
+
+  async function fetchRefreshToken() {
+    const instance = axios.create({
+      withCredentials: true,
+    });
+
+    try {
+      const res = await instance.post(
+        `${url}/api/refreshtokens`
+      );
+      setToken(res.data.accessToken);
+      console.clear();
+      fetchdata();
+    } catch (error) {
+      if (error.message === "Request failed with status code 401") {
+        setisAuth(false);
+      }
+      console.log(error.message);
+    }
+  }
+
+  async function fetchdata() {
+    const instance = axios.create({
+      withCredentials: true,
+    });
+    let accessToken = getToken();
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `${accessToken ? `bearer ${accessToken}` : ""}`,
+      },
+    };
+
+    try {
+      const res = await instance.get(
+        `${url}/api/employee/profile/${name_url}`,
+        config
+      );
+
+      if (res.data.data) {
+        setPageLoad(false);
+        setData(res.data.data);
+      }
+      if (!res.data.data) {
+        setPageLoad(false);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
   return (
     <div className="employee-page">
       <section>
-        <MainHeader name={`${name_url} Profile (E)`} />
+        <MainHeader name={`${pageLoad ? name_url : data.name} Profile (E)`} />
       </section>
       <section className="dashboard-body">
-        <div className="dashboard-auto" style={{ position: "relative" }}>
+        <div
+          className="page-loader"
+          style={{ display: pageLoad ? "flex" : "none" }}
+        >
+          <Spinner></Spinner>
+        </div>
+        <div
+          className="dashboard-auto"
+          style={{
+            position: "relative",
+            visibility: pageLoad ? "hidden" : "visible",
+          }}
+        >
           <div className="edit-section">
             <Button
               variantColor="purple"
@@ -35,17 +131,26 @@ export const Employee = ({ match }: any) => {
             >
               Send Email
             </Button>
-            <Link to="/edit-employee/segun-os">
+            <Link to={`/edit-employee/${data.name_url}`}>
               <Button variantColor="purple">Edit</Button>
             </Link>
           </div>
           <div className="employee-wrap">
             <div className="employee-page-header">
-              <img src="/images/icons8-person-64.png" alt="person" />
+              <img
+                src={`${
+                  data.picture === ""
+                    ? "/images/icons8-person-64.png"
+                    : data.picture
+                }`}
+                alt={`${data.name}`}
+              />
               <div>
-                <h4>Segun Olanitori (M)</h4>
-                <h4>Software Engineer</h4>
-                <h4>Full Time</h4>
+                <h4>
+                  {data.name} ({data.gender})
+                </h4>
+                <h4>{data.title}</h4>
+                <h4>{data.classification}</h4>
               </div>
             </div>
             <section className="employee-job-info">
@@ -67,11 +172,11 @@ export const Employee = ({ match }: any) => {
               </div>
               <hr />
               <div className="employee-job-info-grid">
-                <h4>I.T</h4>
-                <h4>250,000</h4>
-                <h4>10/11/2016</h4>
-                <h4>Housing, HeathCare, Free Lunch</h4>
-                <h4>Lagos</h4>
+                <h4>{data.department}</h4>
+                <h4>{Commas(parseInt(data.salary))}</h4>
+                <h4>{data.hireDate}</h4>
+                <h4>{data.benefits}</h4>
+                <h4>{data.workLocation}</h4>
               </div>
             </section>
 
@@ -92,9 +197,9 @@ export const Employee = ({ match }: any) => {
               </div>
               <hr />
               <div className="employee-contact-info-grid">
-                <h4>shegunolanitori@gmail.com</h4>
-                <h4>+234-810-2679-869</h4>
-                <h4>5, Masaba Close, CITS, Unilag</h4>
+                <h4>{data.email}</h4>
+                <h4>{data.phone}</h4>
+                <h4>{data.address}</h4>
               </div>
             </section>
 
@@ -113,22 +218,14 @@ export const Employee = ({ match }: any) => {
               </div>
               <hr />
               <div className="employee-personal-info-grid">
-                <h4>10-11-1998</h4>
+                <h4>{data.dob}</h4>
               </div>
             </section>
 
             <section className="employee-notes-info">
               <h2>Notes</h2>
               <div className="employee-note">
-                <h3>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Aliquid a nam voluptatem sunt at consequatur quo et, sint
-                  necessitatibus, iste reprehenderit quas fuga reiciendis illo
-                  exercitationem nemo repellendus dignissimos ex? Maiores,
-                  delectus eaque eum iusto aliquam aliquid. Aut, illo iusto
-                  ducimus ipsum saepe voluptatibus veritatis fugit odit cumque
-                  labore perferendis.
-                </h3>
+                <h3>{data.notes}</h3>
               </div>
             </section>
           </div>
@@ -170,6 +267,45 @@ export const Employee = ({ match }: any) => {
               </Button>
             </form>
           </section>
+        </div>
+
+        <div style={{ textAlign: "center", marginTop: "20px" }}>
+          <Button
+            variantColor="red"
+            onClick={async () => {
+              if (
+                window.confirm(`Are you sure you want to fire ${data.name}?`)
+              ) {
+                const instance = axios.create({
+                  withCredentials: true,
+                });
+                let accessToken = getToken();
+                const config = {
+                  headers: {
+                    "Content-Type": "application/json",
+                    authorization: `${
+                      accessToken ? `bearer ${accessToken}` : ""
+                    }`,
+                  },
+                };
+
+                try {
+                  const res = await instance.delete(
+                    `${url}/api/employee/remove/${name_url}`,
+                    config
+                  );
+                  if (res.data.message === "employee removed") {
+                    history.push("/employees");
+                  }
+                } catch (error) {
+                  console.log(error.message);
+                  alert("an err occured" + error.message);
+                }
+              }
+            }}
+          >
+            Fire Employee
+          </Button>
         </div>
       </section>
     </div>

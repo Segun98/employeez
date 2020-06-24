@@ -4,6 +4,7 @@ import { Button, Textarea, Spinner } from "@chakra-ui/core";
 import { getToken, setToken } from "../utils/accesstoken";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { url } from "../utils";
 
 export const EditDashboard: React.FC = () => {
   const history = useHistory();
@@ -27,7 +28,7 @@ export const EditDashboard: React.FC = () => {
 
     try {
       const res = await instance.post(
-        "http://localhost:8080/api/refreshtokens"
+        `${url}/api/refreshtokens`
       );
       setToken(res.data.accessToken);
       console.clear();
@@ -50,7 +51,7 @@ export const EditDashboard: React.FC = () => {
 
     try {
       const res = await instance.get(
-        "http://localhost:8080/api/dashboard",
+        `${url}/api/dashboard`,
         config
       );
 
@@ -89,7 +90,7 @@ export const EditDashboard: React.FC = () => {
 
     try {
       const res = await instance.post(
-        "http://localhost:8080/api/dashboard/update",
+        `${url}/api/dashboard/update`,
         payload,
         config
       );
@@ -123,7 +124,7 @@ export const EditDashboard: React.FC = () => {
               <div className="dashboard-item">
                 <div className="dashboard-item-wrap">
                   <h3>ToDo</h3>
-                  <img src="/images/icons8-spinner-26.png" alt="icon" />
+                  <i className="fas fa-money-check"></i>
                 </div>
                 <hr />
                 <Textarea
@@ -139,7 +140,7 @@ export const EditDashboard: React.FC = () => {
               <div className="dashboard-item">
                 <div className="dashboard-item-wrap">
                   <h3>About</h3>
-                  <img src="/images/icons8-spinner-26.png" alt="icon" />
+                  <i className="far fa-address-card"></i>
                 </div>
                 <hr />
                 <Textarea
@@ -155,7 +156,7 @@ export const EditDashboard: React.FC = () => {
               <div className="dashboard-item">
                 <div className="dashboard-item-wrap">
                   <h3>Mission</h3>
-                  <img src="/images/icons8-spinner-26.png" alt="icon" />
+                  <i className="fas fa-thumbtack"></i>
                 </div>
                 <hr />
                 <Textarea
@@ -171,7 +172,7 @@ export const EditDashboard: React.FC = () => {
               <div className="dashboard-item">
                 <div className="dashboard-item-wrap">
                   <h3>Vision</h3>
-                  <img src="/images/icons8-spinner-26.png" alt="icon" />
+                  <i className="fas fa-street-view"></i>
                 </div>
                 <hr />
                 <Textarea

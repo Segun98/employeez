@@ -1,4 +1,4 @@
-import {FETCH_CUSTOMERS, LOADING, ERROR } from "../actions/types"
+import {FETCH_CUSTOMERS, LOADING, ERROR_RESPONSE, QUERY_CUSTOMERS  } from "../actions/types"
 
 const initialState = {
   loading: false,
@@ -20,7 +20,13 @@ export const Customers = (state= initialState, action: any) => {
         result: action.payload,
         error: ""
       }
-      case ERROR:
+      case QUERY_CUSTOMERS:
+      return {
+        loading : false,
+        result: action.payload,
+        error: ""
+      }
+      case ERROR_RESPONSE:
       return {
         loading : false,
         result: [],

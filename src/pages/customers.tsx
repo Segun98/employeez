@@ -3,28 +3,29 @@ import MainHeader from "../components/mainHeader";
 import { Input, Button, Spinner } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getCustomers } from "../redux/actions/index";
+import { getCustomers, searchCustomers } from "../redux/actions/index";
 import axios from "axios";
 import { setToken } from "../utils/accesstoken";
 import { useAuth } from "../Context/authcontext";
+import { url } from "../utils";
 
 interface DefaultRootState {
   Customers: any;
 }
 
 export const Customers = () => {
-  const dispatch = useDispatch();
-  const data = useSelector<DefaultRootState, any>((state) => state.Customers);
-  console.log(data.result);
-
-  const customerLength = data.result.length;
-
-  const [isLoading, setLoading] = useState(true);
-
   useEffect(() => {
     fetchRefreshToken();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const dispatch = useDispatch();
+  const data = useSelector<DefaultRootState, any>((state) => state.Customers);
+
+  const customerLength = data.result.length;  
+
+  const [isLoading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
 
   const { setisAuth }: any = useAuth()!;
 
@@ -35,7 +36,7 @@ export const Customers = () => {
 
     try {
       const res = await instance.post(
-        "http://localhost:8080/api/refreshtokens"
+        `${url}/api/refreshtokens`
       );
       setToken(res.data.accessToken);
       console.clear();
@@ -56,8 +57,25 @@ export const Customers = () => {
       </section>
       <section className="dashboard-body">
         <header>
-          <form>
-            <Input type="search" placeholder="filter customers" />
+          <form
+            onSubmit={(e: any) => {
+              e.preventDefault();
+              if (search.length > 1) {
+                dispatch(searchCustomers(search));
+              }
+            }}
+          >
+            <Input
+              type="text"
+              placeholder="filter customers"
+              value={search}
+              onChange={(e: any) => {
+                setSearch(e.target.value);
+                if (search.length > 1) {
+                  dispatch(searchCustomers(search));
+                }
+              }}
+            />
           </form>
           <div>
             <Link to="/customer-mail">
@@ -76,8 +94,7 @@ export const Customers = () => {
             color: "purple",
           }}
         >
-          Looks like you have no Customer Registered, Add One by clicking the
-          Register Button at the top
+          No Customer, Add One by clicking the Register Button at the top
         </div>
         <div
           className="page-loader"

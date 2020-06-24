@@ -13,7 +13,7 @@ import {
   Icon,
   Spinner,
 } from "@chakra-ui/core";
-import { dash } from "../utils";
+import { dash, url } from "../utils";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { getToken, setToken } from "../utils/accesstoken";
@@ -35,7 +35,7 @@ export const AddEmployee: React.FC = () => {
 
     try {
       const res = await instance.post(
-        "http://localhost:8080/api/refreshtokens"
+        `${url}/api/refreshtokens`
       );
       setToken(res.data.accessToken);
       console.clear();
@@ -99,7 +99,7 @@ export const AddEmployee: React.FC = () => {
     try {
       setLoading(true);
       const res = await instance.post(
-        "http://localhost:8080/api/employees/add",
+        `${url}/api/employees/add`,
         payload,
         config
       );
