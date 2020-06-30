@@ -485,13 +485,16 @@
         background: white;
         padding: 20px;
         border-radius: 10px;
-        box-shadow: 0 1px 6px 0 $bordecolor;;
-        label{
+        box-shadow: 0 1px 6px 0 $bordecolor;
+        z-index: 1;
+
+        label {
             font-weight: bold;
-            color:$purple;
+            color: $purple;
             padding: 2px 5px;
 
         }
+
         Textarea {
             height: 250px;
             width: 300px;
@@ -523,6 +526,7 @@
         .single-email {
             top: 200px;
             right: 0;
+
             Textarea {
                 width: 350px;
             }
@@ -544,7 +548,7 @@
 @media only screen and (min-width:1400px) {
     .dashboard-body {
         .single-email {
-           top: 300px;
+            top: 300px;
         }
     }
 }

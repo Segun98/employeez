@@ -132,7 +132,9 @@ export const Dashboard: React.FC = () => {
   return (
     <div>
       <section>
-        <MainHeader />
+        <MainHeader
+          userID={employees.result.length > 0 ? employees.result[0].ORG_ID : ""}
+        />
       </section>
       <section className="dashboard-body">
         <div

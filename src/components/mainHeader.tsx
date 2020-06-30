@@ -7,9 +7,10 @@ import { url } from "../utils";
 
 interface props {
   name?: string;
+  userID?: string;
 }
 
-const MainHeader: React.FC<props> = ({ name }) => {
+const MainHeader: React.FC<props> = ({ name, userID }) => {
   const [ham, setham] = useState(false);
 
   let location = useLocation();
@@ -73,6 +74,7 @@ const MainHeader: React.FC<props> = ({ name }) => {
             <li onClick={toggleMenu}>
               <Icon name="arrow-right" />
             </li>
+            <li>{userID}</li>
             <li
               style={{
                 textDecoration:

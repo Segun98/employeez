@@ -112,8 +112,6 @@ export const Employee = ({ match }: any) => {
       subject,
     };
 
-    // console.log(payload);
-
     setError(false);
     const config = {
       headers: {
@@ -308,7 +306,7 @@ export const Employee = ({ match }: any) => {
                   display: success ? "block" : "none",
                 }}
               >
-                We have recieved your message!
+                Message Sent!
               </h3>
               <Spinner
                 style={{

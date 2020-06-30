@@ -92,7 +92,7 @@ textarea {
       font-size: 0.9rem;
 
       &:last-child {
-        margin-top: 19vh;
+        margin-top: 10vh;
       }
     }
   }
@@ -235,7 +235,7 @@ textarea {
     box-shadow: 0 1px 6px 0 $bordecolor;
     border-radius: 50%;
     padding: 7px;
-    color: pink;
+    color: $purple;
   }
 
   h3 {

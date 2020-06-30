@@ -71,7 +71,7 @@ export const CreateDashboard: React.FC = () => {
               <div className="dashboard-item">
                 <div className="dashboard-item-wrap">
                   <h3>ToDo</h3>
-                  <img src="/images/icons8-spinner-26.png" alt="icon" />
+                  <i className="fas fa-money-check"></i>
                 </div>
                 <hr />
                 <Textarea
@@ -88,7 +88,7 @@ export const CreateDashboard: React.FC = () => {
               <div className="dashboard-item">
                 <div className="dashboard-item-wrap">
                   <h3>About</h3>
-                  <img src="/images/icons8-spinner-26.png" alt="icon" />
+                  <i className="far fa-address-card"></i>
                 </div>
                 <hr />
                 <Textarea
@@ -105,7 +105,7 @@ export const CreateDashboard: React.FC = () => {
               <div className="dashboard-item">
                 <div className="dashboard-item-wrap">
                   <h3>Mission</h3>
-                  <img src="/images/icons8-spinner-26.png" alt="icon" />
+                  <i className="fas fa-thumbtack"></i>
                 </div>
                 <hr />
                 <Textarea
@@ -122,7 +122,7 @@ export const CreateDashboard: React.FC = () => {
               <div className="dashboard-item">
                 <div className="dashboard-item-wrap">
                   <h3>Vision</h3>
-                  <img src="/images/icons8-spinner-26.png" alt="icon" />
+                  <i className="fas fa-street-view"></i>
                 </div>
                 <hr />
                 <Textarea

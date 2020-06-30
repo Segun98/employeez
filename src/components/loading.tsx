@@ -1,5 +1,6 @@
 import React from "react";
 import MainHeader from "./mainHeader";
+import { Spinner } from "@chakra-ui/core";
 
 export default function Loading() {
   return (
@@ -8,12 +9,8 @@ export default function Loading() {
         <MainHeader />
       </section>
       <section className="dashboard-body">
-        <div className="dashboard-auto">
-          <div className="dashboard-wrap">
-            <div className="spinner-cont">
-              <div className="spinner"></div>
-            </div>
-          </div>
+        <div className="page-loader">
+          <Spinner></Spinner>
         </div>
       </section>
     </div>

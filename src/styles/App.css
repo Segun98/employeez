@@ -114,7 +114,7 @@ textarea {
 }
 
 .mainheader-head ul li:last-child {
-  margin-top: 19vh;
+  margin-top: 10vh;
 }
 
 .mainheader-head.open-hamburger {
@@ -274,7 +274,7 @@ textarea {
           box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
   border-radius: 50%;
   padding: 7px;
-  color: pink;
+  color: #764abc;
 }
 
 .dashboard-item-wrap h3 {
@@ -1313,6 +1313,7 @@ header aside div {
   border-radius: 10px;
   -webkit-box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
           box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+  z-index: 1;
 }
 
 .dashboard-body .single-email label {

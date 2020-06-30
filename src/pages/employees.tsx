@@ -51,7 +51,9 @@ export const Employees = () => {
   return (
     <div className="employees-page">
       <section>
-        <MainHeader />
+        <MainHeader
+          userID={data.result.length > 0 ? data.result[0].ORG_ID : ""}
+        />
       </section>
       <section className="dashboard-body">
         <header>
