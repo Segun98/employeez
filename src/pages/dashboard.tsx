@@ -61,9 +61,7 @@ export const Dashboard: React.FC = () => {
     });
 
     try {
-      const res = await instance.post(
-        `${url}/api/refreshtokens`
-      );
+      const res = await instance.post(`${url}/api/refreshtokens`);
       setToken(res.data.accessToken);
       console.clear();
       fetchdata();
@@ -88,10 +86,7 @@ export const Dashboard: React.FC = () => {
     };
 
     try {
-      const res = await instance.get(
-        `${url}/api/dashboard`,
-        config
-      );
+      const res = await instance.get(`${url}/api/dashboard`, config);
 
       if (res.data.data) {
         setPageLoad(false);
@@ -124,12 +119,12 @@ export const Dashboard: React.FC = () => {
   };
 
   const stat = {
-    labels: [`F - ${totalFemale}`, `M - ${totalMale}`],
+    labels: [`M - ${totalMale}`, `F - ${totalFemale}`],
     datasets: [
       {
-        data: [FemalePercentage(), MalePercentage()],
-        backgroundColor: ["#FF6384", "#32cd32"],
-        hoverBackgroundColor: ["#FF6384", "#36A2EB"],
+        data: [MalePercentage(), FemalePercentage()],
+        backgroundColor: ["#32cd32", "#FF6384"],
+        hoverBackgroundColor: ["#333", "#333"],
       },
     ],
   };

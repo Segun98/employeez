@@ -53,9 +53,7 @@ export const EditEmployee: React.FC = ({ match }: any) => {
     });
 
     try {
-      const res = await instance.post(
-        `${url}/api/refreshtokens`
-      );
+      const res = await instance.post(`${url}/api/refreshtokens`);
       setToken(res.data.accessToken);
       console.clear();
       fetchdata();
@@ -95,7 +93,7 @@ export const EditEmployee: React.FC = ({ match }: any) => {
         setPhone(data.phone);
         setDob(data.dob);
         setGender(data.gender);
-        setPicture(data.picture);
+        // setPicture(data.picture);
         setClassif(data.classification);
         setSalary(data.salary);
         setBenefits(data.benefits);

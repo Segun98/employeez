@@ -34,7 +34,7 @@ li {
 .spinner {
   width: 100px;
   height: 100px;
-  border: 3px dashed #333;
+  border: 3px dashed #383f4d;
   padding: 50px;
   border-radius: 50%;
   -webkit-animation: spinner infinite ease 3s;
@@ -582,7 +582,7 @@ textarea {
 }
 
 header {
-  margin: 12px auto;
+  margin: 5px auto;
   width: 95%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -598,7 +598,7 @@ header {
 
 header .logo {
   color: #764abc;
-  font-size: 1.2rem;
+  height: 35px;
 }
 
 header aside {
@@ -659,9 +659,6 @@ header aside div {
   header {
     width: 80%;
   }
-  header .logo {
-    font-size: 1.3rem;
-  }
   header aside {
     font-size: 1rem;
   }
@@ -689,9 +686,6 @@ header aside div {
 }
 
 @media only screen and (min-width: 1000px) {
-  header .logo {
-    font-size: 1.3rem;
-  }
   header aside {
     font-size: 1.1rem;
   }
@@ -746,9 +740,6 @@ header aside div {
 }
 
 @media only screen and (min-width: 1300px) {
-  header .logo {
-    font-size: 1.5rem;
-  }
   header aside {
     font-size: 1.3rem;
   }
@@ -769,9 +760,6 @@ header aside div {
 @media only screen and (min-width: 2000px) {
   header {
     width: 70%;
-  }
-  header .logo {
-    font-size: 1.6rem;
   }
   header aside {
     font-size: 1.4rem;
@@ -1013,7 +1001,7 @@ header aside div {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin-top: -20px;
+  margin-top: -9px;
 }
 
 .employee-page .edit-section Button {

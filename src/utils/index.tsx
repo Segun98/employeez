@@ -12,10 +12,10 @@ export function dash(str: string) {
   return dashed.toLowerCase();
 }
 
-export function Commas(x:number) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+export function Commas(x: number) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-export const url = "https://employeezapi.herokuapp.com"
-// "https://employeezapi.herokuapp.com/"
-// "http://localhost:8080
+export const url = "https://employeezapi.herokuapp.com";
+// "https://employeezapi.herokuapp.com"
+// "http://localhost:8080"

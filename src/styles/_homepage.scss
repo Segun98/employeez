@@ -10,7 +10,7 @@
 }
 
 header {
-    margin: 12px auto;
+    margin: 5px auto;
     width: 95%;
     display: flex;
     justify-content: space-between;
@@ -19,7 +19,7 @@ header {
 
     .logo {
         color: $purple;
-        font-size: 1.2rem;
+        height: 35px;
     }
 
     aside {
@@ -77,10 +77,6 @@ header {
     header {
         width: 80%;
 
-        .logo {
-            font-size: 1.3rem;
-        }
-
         aside {
             font-size: 1rem;
 
@@ -118,9 +114,6 @@ header {
 
 @media only screen and (min-width:1000px) {
     header {
-        .logo {
-            font-size: 1.3rem;
-        }
 
         aside {
             font-size: 1.1rem;
@@ -157,6 +150,7 @@ header {
         display: flex;
         justify-content: space-between;
         align-items: center;
+
         .intro-image {
             margin-top: 0px;
             width: 90%;
@@ -181,9 +175,6 @@ header {
 
 @media only screen and (min-width:1300px) {
     header {
-        .logo {
-            font-size: 1.5rem;
-        }
 
         aside {
             font-size: 1.3rem;
@@ -213,10 +204,6 @@ header {
 @media only screen and (min-width:2000px) {
     header {
         width: 70%;
-
-        .logo {
-            font-size: 1.6rem;
-        }
 
         aside {
             font-size: 1.4rem;

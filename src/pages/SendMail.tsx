@@ -7,39 +7,60 @@ import {
   FormLabel,
   Input,
 } from "@chakra-ui/core";
+// import { setToken } from "../utils/accesstoken";
+// import { url } from "../utils";
+// import { useAuth } from "../Context/authcontext";
+// import { useSelector, useDispatch } from "react-redux";
+// import { getEmployees } from "../redux/actions/index";
+// import axios from "axios";
 
 interface props {
   mail: string;
   id: number;
 }
 
+interface DefaultRootState {
+  Employees: any;
+}
+
 export const SendMail = () => {
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");
   const [emails, setEmails] = useState<Array<props>>([]);
-  const [employeesEmails] = useState<Array<props>>([
-    {
-      mail: "shegunolanitori@gmail.com",
-      id: 1,
-    },
-    {
-      mail: "tipsy@hey.com",
-      id: 2,
-    },
-    {
-      mail: "bob@gmail.com",
-      id: 3,
-    },
-    {
-      mail: "bobbyflair@gmail.com",
-      id: 4,
-    },
-    {
-      mail: "testboy@gmail.com",
-      id: 5,
-    },
-  ]);
+  const [employeesEmails] = useState<Array<props>>([]);
+  // const dispatch = useDispatch();
+  // const employees = useSelector<DefaultRootState, any>(
+  //   (state) => state.Employees
+  // );
 
+  //employees.result.map
+
+  // useEffect(() => {
+  //   fetchRefreshToken();
+  //   // eslint-disable-next-line
+  // }, []);
+
+  // const { setisAuth }: any = useAuth()!;
+
+  // async function fetchRefreshToken() {
+  //   const instance = axios.create({
+  //     withCredentials: true,
+  //   });
+
+  //   try {
+  //     const res = await instance.post(`${url}/api/refreshtokens`);
+  //     setToken(res.data.accessToken);
+  //     // dispatch(getEmployees());
+  //     console.clear();
+  //   } catch (error) {
+  //     if (error.message === "Request failed with status code 401") {
+  //       setisAuth(false);
+  //     }
+  //     console.log(error.message);
+  //   }
+  // }
+
+  //submit email to server
   const handleEmail = (e: any) => {
     e.preventDefault();
     const mailMap = emails.map((mail) => mail.mail);
@@ -54,6 +75,8 @@ export const SendMail = () => {
 
     console.log(payload);
   };
+
+  //select the recipients
   const selectMail = (mail: any) => {
     const existing = emails.filter((c) => c.id === mail.id);
     if (existing.length > 0) {
@@ -63,6 +86,7 @@ export const SendMail = () => {
     }
   };
 
+  //remove recipients
   const removeMail = (id: number) => {
     const remove = emails.filter((mail) => mail.id !== id);
     setEmails(remove);
@@ -75,7 +99,7 @@ export const SendMail = () => {
       </section>
       <section className="dashboard-body">
         <div className="dashboard-auto">
-        <h3 className="send-mail-header"> Send Emails to Employees</h3>
+          <h3 className="send-mail-header"> Send Emails to Employees</h3>
           <div className="send-mail-wrap">
             <section className="emails">
               <h3>Employees' Emails</h3>
@@ -140,7 +164,7 @@ export const SendMail = () => {
                 </FormControl>
                 {/* <h3 style={{ color: "red" }}>failure</h3>
                 <h3 style={{ color: "green" }}>success</h3> */}
-                <br/>
+                <br />
                 <Button type="submit" variantColor="purple">
                   Send
                 </Button>

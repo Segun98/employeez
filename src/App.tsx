@@ -47,9 +47,7 @@ function App() {
     });
 
     try {
-      const res = await instance.post(
-        `${url}/api/refreshtokens`
-      );
+      const res = await instance.post(`${url}/api/refreshtokens`);
       if (res.data.accessToken) {
         setToken(res.data.accessToken);
         setisAuth(true);

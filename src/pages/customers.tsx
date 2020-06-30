@@ -22,7 +22,7 @@ export const Customers = () => {
   const dispatch = useDispatch();
   const data = useSelector<DefaultRootState, any>((state) => state.Customers);
 
-  const customerLength = data.result.length;  
+  const customerLength = data.result.length;
 
   const [isLoading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -35,9 +35,7 @@ export const Customers = () => {
     });
 
     try {
-      const res = await instance.post(
-        `${url}/api/refreshtokens`
-      );
+      const res = await instance.post(`${url}/api/refreshtokens`);
       setToken(res.data.accessToken);
       console.clear();
       dispatch(getCustomers());
@@ -79,7 +77,12 @@ export const Customers = () => {
           </form>
           <div>
             <Link to="/customer-mail">
-              <Button variantColor="purple">Send Emails</Button>
+              <Button
+                variantColor="purple"
+                isDisabled={customerLength === 0 ? true : false}
+              >
+                Send Emails
+              </Button>
             </Link>
             <Link to="/add-customer">
               <Button variantColor="purple">Register</Button>

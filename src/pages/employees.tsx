@@ -35,9 +35,7 @@ export const Employees = () => {
     });
 
     try {
-      const res = await instance.post(
-        `${url}/api/refreshtokens`
-      );
+      const res = await instance.post(`${url}/api/refreshtokens`);
       setToken(res.data.accessToken);
       console.clear();
       dispatch(getEmployees());
@@ -55,17 +53,14 @@ export const Employees = () => {
       <section>
         <MainHeader />
       </section>
-      <section
-        className="dashboard-body"
-        style={{ visibility: isLoading ? "hidden" : "visible" }}
-      >
+      <section className="dashboard-body">
         <header>
           <form
             onSubmit={(e: any) => {
               e.preventDefault();
-              if (search.length > 1){
+              if (search.length > 1) {
                 dispatch(searchEmployees(search));
-              } 
+              }
             }}
           >
             <Input
@@ -74,15 +69,20 @@ export const Employees = () => {
               value={search}
               onChange={(e: any) => {
                 setSearch(e.target.value);
-                if (search.length > 1){
+                if (search.length > 1) {
                   dispatch(searchEmployees(search));
-                } 
+                }
               }}
             />
           </form>
           <div>
             <Link to="/send-mail">
-              <Button variantColor="purple">Send Emails</Button>
+              <Button
+                variantColor="purple"
+                isDisabled={employeeLength === 0 ? true : false}
+              >
+                Send Emails
+              </Button>
             </Link>
             <Link to="/add-employee">
               <Button variantColor="purple">Onboard</Button>
@@ -96,8 +96,7 @@ export const Employees = () => {
             color: "purple",
           }}
         >
-          No Employees, Add One by clicking the Onboard
-          Button at the top
+          No Employees, Add One by clicking the Onboard Button at the top
         </div>
         <div
           className="page-loader"

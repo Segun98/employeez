@@ -14,20 +14,17 @@ import thunk from "redux-thunk";
 //   }
 // }
 // const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(
-  allReducers,
-  applyMiddleware(thunk)
-);
+const store = createStore(allReducers, applyMiddleware(thunk));
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <AuthProvider>
+    <AuthProvider>
+      <Provider store={store}>
         <App />
-      </AuthProvider>
-    </Provider>
+      </Provider>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
 
-serviceWorker.register();
+serviceWorker.unregister();

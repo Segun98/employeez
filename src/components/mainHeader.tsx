@@ -3,6 +3,7 @@ import axios from "axios";
 import { useLocation, Link } from "react-router-dom";
 import { Icon } from "@chakra-ui/core";
 import { useAuth } from "./../Context/authcontext";
+import { url } from "../utils";
 
 interface props {
   name?: string;
@@ -40,18 +41,21 @@ const MainHeader: React.FC<props> = ({ name }) => {
   }
 
   const handleLogout = async () => {
-    const instance = axios.create({
-      withCredentials: true,
-    });
+    if (window.confirm("Are you sure you want to LogOut?")) {
+      const instance = axios.create({
+        withCredentials: true,
+      });
 
-    try {
-      const res = await instance.post("http://localhost:8080/api/logout");
-      if (res.data.message === "Logged out") {
-        setisAuth(false);
-        return true;
+      try {
+        const res = await instance.post(`${url}/api/logout`);
+        if (res.data.message === "Logged out") {
+          setisAuth(false);
+          return true;
+        }
+      } catch (error) {
+        console.log(error.message);
+        alert(error.message);
       }
-    } catch (error) {
-      console.log(error.message);
     }
   };
 
@@ -108,6 +112,9 @@ const MainHeader: React.FC<props> = ({ name }) => {
               }}
             >
               <Link to="/add-customer">Register Customer</Link>
+            </li>
+            <li style={{ cursor: "pointer" }}>
+              <a href="/about#contact">Request a Feature</a>
             </li>
             <li style={{ cursor: "pointer" }} onClick={handleLogout}>
               Logout

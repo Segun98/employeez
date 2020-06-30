@@ -16,6 +16,7 @@ import { useAuth } from "./../Context/authcontext";
 import { url } from "../utils";
 
 export const Login = () => {
+  // const history = useHistory()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState("");
@@ -32,7 +33,6 @@ export const Login = () => {
       }, 7000);
     }
   }, [error]);
-
 
   async function handleSubmit(e: any) {
     e.preventDefault();
@@ -52,19 +52,15 @@ export const Login = () => {
     setError("");
     try {
       setloading(true);
-      const res = await instance.post(
-        `${url}/api/login`,
-        payload,
-        config
-      );
+      const res = await instance.post(`${url}/api/login`, payload, config);
       if (res.data.message === "successfully logged in") {
+        setisAuth(true);
         setEmail("");
         setPassword("");
         setToken(res.data.accesstoken);
-        setisAuth(true);
         setSuccess("Login successful!");
         setloading(false);
-        window.location.href = "/dashboard"
+        window.location.href = "/dashboard";
         return true;
       }
       setloading(false);
@@ -85,7 +81,10 @@ export const Login = () => {
       </section>
       <section className="login-wrap">
         <div className="login-image">
-          <img src="images/undraw_img2.png" alt="login-page" />
+          <img
+            src={require("../images/undraw_img2.png")}
+            alt="login illustration"
+          />
         </div>
         <div className="form-wrap">
           <h2

@@ -15,7 +15,8 @@ import { Commas, url } from "../utils";
 import { useAuth } from "../Context/authcontext";
 import { useHistory } from "react-router-dom";
 
-type ObjectType = {
+interface ObjectType {
+  ORG_ID: string;
   address: string;
   benefits: string;
   classification: string;
@@ -25,14 +26,14 @@ type ObjectType = {
   gender: string;
   name: string;
   name_url: string;
-  note: string;
+  notes: string;
   phone: string;
   picture: string;
   title: string;
   workLocation: string;
   salary: string;
   hireDate: string;
-};
+}
 
 export const Employee = ({ match }: any) => {
   useEffect(() => {
@@ -42,14 +43,15 @@ export const Employee = ({ match }: any) => {
   let name_url = match.params.id;
   const history = useHistory();
 
-  const [email, setEmail] = useState("");
+  const [body, setBody] = useState("");
+  const [subject, setsubject] = useState("");
   const [showEMail, setShowEmail] = useState(false);
   const [data, setData] = useState<ObjectType | any>({});
   const [pageLoad, setPageLoad] = useState(true);
-  const handleEmail = (e: any) => {
-    e.preventDefault();
-    console.log(email);
-  };
+
+  const [error, setError] = useState(false);
+  const [loading, setloading] = useState(false);
+  const [success, setsuccess] = useState(false);
 
   const { setisAuth }: any = useAuth()!;
 
@@ -59,9 +61,7 @@ export const Employee = ({ match }: any) => {
     });
 
     try {
-      const res = await instance.post(
-        `${url}/api/refreshtokens`
-      );
+      const res = await instance.post(`${url}/api/refreshtokens`);
       setToken(res.data.accessToken);
       console.clear();
       fetchdata();
@@ -102,6 +102,38 @@ export const Employee = ({ match }: any) => {
       console.log(error.message);
     }
   }
+
+  const handleEmail = async (e: any) => {
+    e.preventDefault();
+    const payload = {
+      to: data.email,
+      email: data.ORG_ID,
+      body,
+      subject,
+    };
+
+    // console.log(payload);
+
+    setError(false);
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      setloading(true);
+      const res = await axios.post(`${url}/api/sendmails`, payload, config);
+      if (res.data) {
+        setloading(false);
+        setsuccess(true);
+      }
+    } catch (error) {
+      console.log(error);
+      setError(true);
+      setloading(false);
+    }
+  };
 
   return (
     <div className="employee-page">
@@ -241,14 +273,21 @@ export const Employee = ({ match }: any) => {
             <form onSubmit={handleEmail}>
               <FormControl isRequired>
                 <FormLabel htmlFor="subject">Subject</FormLabel>
-                <Input type="text" placeholder="Subject" />
+                <Input
+                  type="text"
+                  placeholder="Subject"
+                  value={subject}
+                  onChange={(e: any) => {
+                    setsubject(e.target.value);
+                  }}
+                />
                 <FormLabel htmlFor="Body">Body</FormLabel>
                 <Textarea
                   size="lg"
                   placeholder={`Send ${name_url} an Email`}
-                  value={email}
+                  value={body}
                   onChange={(e: any) => {
-                    setEmail(e.target.value);
+                    setBody(e.target.value);
                   }}
                 ></Textarea>
               </FormControl>
@@ -260,8 +299,24 @@ export const Employee = ({ match }: any) => {
               >
                 X Hide
               </div>
-              {/* <h3 style={{ color: "red" }}>failure</h3>
-                <h3 style={{ color: "green" }}>success</h3> */}
+              <h3 style={{ color: "red", display: error ? "block" : "none" }}>
+                an error occurred, check your internet connection
+              </h3>
+              <h3
+                style={{
+                  color: "green",
+                  display: success ? "block" : "none",
+                }}
+              >
+                We have recieved your message!
+              </h3>
+              <Spinner
+                style={{
+                  display: loading ? "block" : "none",
+                  textAlign: "center",
+                }}
+              ></Spinner>
+              <br />
               <Button type="submit" variantColor="purple">
                 Send
               </Button>

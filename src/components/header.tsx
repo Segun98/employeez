@@ -7,7 +7,9 @@ export default function Header() {
       <div className="header_wrap">
         <header>
           <div className="logo">
-            <Link to="/">Employeez</Link>
+            <Link to="/">
+              <img src="/favicon.ico" alt="logo" />
+            </Link>
           </div>
           <aside>
             <div className="about">

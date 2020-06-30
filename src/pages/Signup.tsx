@@ -32,6 +32,18 @@ export const Signup = () => {
     }
   }, [error]);
 
+  async function acknowledgeMail(name: string, email: string) {
+    const payload = {
+      user: name,
+      email,
+    };
+    try {
+      await axios.post(`${url}/api/acknowledge`, payload);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function handleSubmit(e: any) {
     e.preventDefault();
     const config = {
@@ -47,18 +59,15 @@ export const Signup = () => {
     setError("");
     try {
       setloading(true);
-      const res = await axios.post(
-        `${url}/api/register`,
-        payload,
-        config
-      );
+      const res = await axios.post(`${url}/api/register`, payload, config);
       if (res.data === "sign up successful") {
+        await acknowledgeMail(name, email);
         setEmail("");
         setName("");
         setPassword("");
         setloading(false);
-        history.push("/login");
-        return setSuccess("Sign Up successful! You can now log in");
+        setSuccess("Sign Up successful! You can now log in");
+        return history.push("/login");
       }
       setloading(false);
       setError(res.data);
@@ -77,7 +86,10 @@ export const Signup = () => {
       </section>
       <section className="login-wrap">
         <div className="login-image">
-          <img src="/images/undraw_img2.png" alt="login-page" />
+          <img
+            src={require("../images/undraw_img2.png")}
+            alt="signup illustration"
+          />
         </div>
         <div className="form-wrap">
           <h2

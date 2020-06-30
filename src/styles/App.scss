@@ -34,7 +34,7 @@ li {
 .spinner {
   width: 100px;
   height: 100px;
-  border: 3px dashed #333;
+  border: 3px dashed $textcolor;
   padding: 50px;
   border-radius: 50%;
   animation: spinner infinite ease 3s;
@@ -62,7 +62,7 @@ textarea {
   font-family: "Sen", sans-serif;
 }
 
-.page-loader{
+.page-loader {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -197,8 +197,9 @@ textarea {
   .todo {
     text-align: left;
   }
+
   // .gender-balance-content{
-    
+
   // }
 
   .customer-no {
@@ -230,7 +231,7 @@ textarea {
   width: 90%;
   padding: 5px 0;
 
-  i{
+  i {
     box-shadow: 0 1px 6px 0 $bordecolor;
     border-radius: 50%;
     padding: 7px;
@@ -348,6 +349,7 @@ textarea {
 
   .dashboard-item-wrap {
     width: 90%;
+
     h3 {
       font-size: 1rem;
     }
@@ -595,6 +597,7 @@ textarea {
 /*About Page*/
 .about-page {
   text-align: justify;
+
   h3 {
     color: $purple;
   }
@@ -611,24 +614,24 @@ textarea {
   }
 }
 
-@media only screen and (min-width: 700px){
+@media only screen and (min-width: 700px) {
   .about-page-body {
     width: 65%;
-    
+
   }
 }
 
-@media only screen and (min-width: 1200px){
+@media only screen and (min-width: 1200px) {
   .about-page-body {
     width: 50%;
-    
+
   }
 }
 
-@media only screen and (min-width: 1400px){
+@media only screen and (min-width: 1400px) {
   .about-page-body {
     width: 40%;
-    
+
   }
 }
 
