@@ -16,6 +16,7 @@ export function Commas(x: number) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-export const url = "https://employeezapi.herokuapp.com";
+export const url = "http://localhost:8080";
 // "https://employeezapi.herokuapp.com"
 // "http://localhost:8080"
+// "https://apiemployeez.vercel.app"

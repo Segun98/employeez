@@ -11,6 +11,7 @@ import Header from "../components/header";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { url } from "../utils";
+import { Helmet } from "react-helmet";
 
 export default function About() {
   const [email, setemail] = useState("");
@@ -53,6 +54,9 @@ export default function About() {
 
   return (
     <div>
+      <Helmet>
+        <title>About | Employeez</title>
+      </Helmet>
       <Header />
       <br />
       <section>

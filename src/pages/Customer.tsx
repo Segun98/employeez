@@ -199,7 +199,7 @@ export const Customer = ({ match }: any) => {
               <section className="employee-notes-info">
                 <h2>Notes</h2>
                 <div className="employee-note">
-                  <h3>{data.notes}</h3>
+                  <h3 style={{ whiteSpace: "pre-line" }}>{data.notes}</h3>
                 </div>
               </section>
             </div>

@@ -34,9 +34,7 @@ export const AddEmployee: React.FC = () => {
     });
 
     try {
-      const res = await instance.post(
-        `${url}/api/refreshtokens`
-      );
+      const res = await instance.post(`${url}/api/refreshtokens`);
       setToken(res.data.accessToken);
       console.clear();
     } catch (error) {
@@ -79,7 +77,7 @@ export const AddEmployee: React.FC = () => {
       phone,
       dob,
       gender,
-      picture,
+      picture: "",
       classification: classif,
       salary,
       benefits,
@@ -121,7 +119,11 @@ export const AddEmployee: React.FC = () => {
       <section className="dashboard-body">
         <div className="dashboard-auto">
           <FormControl isRequired>
-            <form autoComplete="on" onSubmit={handleSubmit}>
+            <form
+              autoComplete="on"
+              onSubmit={handleSubmit}
+              encType="multipart/form-data"
+            >
               <div className="dashboard-wrap">
                 <div>
                   <FormLabel htmlFor="name"> Employee Name</FormLabel>
@@ -312,7 +314,8 @@ export const AddEmployee: React.FC = () => {
                   <Input
                     isRequired={false}
                     type="file"
-                    name="Picture"
+                    name="file"
+                    id="file"
                     value={picture}
                     onChange={(e: any) => {
                       setPicture(e.target.value);

@@ -233,7 +233,9 @@ export const Dashboard: React.FC = () => {
                 <i className="fas fa-money-check"></i>
               </div>
               <hr />
-              <p className="todo">{todo}</p>
+              <p className="todo" style={{ whiteSpace: "pre-line" }}>
+                {todo}
+              </p>
             </div>
 
             <div className="dashboard-item">
@@ -242,7 +244,7 @@ export const Dashboard: React.FC = () => {
                 <i className="far fa-address-card"></i>
               </div>
               <hr />
-              <p>{about}</p>
+              <p style={{ whiteSpace: "pre-line" }}>{about}</p>
             </div>
 
             <div className="dashboard-item">
@@ -251,7 +253,7 @@ export const Dashboard: React.FC = () => {
                 <i className="fas fa-thumbtack"></i>
               </div>
               <hr />
-              <p>{mission}</p>
+              <p style={{ whiteSpace: "pre-line" }}>{mission}</p>
             </div>
 
             <div className="dashboard-item">
@@ -260,7 +262,7 @@ export const Dashboard: React.FC = () => {
                 <i className="fas fa-street-view"></i>
               </div>
               <hr />
-              <p>{vision}</p>
+              <p style={{ whiteSpace: "pre-line" }}>{vision}</p>
             </div>
           </div>
         </div>

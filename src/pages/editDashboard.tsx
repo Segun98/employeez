@@ -27,9 +27,7 @@ export const EditDashboard: React.FC = () => {
     });
 
     try {
-      const res = await instance.post(
-        `${url}/api/refreshtokens`
-      );
+      const res = await instance.post(`${url}/api/refreshtokens`);
       setToken(res.data.accessToken);
       console.clear();
       fetchdata();
@@ -50,10 +48,7 @@ export const EditDashboard: React.FC = () => {
     };
 
     try {
-      const res = await instance.get(
-        `${url}/api/dashboard`,
-        config
-      );
+      const res = await instance.get(`${url}/api/dashboard`, config);
 
       if (res.data.data) {
         setPageLoad(false);
@@ -202,7 +197,7 @@ export const EditDashboard: React.FC = () => {
             </div>
             <section style={{ textAlign: "center", marginTop: "15px" }}>
               <Button type="submit" variantColor="purple">
-                  Update
+                Update
               </Button>
             </section>
           </form>

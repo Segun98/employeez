@@ -34,9 +34,7 @@ export const AddCustomer: React.FC = () => {
     });
 
     try {
-      const res = await instance.post(
-        `${url}/api/refreshtokens`
-      );
+      const res = await instance.post(`${url}/api/refreshtokens`);
       setToken(res.data.accessToken);
       console.clear();
     } catch (error) {

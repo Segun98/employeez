@@ -17,28 +17,7 @@ export const CustomerMail = () => {
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");
   const [emails, setEmails] = useState<Array<props>>([]);
-  const [employeesEmails] = useState<Array<props>>([
-    {
-      mail: "customer@gmail.com",
-      id: 1,
-    },
-    {
-      mail: "tipsy@hey.com",
-      id: 2,
-    },
-    {
-      mail: "bob@gmail.com",
-      id: 3,
-    },
-    {
-      mail: "bobbyflair@gmail.com",
-      id: 4,
-    },
-    {
-      mail: "testboy@gmail.com",
-      id: 5,
-    },
-  ]);
+  const [employeesEmails] = useState<Array<props>>([]);
 
   const handleEmail = (e: any) => {
     e.preventDefault();
@@ -131,7 +110,7 @@ export const CustomerMail = () => {
                   <FormLabel htmlFor="Body">Body</FormLabel>
                   <Textarea
                     size="lg"
-                    placeholder="send emails to customers"
+                    placeholder="send emails to customers (feature not implemented yet)"
                     value={body}
                     onChange={(e: any) => {
                       setBody(e.target.value);
