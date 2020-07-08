@@ -44,9 +44,7 @@ export const EditCustomer: React.FC = ({ match }: any) => {
     });
 
     try {
-      const res = await instance.post(
-        `${url}/api/refreshtokens`
-      );
+      const res = await instance.post(`${url}/api/refreshtokens`);
       setToken(res.data.accessToken);
       console.clear();
       fetchdata();
@@ -269,12 +267,9 @@ export const EditCustomer: React.FC = ({ match }: any) => {
                   An error occurred, check your internet connection or refresh
                   page
                 </h3>
-                <Spinner
-                  style={{ display: loading ? "block" : "none" }}
-                ></Spinner>
               </div>
               <div className="add-employee-submit">
-                <Button variantColor="purple" type="submit">
+                <Button variantColor="purple" type="submit" isLoading={loading}>
                   Edit Customer
                 </Button>
               </div>

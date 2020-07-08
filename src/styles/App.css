@@ -130,6 +130,13 @@ textarea {
   width: 100%;
 }
 
+.aside-header .header-page-title {
+  width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .aside-header .aside-header-wrap {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -298,6 +305,9 @@ textarea {
   .aside-header {
     left: 130px;
     width: 80%;
+  }
+  .aside-header .header-page-title {
+    width: 100%;
   }
   .aside-header .aside-header-wrap .header-page-title {
     font-size: 1.6rem;

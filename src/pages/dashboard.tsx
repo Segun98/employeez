@@ -91,12 +91,12 @@ export const Dashboard: React.FC = () => {
       if (res.data.data) {
         setPageLoad(false);
         setData(true);
+        dispatch(getEmployees());
+        dispatch(getCustomers());
         setAbout(res.data.data.about);
         setMission(res.data.data.mission);
         setVision(res.data.data.vision);
         setTodo(res.data.data.todo);
-        dispatch(getEmployees());
-        dispatch(getCustomers());
       }
       if (!res.data.data) {
         setPageLoad(false);

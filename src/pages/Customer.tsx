@@ -251,14 +251,7 @@ export const Customer = ({ match }: any) => {
                 >
                   Message Sent!
                 </h3>
-                <Spinner
-                  style={{
-                    display: loading ? "block" : "none",
-                    textAlign: "center",
-                  }}
-                ></Spinner>
-                <br />
-                <Button type="submit" variantColor="purple">
+                <Button type="submit" variantColor="purple" isLoading={loading}>
                   Send
                 </Button>
               </form>

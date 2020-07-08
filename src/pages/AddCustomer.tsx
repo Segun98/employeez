@@ -11,7 +11,6 @@ import {
   InputGroup,
   InputLeftElement,
   Icon,
-  Spinner,
 } from "@chakra-ui/core";
 import { dash, url } from "../utils";
 import { useHistory } from "react-router-dom";
@@ -135,7 +134,6 @@ export const AddCustomer: React.FC = () => {
                 <div>
                   <FormLabel htmlFor="Occupation">Occupation</FormLabel>
                   <Input
-                    isRequired={false}
                     type="text"
                     name="Occupation"
                     value={occupation}
@@ -220,29 +218,18 @@ export const AddCustomer: React.FC = () => {
                   ></Textarea>
                 </div>
               </div>
+
               <div
                 style={{
+                  display: err ? "block" : "none",
                   textAlign: "center",
+                  color: "red",
                 }}
               >
-                <Spinner
-                  style={{
-                    display: Loading ? "block" : "none",
-                    textAlign: "center",
-                  }}
-                ></Spinner>
-                <div
-                  style={{
-                    display: err ? "block" : "none",
-                    textAlign: "center",
-                    color: "red",
-                  }}
-                >
-                  An error Ocurred, check your internet connection and refresh
-                </div>
+                An error Ocurred, check your internet connection and refresh
               </div>
               <div className="add-employee-submit">
-                <Button variantColor="purple" type="submit">
+                <Button variantColor="purple" type="submit" isLoading={Loading}>
                   Add Customer
                 </Button>
               </div>

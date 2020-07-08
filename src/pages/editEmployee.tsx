@@ -390,12 +390,9 @@ export const EditEmployee: React.FC = ({ match }: any) => {
                   An error occurred, check your internet connection or refresh
                   page
                 </h3>
-                <Spinner
-                  style={{ display: loading ? "block" : "none" }}
-                ></Spinner>
               </div>
               <div className="add-employee-submit">
-                <Button variantColor="purple" type="submit">
+                <Button variantColor="purple" type="submit" isLoading={loading}>
                   Update
                 </Button>
               </div>

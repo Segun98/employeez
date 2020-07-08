@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MainHeader from "../components/mainHeader";
-import { Button, Textarea, Spinner } from "@chakra-ui/core";
+import { Button, Textarea } from "@chakra-ui/core";
 import { getToken } from "../utils/accesstoken";
 import axios from "axios";
 import { url } from "../utils";
@@ -137,10 +137,7 @@ export const CreateDashboard: React.FC = () => {
               </div>
             </div>
             <section style={{ textAlign: "center", marginTop: "15px" }}>
-              <Spinner
-                style={{ display: loading ? "block" : "none" }}
-              ></Spinner>
-              <Button type="submit" variantColor="purple">
+              <Button type="submit" variantColor="purple" isLoading={loading}>
                 Create
               </Button>
             </section>

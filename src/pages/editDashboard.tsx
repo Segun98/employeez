@@ -191,12 +191,9 @@ export const EditDashboard: React.FC = () => {
                 An error occurred, check your internet connection or refresh
                 page
               </h3>
-              <Spinner
-                style={{ display: loading ? "block" : "none" }}
-              ></Spinner>
             </div>
             <section style={{ textAlign: "center", marginTop: "15px" }}>
-              <Button type="submit" variantColor="purple">
+              <Button type="submit" variantColor="purple" isLoading={loading}>
                 Update
               </Button>
             </section>

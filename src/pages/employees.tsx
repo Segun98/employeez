@@ -39,7 +39,7 @@ export const Employees = () => {
       setToken(res.data.accessToken);
       console.clear();
       dispatch(getEmployees());
-      setLoading(data.loading);
+      setLoading(false);
     } catch (error) {
       if (error.message === "Request failed with status code 401") {
         setisAuth(false);
@@ -93,6 +93,12 @@ export const Employees = () => {
         </header>
         <div
           className="page-loader"
+          style={{ display: isLoading ? "flex" : "none" }}
+        >
+          <Spinner></Spinner>
+        </div>
+        <div
+          className="page-loader"
           style={{
             display: employeeLength === 0 ? "flex" : "none",
             color: "purple",
@@ -100,12 +106,7 @@ export const Employees = () => {
         >
           No Employees, Add One by clicking the Onboard Button at the top
         </div>
-        <div
-          className="page-loader"
-          style={{ display: isLoading ? "flex" : "none" }}
-        >
-          <Spinner></Spinner>
-        </div>
+
         <div className="dashboard-auto">
           <div className="dashboard-wrap">
             {data.result.map((employee: any) => (

@@ -11,7 +11,6 @@ import {
   InputGroup,
   InputLeftElement,
   Icon,
-  Spinner,
 } from "@chakra-ui/core";
 import { dash, url } from "../utils";
 import { useHistory } from "react-router-dom";
@@ -339,27 +338,16 @@ export const AddEmployee: React.FC = () => {
               </div>
               <div
                 style={{
+                  display: error ? "block" : "none",
                   textAlign: "center",
+                  color: "red",
                 }}
               >
-                <Spinner
-                  style={{
-                    display: Loading ? "block" : "none",
-                    textAlign: "center",
-                  }}
-                ></Spinner>
-                <div
-                  style={{
-                    display: error ? "block" : "none",
-                    textAlign: "center",
-                    color: "red",
-                  }}
-                >
-                  An error Ocurred, check your internet connection and refresh
-                </div>
+                An error Ocurred, check your internet connection and refresh.
+                Ensure you fill in the required fields
               </div>
               <div className="add-employee-submit">
-                <Button variantColor="purple" type="submit">
+                <Button variantColor="purple" type="submit" isLoading={Loading}>
                   Add Employee
                 </Button>
               </div>

@@ -109,6 +109,13 @@ textarea {
   top: 0;
   width: 100%;
 
+  .header-page-title {
+    width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   .aside-header-wrap {
     display: flex;
     justify-content: space-between;
@@ -265,6 +272,10 @@ textarea {
   .aside-header {
     left: 130px;
     width: 80%;
+
+    .header-page-title {
+      width: 100%;
+    }
 
     .aside-header-wrap {
       .header-page-title {

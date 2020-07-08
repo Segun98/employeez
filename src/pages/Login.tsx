@@ -4,7 +4,6 @@ import {
   FormLabel,
   Input,
   Button,
-  Spinner,
   InputRightElement,
   InputGroup,
 } from "@chakra-ui/core";
@@ -136,8 +135,12 @@ export const Login = () => {
                 </InputRightElement>
               </InputGroup>
             </FormControl>
-            <Spinner style={{ display: loading ? "block" : "none" }}></Spinner>
-            <Button isDisabled={loading} variantColor="purple" type="submit">
+            <Button
+              isDisabled={loading}
+              isLoading={loading}
+              variantColor="purple"
+              type="submit"
+            >
               Submit
             </Button>
           </form>
