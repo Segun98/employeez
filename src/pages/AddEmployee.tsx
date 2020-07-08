@@ -61,6 +61,36 @@ export const AddEmployee: React.FC = () => {
   const [salary, setSalary] = useState("");
   const [benefits, setBenefits] = useState("");
   const [notes, setNotes] = useState("");
+  const [uploadingimg, setuploadingimg] = useState(false);
+  const [uploaderr, setuploaderr] = useState("");
+
+  async function imageUpload() {
+    if (!picture) {
+      return alert("upload a picture");
+    }
+
+    const data = new FormData();
+    data.append("file", picture);
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    try {
+      setuploaderr("");
+      setuploadingimg(true);
+      const res = await axios.post(`${url}/api/upload`, data, config);
+      if (res.data) {
+        setuploadingimg(false);
+        setuploaderr("uploaded!");
+        setPicture(res.data);
+      }
+    } catch (err) {
+      console.log(err);
+      setuploadingimg(false);
+      setuploaderr("an error occurred, try again");
+    }
+  }
 
   async function handleSubmit(e: any) {
     e.preventDefault();
@@ -76,7 +106,7 @@ export const AddEmployee: React.FC = () => {
       phone,
       dob,
       gender,
-      picture: "",
+      picture,
       classification: classif,
       salary,
       benefits,
@@ -314,12 +344,21 @@ export const AddEmployee: React.FC = () => {
                     isRequired={false}
                     type="file"
                     name="file"
-                    id="file"
-                    value={picture}
                     onChange={(e: any) => {
-                      setPicture(e.target.value);
+                      setPicture(e.target.files[0]);
                     }}
                   />
+                  <div style={{ color: "red", textAlign: "center" }}>
+                    {uploaderr}
+                  </div>
+                  <Button
+                    onClick={imageUpload}
+                    isLoading={uploadingimg}
+                    style={{ width: "50px", height: "20px", fontSize: "12px" }}
+                    variantColor="green"
+                  >
+                    Upload
+                  </Button>
                 </div>
 
                 <div>
@@ -347,7 +386,12 @@ export const AddEmployee: React.FC = () => {
                 Ensure you fill in the required fields
               </div>
               <div className="add-employee-submit">
-                <Button variantColor="purple" type="submit" isLoading={Loading}>
+                <Button
+                  variantColor="purple"
+                  type="submit"
+                  isLoading={Loading}
+                  isDisabled={uploadingimg}
+                >
                   Add Employee
                 </Button>
               </div>

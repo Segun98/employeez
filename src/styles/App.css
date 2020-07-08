@@ -922,6 +922,8 @@ header aside div {
   border: 1px solid rgba(32, 33, 36, 0.28);
   border-radius: 50%;
   padding: 5px;
+  height: 100px;
+  width: 100px;
 }
 
 .employees-page .dashboard-item h2 {
