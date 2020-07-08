@@ -131,7 +131,7 @@ textarea {
 }
 
 .aside-header .header-page-title {
-  width: 150px;
+  width: 160px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1011,7 +1011,7 @@ header aside div {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin-top: -9px;
+  margin-top: -15px;
 }
 
 .employee-page .edit-section Button {

@@ -7,6 +7,7 @@ import {
   FormLabel,
   Input,
   Spinner,
+  Icon,
 } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -238,7 +239,7 @@ export const Customer = ({ match }: any) => {
                     setShowEmail(false);
                   }}
                 >
-                  X Hide
+                  <Icon name="close" />
                 </div>
                 <h3 style={{ color: "red", display: error ? "block" : "none" }}>
                   an error occurred, check your internet connection
@@ -251,15 +252,28 @@ export const Customer = ({ match }: any) => {
                 >
                   Message Sent!
                 </h3>
-                <Button type="submit" variantColor="purple" isLoading={loading}>
-                  Send
-                </Button>
+                <div style={{ textAlign: "center" }}>
+                  <Button
+                    type="submit"
+                    variantColor="purple"
+                    isLoading={loading}
+                  >
+                    Send
+                  </Button>
+                </div>
               </form>
             </section>
           </div>
-          <div style={{ textAlign: "center", marginTop: "20px" }}>
+          <div
+            style={{
+              textAlign: "center",
+              marginTop: "20px",
+              visibility: pageLoad ? "hidden" : "visible",
+            }}
+          >
             <Button
               variantColor="red"
+              isDisabled={showEMail}
               onClick={async () => {
                 if (
                   window.confirm(
