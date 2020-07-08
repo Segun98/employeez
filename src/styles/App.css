@@ -1042,6 +1042,7 @@ header aside div {
 
 .employee-page .employee-page-header img {
   width: 100px;
+  height: 100px;
   border: 1px solid #383f4d;
   border-radius: 50%;
   padding: 5px;
