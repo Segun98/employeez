@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import image from "../images/undraw_img2.png";
 import {
   FormControl,
   FormLabel,
@@ -85,10 +86,7 @@ export const Signup = () => {
       </section>
       <section className="login-wrap">
         <div className="login-image">
-          <img
-            src={require("../images/undraw_img2.png")}
-            alt="signup illustration"
-          />
+          <img src={image} alt="signup illustration" />
         </div>
         <div className="form-wrap">
           <h2
@@ -159,6 +157,21 @@ export const Signup = () => {
               Submit
             </Button>
           </form>
+          <br />
+          <h3>
+            By signing up, you have agreed to our{" "}
+            <a
+              href="/about#privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "rgb(118, 74, 188)",
+                fontWeight: "bold",
+              }}
+            >
+              Privacy Policy
+            </a>
+          </h3>
         </div>
       </section>
     </div>

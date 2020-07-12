@@ -89,14 +89,14 @@ export const Dashboard: React.FC = () => {
       const res = await instance.get(`${url}/api/dashboard`, config);
 
       if (res.data.data) {
-        setPageLoad(false);
-        setData(true);
         dispatch(getEmployees());
         dispatch(getCustomers());
         setAbout(res.data.data.about);
         setMission(res.data.data.mission);
         setVision(res.data.data.vision);
         setTodo(res.data.data.todo);
+        setData(true);
+        setPageLoad(false);
       }
       if (!res.data.data) {
         setPageLoad(false);

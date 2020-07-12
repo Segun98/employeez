@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import image from "../images/undraw_img2.png";
 import {
   FormControl,
   FormLabel,
@@ -80,10 +81,7 @@ export const Login = () => {
       </section>
       <section className="login-wrap">
         <div className="login-image">
-          <img
-            src={require("../images/undraw_img2.png")}
-            alt="login illustration"
-          />
+          <img src={image} alt="login illustration" />
         </div>
         <div className="form-wrap">
           <h2

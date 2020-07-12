@@ -66,7 +66,7 @@ export const AddEmployee: React.FC = () => {
 
   async function imageUpload() {
     if (!picture) {
-      return alert("upload a picture");
+      return alert("select a picture before upload");
     }
 
     const data = new FormData();
@@ -348,7 +348,9 @@ export const AddEmployee: React.FC = () => {
                       setPicture(e.target.files[0]);
                     }}
                   />
-                  <div style={{ color: "red", textAlign: "center" }}>
+                  <div
+                    style={{ color: "rgb(118, 74, 188)", textAlign: "center" }}
+                  >
                     {uploaderr}
                   </div>
                   <Button

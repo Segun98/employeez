@@ -600,15 +600,16 @@ header {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-box-align: baseline;
-      -ms-flex-align: baseline;
-          align-items: baseline;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   color: #383f4d;
 }
 
 header .logo {
   color: #764abc;
   height: 35px;
+  width: 35px;
 }
 
 header aside {

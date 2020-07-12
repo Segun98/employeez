@@ -14,12 +14,13 @@ header {
     width: 95%;
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     color: $textcolor;
 
     .logo {
         color: $purple;
         height: 35px;
+        width: 35px;
     }
 
     aside {

@@ -1,4 +1,5 @@
 import React from "react";
+import logo from "../images/logo192.png";
 import { Link } from "react-router-dom";
 
 export default function Header() {
@@ -8,7 +9,7 @@ export default function Header() {
         <header>
           <div className="logo">
             <Link to="/">
-              <img src="/favicon.ico" alt="logo" />
+              <img src={logo} alt="logo" />
             </Link>
           </div>
           <aside>

@@ -1,4 +1,5 @@
 import React from "react";
+import image from "../images/undraw_img.png";
 import { Link } from "react-router-dom";
 import { Button } from "@chakra-ui/core";
 import Header from "../components/header";
@@ -19,7 +20,7 @@ export default function Index() {
           </Link>
         </div>
         <div className="intro-image">
-          <img src={require("../images/undraw_img.png")} alt="intro-img" />
+          <img src={image} alt="intro-img" />
         </div>
       </section>
     </div>
