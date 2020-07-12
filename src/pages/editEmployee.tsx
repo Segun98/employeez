@@ -392,7 +392,9 @@ export const EditEmployee: React.FC = ({ match }: any) => {
                       setPicture(e.target.files[0]);
                     }}
                   />
-                  <div style={{ color: "red", textAlign: "center" }}>
+                  <div
+                    style={{ color: "rgb(118, 74, 188)", textAlign: "center" }}
+                  >
                     {uploaderr}
                   </div>
                   <Button
