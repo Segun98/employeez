@@ -10,7 +10,7 @@ export default function Loading() {
       </section>
       <section className="dashboard-body">
         <div className="page-loader">
-          <Spinner></Spinner>
+          <Spinner speed="0.7s"></Spinner>
         </div>
       </section>
     </div>

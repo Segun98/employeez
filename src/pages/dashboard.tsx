@@ -141,7 +141,7 @@ export const Dashboard: React.FC = () => {
           className="page-loader"
           style={{ display: pageLoad ? "flex" : "none" }}
         >
-          <Spinner></Spinner>
+          <Spinner speed="1s"></Spinner>
         </div>
         <div
           className="dashboard-auto"

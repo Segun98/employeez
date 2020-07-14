@@ -95,7 +95,7 @@ export const Employees = () => {
           className="page-loader"
           style={{ display: isLoading ? "flex" : "none" }}
         >
-          <Spinner></Spinner>
+          <Spinner speed="1s"></Spinner>
         </div>
         <div
           className="page-loader"
