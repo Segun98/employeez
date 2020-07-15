@@ -97,6 +97,7 @@ export const Customers = () => {
           style={{
             display: customerLength === 0 ? "flex" : "none",
             color: "purple",
+            visibility: isLoading ? "hidden" : "visible",
           }}
         >
           No Customer, Add One by clicking the Register Button at the top

@@ -102,6 +102,7 @@ export const Employees = () => {
           style={{
             display: employeeLength === 0 ? "flex" : "none",
             color: "purple",
+            visibility: isLoading ? "hidden" : "visible",
           }}
         >
           No Employees, Add One by clicking the Onboard Button at the top
