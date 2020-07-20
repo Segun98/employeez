@@ -64,9 +64,11 @@ export default function About() {
           <h3 style={{ margin: "15px 0", textAlign: "center" }}>About</h3>
           <div className="about-page-body">
             <p>
-              Employeez is an Employee and Customer Management app. We Help You
-              Spend Less Time Managing Your Employees and Customers, so You
-              Spend More Time Running your Business. Built for SMEs and MSMEs.{" "}
+              Employeez lets you manage your employees and customers easily.
+              Onboard Employees and Customers, send bulk and individual emails.
+              Employeez provides an 'all in one place' dashboard that highlights
+              your total employees and customers, total salary expenses,
+              strategic fit and gender diversity.{" "}
               <Link
                 to="/signup"
                 style={{ color: "purple", textDecoration: "underline" }}

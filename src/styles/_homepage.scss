@@ -45,6 +45,7 @@ header {
 
 .intro {
     margin: 70px auto;
+    margin-bottom: 0;
     width: 85%;
 
     .intro-image {
@@ -73,6 +74,117 @@ header {
         border-radius: 10px;
     }
 }
+
+.home-page_dashboard {
+    margin: 40px 0;
+
+    h2 {
+        text-align: center;
+        font-weight: bolder;
+        color: $purple;
+        font-size: 1.2rem;
+    }
+
+    &_wrap {
+        margin: auto;
+        width: 90%;
+        display: flex;
+        flex-direction: column-reverse;
+
+
+        img {
+            width: 100%;
+            height: auto;
+            border: 1px solid $purple;
+        }
+    }
+
+    &_content {
+        p {
+            text-align: center;
+            margin: 10px 0;
+        }
+    }
+}
+
+.home-page_profile {
+    margin: 40px 0;
+
+    h2 {
+        text-align: center;
+        font-weight: bolder;
+        color: $purple;
+        font-size: 1.2rem;
+    }
+
+    &_wrap {
+        margin: auto;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+
+
+        img {
+            width: 100%;
+            height: auto;
+            border: 1px solid $purple;
+        }
+    }
+
+    &_content {
+        p {
+            margin: 10px 0;
+            text-align: center;
+        }
+    }
+}
+
+
+.home-page_other-info {
+    margin: 40px 0;
+
+    h3 {
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: $purple;
+        text-align: center;
+    }
+
+    .other-info-wrap {
+        text-align: center;
+        margin: auto;
+        width: 90%;
+
+        div {
+            margin: 10px 0;
+        }
+
+        h4 {
+            font-weight: bold;
+            font-size: 1.05rem;
+            color: $textcolor;
+        }
+    }
+}
+
+.footer {
+    padding: 20px 0;
+    border-top: 1px solid $purple;
+
+    ul {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin: auto;
+        width: 80%;
+
+        li {
+            color: $purple;
+        }
+    }
+}
+
+
 
 @media only screen and (min-width:700px) {
     header {
@@ -109,9 +221,39 @@ header {
             width: 60%;
         }
     }
+
+    .home-page_dashboard {
+
+        &_wrap {
+            width: 55%;
+        }
+    }
+
+    .home-page_profile {
+
+        &_wrap {
+            width: 55%;
+        }
+    }
+
+
+    .home-page_other-info {
+
+        .other-info-wrap {
+            width: 50%;
+        }
+
+    }
+
+    .footer {
+
+        ul {
+            width: 70%;
+
+        }
+
+    }
 }
-
-
 
 @media only screen and (min-width:1000px) {
     header {
@@ -171,6 +313,57 @@ header {
             width: 100%;
         }
     }
+
+
+    .home-page_dashboard {
+
+        &_wrap {
+            width: 80%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-top: 20px;
+
+            p {
+                line-height: 2;
+            }
+
+            img {
+                width: 90%;
+            }
+        }
+    }
+
+    .home-page_profile {
+
+        &_wrap {
+            width: 80%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-top: 20px;
+            gap: 20px;
+
+            p {
+                line-height: 2;
+
+            }
+
+            img {
+                width: 90%;
+            }
+        }
+    }
+
+
+    .home-page_other-info {
+
+        .other-info-wrap {
+            width: 80%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+    }
+
 }
 
 
@@ -199,37 +392,72 @@ header {
 
         }
     }
-}
+
+    .footer {
 
 
-@media only screen and (min-width:2000px) {
-    header {
-        width: 70%;
+        ul {
+            width: 60%;
 
-        aside {
-            font-size: 1.4rem;
-
-            .privacy {
-                margin: 0 45px;
-            }
         }
     }
 
-    .intro {
-        margin: 170px auto;
-        width: 60%;
 
-        .intro-image {
-            width: 80%;
-            margin-left: 20px;
+
+    @media only screen and (min-width:2000px) {
+        header {
+            width: 70%;
+
+            aside {
+                font-size: 1.4rem;
+
+                .privacy {
+                    margin: 0 45px;
+                }
+            }
         }
 
-        h2 {
-            font-size: 2.4rem;
+        .intro {
+            margin: 170px auto;
+            width: 60%;
+
+            .intro-image {
+                width: 80%;
+                margin-left: 20px;
+            }
+
+            h2 {
+                font-size: 2.4rem;
+            }
+
+            p {
+                font-size: 1.3rem;
+
+            }
         }
 
-        p {
-            font-size: 1.3rem;
+        .home-page_dashboard {
+
+            &_wrap {
+                width: 60%;
+
+            }
+        }
+
+        .home-page_profile {
+
+            &_wrap {
+                width: 60%;
+
+            }
+        }
+
+
+        .home-page_other-info {
+
+            .other-info-wrap {
+                width: 40%;
+            }
 
         }
     }

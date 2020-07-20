@@ -91,7 +91,12 @@ export const Customers = () => {
             </Link>
           </div>
         </header>
-
+        <div
+          className="page-loader"
+          style={{ display: isLoading ? "flex" : "none" }}
+        >
+          <Spinner speed="1s"></Spinner>
+        </div>
         <div
           className="page-loader"
           style={{
@@ -101,12 +106,6 @@ export const Customers = () => {
           }}
         >
           No Customer, Add One by clicking the Register Button at the top
-        </div>
-        <div
-          className="page-loader"
-          style={{ display: isLoading ? "flex" : "none" }}
-        >
-          <Spinner speed="1s"></Spinner>
         </div>
 
         <div className="dashboard-auto">

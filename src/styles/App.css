@@ -637,6 +637,7 @@ header aside div {
 
 .intro {
   margin: 70px auto;
+  margin-bottom: 0;
   width: 85%;
 }
 
@@ -666,6 +667,123 @@ header aside div {
   border-radius: 10px;
 }
 
+.home-page_dashboard {
+  margin: 40px 0;
+}
+
+.home-page_dashboard h2 {
+  text-align: center;
+  font-weight: bolder;
+  color: #764abc;
+  font-size: 1.2rem;
+}
+
+.home-page_dashboard_wrap {
+  margin: auto;
+  width: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+}
+
+.home-page_dashboard_wrap img {
+  width: 100%;
+  height: auto;
+  border: 1px solid #764abc;
+}
+
+.home-page_dashboard_content p {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.home-page_profile {
+  margin: 40px 0;
+}
+
+.home-page_profile h2 {
+  text-align: center;
+  font-weight: bolder;
+  color: #764abc;
+  font-size: 1.2rem;
+}
+
+.home-page_profile_wrap {
+  margin: auto;
+  width: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.home-page_profile_wrap img {
+  width: 100%;
+  height: auto;
+  border: 1px solid #764abc;
+}
+
+.home-page_profile_content p {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.home-page_other-info {
+  margin: 40px 0;
+}
+
+.home-page_other-info h3 {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #764abc;
+  text-align: center;
+}
+
+.home-page_other-info .other-info-wrap {
+  text-align: center;
+  margin: auto;
+  width: 90%;
+}
+
+.home-page_other-info .other-info-wrap div {
+  margin: 10px 0;
+}
+
+.home-page_other-info .other-info-wrap h4 {
+  font-weight: bold;
+  font-size: 1.05rem;
+  color: #383f4d;
+}
+
+.footer {
+  padding: 20px 0;
+  border-top: 1px solid #764abc;
+}
+
+.footer ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: auto;
+  width: 80%;
+}
+
+.footer ul li {
+  color: #764abc;
+}
+
 @media only screen and (min-width: 700px) {
   header {
     width: 80%;
@@ -693,6 +811,18 @@ header aside div {
   .intro p {
     margin: auto;
     width: 60%;
+  }
+  .home-page_dashboard_wrap {
+    width: 55%;
+  }
+  .home-page_profile_wrap {
+    width: 55%;
+  }
+  .home-page_other-info .other-info-wrap {
+    width: 50%;
+  }
+  .footer ul {
+    width: 70%;
   }
 }
 
@@ -748,6 +878,42 @@ header aside div {
     margin: auto;
     width: 100%;
   }
+  .home-page_dashboard_wrap {
+    width: 80%;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    margin-top: 20px;
+  }
+  .home-page_dashboard_wrap p {
+    line-height: 2;
+  }
+  .home-page_dashboard_wrap img {
+    width: 90%;
+  }
+  .home-page_profile_wrap {
+    width: 80%;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    margin-top: 20px;
+    gap: 20px;
+  }
+  .home-page_profile_wrap p {
+    line-height: 2;
+  }
+  .home-page_profile_wrap img {
+    width: 90%;
+  }
+  .home-page_other-info .other-info-wrap {
+    width: 80%;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media only screen and (min-width: 1300px) {
@@ -766,9 +932,12 @@ header aside div {
   .intro p {
     font-size: 1.2rem;
   }
+  .footer ul {
+    width: 60%;
+  }
 }
 
-@media only screen and (min-width: 2000px) {
+@media only screen and (min-width: 1300px) and (min-width: 2000px) {
   header {
     width: 70%;
   }
@@ -791,6 +960,15 @@ header aside div {
   }
   .intro p {
     font-size: 1.3rem;
+  }
+  .home-page_dashboard_wrap {
+    width: 60%;
+  }
+  .home-page_profile_wrap {
+    width: 60%;
+  }
+  .home-page_other-info .other-info-wrap {
+    width: 40%;
   }
 }
 

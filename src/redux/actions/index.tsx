@@ -65,10 +65,7 @@ export const getEmployees = () => {
   return async (dispatch: any) => {
     dispatch(loading);
     try {
-      const res = await instance.get(
-        `${url}/api/employees`,
-        config
-      );
+      const res = await instance.get(`${url}/api/employees`, config);
       const users = res.data.data;
       dispatch(fetchEmployees(users));
     } catch (err) {
@@ -111,15 +108,13 @@ export const getCustomers = () => {
     headers: {
       "Content-Type": "application/json",
       authorization: `${accessToken ? `bearer ${accessToken}` : ""}`,
+      cache: "force-cache",
     },
   };
   return async (dispatch: any) => {
     dispatch(loading);
     try {
-      const res = await instance.get(
-        `${url}/api/customers`,
-        config
-      );
+      const res = await instance.get(`${url}/api/customers`, config);
       const users = res.data.data;
       dispatch(fetchCustomers(users));
     } catch (err) {

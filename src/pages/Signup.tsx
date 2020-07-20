@@ -115,7 +115,12 @@ export const Signup = () => {
               />
               <FormLabel htmlFor="email">Email address</FormLabel>
               <br />
-              <span style={{ color: "rgb(118, 74, 188)", fontSize: "12px" }}>
+              <span
+                style={{
+                  color: "rgb(118, 74, 188)",
+                  fontSize: "11px",
+                }}
+              >
                 Put in your actual email, if you are testing. You're supposed to
                 recieve a welcome message :-){" "}
               </span>
