@@ -72,6 +72,10 @@ export const Customer = ({ match }: any) => {
         config
       );
 
+      if (!res.data.data) {
+        return history.goBack();
+      }
+
       if (res.data.data) {
         setPageLoad(false);
         setData(res.data.data);

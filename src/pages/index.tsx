@@ -50,7 +50,7 @@ export default function Index() {
               relevant information.
             </p>
             <p>
-              Send Individual Emials to an employee or customer directly from
+              Send Individual Emails to an employee or customer directly from
               their profile
             </p>
           </div>

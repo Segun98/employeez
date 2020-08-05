@@ -15,8 +15,9 @@ export function dash(str: string) {
 export function Commas(x: number) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-
-export const url = "https://apiemployeez.vercel.app";
+let urls: string[] = [
+  "https://apiemployeez.vercel.app",
+  "http://localhost:8080",
+];
+export const url = urls[1];
 // "https://employeezapi.herokuapp.com"
-// "http://localhost:8080"
-// "https://apiemployeez.vercel.app"
