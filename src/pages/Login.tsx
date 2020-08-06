@@ -9,14 +9,14 @@ import {
   InputGroup,
 } from "@chakra-ui/core";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useHistory, Router } from "react-router-dom";
 import { setToken } from "./../utils/accesstoken";
 import Header from "./../components/header";
 import { useAuth } from "./../Context/authcontext";
 import { url } from "../utils";
 
 export const Login = () => {
-  // const history = useHistory()
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState("");
@@ -24,7 +24,14 @@ export const Login = () => {
   const [loading, setloading] = useState(false);
   const [show, setshow] = useState(false);
 
-  const { setisAuth }: any = useAuth()!;
+  const { setisAuth, isAuth }: any = useAuth()!;
+
+  useEffect(() => {
+    if (isAuth) {
+      history.push("/dashboard");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (error) {

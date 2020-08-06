@@ -330,7 +330,7 @@ export const Employee = ({ match }: any) => {
         >
           <Button
             variantColor="red"
-            isDisabled={showEMail}
+            isDisabled={showEMail || !data}
             onClick={async () => {
               if (
                 window.confirm(`Are you sure you want to fire ${data.name}?`)

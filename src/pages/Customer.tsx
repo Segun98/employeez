@@ -277,7 +277,7 @@ export const Customer = ({ match }: any) => {
           >
             <Button
               variantColor="red"
-              isDisabled={showEMail}
+              isDisabled={showEMail || !data}
               onClick={async () => {
                 if (
                   window.confirm(
