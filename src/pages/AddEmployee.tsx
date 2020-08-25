@@ -11,6 +11,7 @@ import {
   InputGroup,
   InputLeftElement,
   Icon,
+  useToast,
 } from "@chakra-ui/core";
 import { dash, url } from "../utils";
 import { useHistory } from "react-router-dom";
@@ -19,6 +20,7 @@ import { getToken, setToken } from "../utils/accesstoken";
 import { useAuth } from "../Context/authcontext";
 
 export const AddEmployee: React.FC = () => {
+  const toast = useToast();
   const history = useHistory();
   useEffect(() => {
     fetchRefreshToken();
@@ -136,6 +138,13 @@ export const AddEmployee: React.FC = () => {
     } catch (error) {
       setLoading(false);
       setError(true);
+      toast({
+        title: "An error occurred.",
+        description: "check your internet connection and refresh.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
       console.log(error.message);
     }
   }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MainHeader from "../components/mainHeader";
-import { Button, Spinner } from "@chakra-ui/core";
+import { Button, Spinner, useToast } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { getToken, setToken } from "../utils/accesstoken";
@@ -16,6 +16,7 @@ interface DefaultRootState {
 }
 
 export const Dashboard: React.FC = () => {
+  const toast = useToast();
   const dispatch = useDispatch();
   const employees = useSelector<DefaultRootState, any>(
     (state) => state.Employees
@@ -66,6 +67,13 @@ export const Dashboard: React.FC = () => {
       console.clear();
       fetchdata();
     } catch (error) {
+      toast({
+        title: "An error occurred.",
+        description: "check your internet connection and refresh.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
       if (error.message === "Request failed with status code 401") {
         setisAuth(false);
       }
@@ -103,6 +111,13 @@ export const Dashboard: React.FC = () => {
         setData(false);
       }
     } catch (error) {
+      toast({
+        title: "An error occurred.",
+        description: "check your internet connection and refresh.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
       console.log(error.message);
     }
   }

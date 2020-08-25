@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MainHeader from "../components/mainHeader";
-import { Input, Button, Spinner } from "@chakra-ui/core";
+import { Input, Button, Spinner, useToast } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getEmployees, searchEmployees } from "../redux/actions/index";
@@ -14,6 +14,7 @@ interface DefaultRootState {
 }
 
 export const Employees = () => {
+  const toast = useToast();
   const dispatch = useDispatch();
   const data = useSelector<DefaultRootState, any>((state) => state.Employees);
 
@@ -41,6 +42,13 @@ export const Employees = () => {
       dispatch(getEmployees());
       setLoading(false);
     } catch (error) {
+      toast({
+        title: "An error occurred.",
+        description: "check your internet connection and refresh.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
       if (error.message === "Request failed with status code 401") {
         setisAuth(false);
       }

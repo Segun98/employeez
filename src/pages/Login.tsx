@@ -9,7 +9,7 @@ import {
   InputGroup,
 } from "@chakra-ui/core";
 import axios from "axios";
-import { Link, useHistory, Router } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { setToken } from "./../utils/accesstoken";
 import Header from "./../components/header";
 import { useAuth } from "./../Context/authcontext";
