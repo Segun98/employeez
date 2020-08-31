@@ -152,12 +152,12 @@ export const Dashboard: React.FC = () => {
         />
       </section>
       <section className="dashboard-body">
-        <div
-          className="page-loader"
-          style={{ display: pageLoad ? "flex" : "none" }}
-        >
-          <Spinner speed="1s"></Spinner>
-        </div>
+        {pageLoad && (
+          <div className="page-loader">
+            <Spinner speed="1s"></Spinner>
+          </div>
+        )}
+
         <div
           className="dashboard-auto"
           style={{ display: pageLoad ? "none" : "block" }}

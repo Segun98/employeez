@@ -99,12 +99,12 @@ export const Employees = () => {
             </Link>
           </div>
         </header>
-        <div
-          className="page-loader"
-          style={{ display: isLoading ? "flex" : "none" }}
-        >
-          <Spinner speed="1s"></Spinner>
-        </div>
+        {isLoading && (
+          <div className="page-loader">
+            <Spinner speed="1s"></Spinner>
+          </div>
+        )}
+
         <div
           className="page-loader"
           style={{
