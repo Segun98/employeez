@@ -19,5 +19,5 @@ let urls: string[] = [
   "https://apiemployeez.vercel.app",
   "http://localhost:8080",
 ];
-export const url = urls[1];
+export const url = urls[0];
 // "https://employeezapi.herokuapp.com"

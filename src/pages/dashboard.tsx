@@ -3,7 +3,7 @@ import MainHeader from "../components/mainHeader";
 import { Button, Spinner, useToast } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { getToken, setToken } from "../utils/accesstoken";
+import { fetchToken, getToken } from "../utils/accesstoken";
 import { Commas, url } from "../utils";
 import { useAuth } from "../Context/authcontext";
 import { useSelector, useDispatch } from "react-redux";
@@ -48,38 +48,12 @@ export const Dashboard: React.FC = () => {
   const [about, setAbout] = useState("");
   const [data, setData] = useState(false);
   const [pageLoad, setPageLoad] = useState(true);
-
-  useEffect(() => {
-    fetchRefreshToken();
-    // eslint-disable-next-line
-  }, []);
-
   const { setisAuth }: any = useAuth()!;
 
-  async function fetchRefreshToken() {
-    const instance = axios.create({
-      withCredentials: true,
-    });
-
-    try {
-      const res = await instance.post(`${url}/api/refreshtokens`);
-      setToken(res.data.accessToken);
-      console.clear();
-      fetchdata();
-    } catch (error) {
-      toast({
-        title: "An error occurred.",
-        description: "check your internet connection and refresh.",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
-      if (error.message === "Request failed with status code 401") {
-        setisAuth(false);
-      }
-      console.log(error.message);
-    }
-  }
+  useEffect(() => {
+    fetchToken(setisAuth, fetchdata);
+    // eslint-disable-next-line
+  }, []);
 
   async function fetchdata() {
     const instance = axios.create({

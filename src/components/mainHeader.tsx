@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { useLocation, Link } from "react-router-dom";
 import { Icon } from "@chakra-ui/core";
 import { useAuth } from "./../Context/authcontext";
-import { url } from "../utils";
+// import { url } from "../utils";
+import Cookies from "js-cookie";
 
 interface props {
   name?: string;
@@ -43,20 +44,23 @@ const MainHeader: React.FC<props> = ({ name, userID }) => {
 
   const handleLogout = async () => {
     if (window.confirm("Are you sure you want to LogOut?")) {
-      const instance = axios.create({
-        withCredentials: true,
-      });
+      Cookies.remove("yeez");
+      setisAuth(false);
 
-      try {
-        const res = await instance.post(`${url}/api/logout`);
-        if (res.data.message === "Logged out") {
-          setisAuth(false);
-          return true;
-        }
-      } catch (error) {
-        console.log(error.message);
-        alert(error.message);
-      }
+      // const instance = axios.create({
+      //   withCredentials: true,
+      // });
+
+      // try {
+      //   const res = await instance.post(`${url}/api/logout`);
+      //   if (res.data.message === "Logged out") {
+      //     setisAuth(false);
+      //     return true;
+      //   }
+      // } catch (error) {
+      //   console.log(error.message);
+      //   alert(error.message);
+      // }
     }
   };
 

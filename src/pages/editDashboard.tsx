@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MainHeader from "../components/mainHeader";
 import { Button, Textarea, Spinner } from "@chakra-ui/core";
-import { getToken, setToken } from "../utils/accesstoken";
+import { fetchToken, getToken } from "../utils/accesstoken";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { url } from "../utils";
@@ -17,24 +17,10 @@ export const EditDashboard: React.FC = () => {
   const [pageLoad, setPageLoad] = useState(true);
 
   useEffect(() => {
-    fetchRefreshToken();
+    fetchToken(null, fetchdata);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  async function fetchRefreshToken() {
-    const instance = axios.create({
-      withCredentials: true,
-    });
-
-    try {
-      const res = await instance.post(`${url}/api/refreshtokens`);
-      setToken(res.data.accessToken);
-      console.clear();
-      fetchdata();
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
   async function fetchdata() {
     const instance = axios.create({
       withCredentials: true,

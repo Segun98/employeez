@@ -13,6 +13,7 @@ import { Link, useHistory } from "react-router-dom";
 import { setToken } from "./../utils/accesstoken";
 import Header from "./../components/header";
 import { useAuth } from "./../Context/authcontext";
+import Cookies from "js-cookie";
 import { url } from "../utils";
 
 export const Login = () => {
@@ -61,6 +62,11 @@ export const Login = () => {
       setloading(true);
       const res = await instance.post(`${url}/api/login`, payload, config);
       if (res.data.message === "successfully logged in") {
+        //setting cookies client side, should be done over server, but i ran into vercel problems in production
+        Cookies.set("yeez", res.data.refreshToken, {
+          expires: 7,
+          // secure: true,
+        });
         setisAuth(true);
         setEmail("");
         setPassword("");

@@ -16,35 +16,18 @@ import {
 import { dash, url } from "../utils";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import { getToken, setToken } from "../utils/accesstoken";
+import { fetchToken, getToken } from "../utils/accesstoken";
 import { useAuth } from "../Context/authcontext";
 
 export const AddEmployee: React.FC = () => {
   const toast = useToast();
   const history = useHistory();
-  useEffect(() => {
-    fetchRefreshToken();
-    // eslint-disable-next-line
-  }, []);
-
   const { setisAuth }: any = useAuth()!;
 
-  async function fetchRefreshToken() {
-    const instance = axios.create({
-      withCredentials: true,
-    });
-
-    try {
-      const res = await instance.post(`${url}/api/refreshtokens`);
-      setToken(res.data.accessToken);
-      console.clear();
-    } catch (error) {
-      if (error.message === "Request failed with status code 401") {
-        setisAuth(false);
-      }
-      console.log(error.message);
-    }
-  }
+  useEffect(() => {
+    fetchToken(setisAuth);
+    // eslint-disable-next-line
+  }, []);
 
   const [error, setError] = useState(false);
   const [Loading, setLoading] = useState(false);

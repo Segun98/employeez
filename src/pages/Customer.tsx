@@ -11,14 +11,16 @@ import {
 } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { getToken, setToken } from "../utils/accesstoken";
+import { fetchToken, getToken } from "../utils/accesstoken";
 import { useAuth } from "../Context/authcontext";
 import { useHistory } from "react-router-dom";
 import { url } from "../utils";
 
 export const Customer = ({ match }: any) => {
+  const { setisAuth }: any = useAuth()!;
+
   useEffect(() => {
-    fetchRefreshToken();
+    fetchToken(setisAuth, fetchdata);
     // eslint-disable-next-line
   }, []);
   let name_url = match.params.id;
@@ -33,26 +35,6 @@ export const Customer = ({ match }: any) => {
   const [error, setError] = useState(false);
   const [loading, setloading] = useState(false);
   const [success, setsuccess] = useState(false);
-
-  const { setisAuth }: any = useAuth()!;
-
-  async function fetchRefreshToken() {
-    const instance = axios.create({
-      withCredentials: true,
-    });
-
-    try {
-      const res = await instance.post(`${url}/api/refreshtokens`);
-      setToken(res.data.accessToken);
-      console.clear();
-      fetchdata();
-    } catch (error) {
-      if (error.message === "Request failed with status code 401") {
-        setisAuth(false);
-      }
-      console.log(error.message);
-    }
-  }
 
   async function fetchdata() {
     const instance = axios.create({

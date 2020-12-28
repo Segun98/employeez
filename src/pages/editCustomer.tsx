@@ -13,14 +13,14 @@ import {
   Icon,
   Spinner,
 } from "@chakra-ui/core";
-import { getToken, setToken } from "../utils/accesstoken";
+import { fetchToken, getToken } from "../utils/accesstoken";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { url } from "../utils";
 
 export const EditCustomer: React.FC = ({ match }: any) => {
   useEffect(() => {
-    fetchRefreshToken();
+    fetchToken(null, fetchdata);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -37,21 +37,6 @@ export const EditCustomer: React.FC = ({ match }: any) => {
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
   const [notes, setNotes] = useState("");
-
-  async function fetchRefreshToken() {
-    const instance = axios.create({
-      withCredentials: true,
-    });
-
-    try {
-      const res = await instance.post(`${url}/api/refreshtokens`);
-      setToken(res.data.accessToken);
-      console.clear();
-      fetchdata();
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
 
   async function fetchdata() {
     const instance = axios.create({

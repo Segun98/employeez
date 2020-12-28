@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from "react";
 import MainHeader from "../components/mainHeader";
-import { Input, Button, Spinner, useToast } from "@chakra-ui/core";
+import { Input, Button, Spinner } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getEmployees, searchEmployees } from "../redux/actions/index";
-import axios from "axios";
-import { setToken } from "../utils/accesstoken";
+import { fetchToken } from "../utils/accesstoken";
 import { useAuth } from "../Context/authcontext";
-import { url } from "../utils";
 
 interface DefaultRootState {
   Employees: any;
 }
 
 export const Employees = () => {
-  const toast = useToast();
   const dispatch = useDispatch();
   const data = useSelector<DefaultRootState, any>((state) => state.Employees);
 
@@ -24,37 +21,15 @@ export const Employees = () => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetchRefreshToken();
+    fetchToken(setisAuth, dispatch(getEmployees()));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    setLoading(false);
+  }, [data.loading]);
+
   const { setisAuth }: any = useAuth()!;
-
-  async function fetchRefreshToken() {
-    const instance = axios.create({
-      withCredentials: true,
-    });
-
-    try {
-      const res = await instance.post(`${url}/api/refreshtokens`);
-      setToken(res.data.accessToken);
-      console.clear();
-      dispatch(getEmployees());
-      setLoading(false);
-    } catch (error) {
-      toast({
-        title: "An error occurred.",
-        description: "check your internet connection and refresh.",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
-      if (error.message === "Request failed with status code 401") {
-        setisAuth(false);
-      }
-      console.log(error.message);
-    }
-  }
 
   return (
     <div className="employees-page">

@@ -63,13 +63,16 @@ export const getEmployees = () => {
     },
   };
   return async (dispatch: any) => {
-    dispatch(loading);
     try {
+      dispatch(loading);
       const res = await instance.get(`${url}/api/employees`, config);
       const users = res.data.data;
-      dispatch(fetchEmployees(users));
+      if (users) {
+        dispatch(fetchEmployees(users));
+      }
     } catch (err) {
       console.log(err.message);
+      dispatch(errorResponse(err.message));
     }
   };
 };

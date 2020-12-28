@@ -13,14 +13,14 @@ import {
   Icon,
   Spinner,
 } from "@chakra-ui/core";
-import { getToken, setToken } from "../utils/accesstoken";
+import { fetchToken, getToken } from "../utils/accesstoken";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { url } from "../utils";
 
 export const EditEmployee: React.FC = ({ match }: any) => {
   useEffect(() => {
-    fetchRefreshToken();
+    fetchToken(null, fetchdata);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -74,21 +74,6 @@ export const EditEmployee: React.FC = ({ match }: any) => {
       console.log(err);
       setuploadingimg(false);
       setuploaderr("an error occurred, try again");
-    }
-  }
-
-  async function fetchRefreshToken() {
-    const instance = axios.create({
-      withCredentials: true,
-    });
-
-    try {
-      const res = await instance.post(`${url}/api/refreshtokens`);
-      setToken(res.data.accessToken);
-      console.clear();
-      fetchdata();
-    } catch (error) {
-      console.log(error.message);
     }
   }
 

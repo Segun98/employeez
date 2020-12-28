@@ -7,7 +7,7 @@ import {
   FormLabel,
   Input,
 } from "@chakra-ui/core";
-import { setToken } from "../utils/accesstoken";
+import { fetchToken } from "../utils/accesstoken";
 import { url } from "../utils";
 import { useAuth } from "../Context/authcontext";
 import { useSelector, useDispatch } from "react-redux";
@@ -34,31 +34,12 @@ export const CustomerMail = () => {
   const customers = useSelector<DefaultRootState, any>(
     (state) => state.Customers
   );
-
-  useEffect(() => {
-    fetchRefreshToken();
-    // eslint-disable-next-line
-  }, []);
-
   const { setisAuth }: any = useAuth()!;
 
-  async function fetchRefreshToken() {
-    const instance = axios.create({
-      withCredentials: true,
-    });
-
-    try {
-      const res = await instance.post(`${url}/api/refreshtokens`);
-      setToken(res.data.accessToken);
-      console.clear();
-      dispatch(getCustomers());
-    } catch (error) {
-      if (error.message === "Request failed with status code 401") {
-        setisAuth(false);
-      }
-      console.log(error.message);
-    }
-  }
+  useEffect(() => {
+    fetchToken(setisAuth, dispatch(getCustomers()));
+    // eslint-disable-next-line
+  }, []);
 
   //submit email to server
   const handleEmail = async (e: any) => {

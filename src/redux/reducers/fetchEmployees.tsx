@@ -1,37 +1,42 @@
-import {FETCH_EMPLOYEES, LOADING, ERROR_RESPONSE, QUERY_EMPLOYEES } from "../actions/types"
+import {
+  FETCH_EMPLOYEES,
+  LOADING,
+  ERROR_RESPONSE,
+  QUERY_EMPLOYEES,
+} from "../actions/types";
 
 const initialState = {
   loading: false,
   result: [],
-  error: ""
-}
+  error: "",
+};
 
-export const Employees = (state= initialState, action: any) => {
+export const Employees = (state = initialState, action: any) => {
   switch (action.type) {
     case LOADING:
       return {
-        loading : true,
+        loading: true,
         result: [],
-        error: ""
-      }
+        error: "",
+      };
     case FETCH_EMPLOYEES:
       return {
-        loading : false,
+        loading: false,
         result: action.payload,
-        error: ""
-      }
-      case QUERY_EMPLOYEES:
+        error: "",
+      };
+    case QUERY_EMPLOYEES:
       return {
-        loading : false,
+        loading: false,
         result: action.payload,
-        error: ""
-      }
-      case ERROR_RESPONSE:
+        error: "",
+      };
+    case ERROR_RESPONSE:
       return {
-        loading : false,
+        loading: false,
         result: [],
-        error: action.payload
-      }
+        error: action.payload,
+      };
     default:
       return state;
   }

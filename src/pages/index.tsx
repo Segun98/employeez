@@ -109,7 +109,7 @@ export default function Index() {
           >
             Created By{" "}
             <a
-              href="https://segunos.tk"
+              href="https://segunos.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
               style={{ textDecoration: "underline" }}

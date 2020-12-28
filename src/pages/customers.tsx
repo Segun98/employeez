@@ -4,49 +4,32 @@ import { Input, Button, Spinner } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCustomers, searchCustomers } from "../redux/actions/index";
-import axios from "axios";
-import { setToken } from "../utils/accesstoken";
+import { fetchToken } from "../utils/accesstoken";
 import { useAuth } from "../Context/authcontext";
-import { url } from "../utils";
 
 interface DefaultRootState {
   Customers: any;
 }
 
 export const Customers = () => {
+  const { setisAuth }: any = useAuth()!;
   useEffect(() => {
-    fetchRefreshToken();
+    fetchToken(setisAuth, dispatch(getCustomers()));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const dispatch = useDispatch();
   const data = useSelector<DefaultRootState, any>((state) => state.Customers);
 
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(data.loading);
+  }, [data.loading]);
+
   const customerLength = data.result.length;
 
-  const [isLoading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-
-  const { setisAuth }: any = useAuth()!;
-
-  async function fetchRefreshToken() {
-    const instance = axios.create({
-      withCredentials: true,
-    });
-
-    try {
-      const res = await instance.post(`${url}/api/refreshtokens`);
-      setToken(res.data.accessToken);
-      console.clear();
-      dispatch(getCustomers());
-      setLoading(data.loading);
-    } catch (error) {
-      if (error.message === "Request failed with status code 401") {
-        setisAuth(false);
-      }
-      console.log(error.message);
-    }
-  }
 
   return (
     <div className="employees-page customers-page">
