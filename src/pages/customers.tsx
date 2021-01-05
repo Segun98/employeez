@@ -4,7 +4,7 @@ import { Input, Button, Spinner } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCustomers, searchCustomers } from "../redux/actions/index";
-import { fetchToken } from "../utils/accesstoken";
+import { fetchToken, getToken } from "../utils/accesstoken";
 import { useAuth } from "../Context/authcontext";
 
 interface DefaultRootState {
@@ -14,9 +14,14 @@ interface DefaultRootState {
 export const Customers = () => {
   const { setisAuth }: any = useAuth()!;
   useEffect(() => {
-    fetchToken(setisAuth, dispatch(getCustomers()));
+    fetchToken(setisAuth);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    dispatch(getCustomers());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [getToken()]);
 
   const dispatch = useDispatch();
   const data = useSelector<DefaultRootState, any>((state) => state.Customers);

@@ -4,7 +4,7 @@ import { Input, Button, Spinner } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getEmployees, searchEmployees } from "../redux/actions/index";
-import { fetchToken } from "../utils/accesstoken";
+import { fetchToken, getToken } from "../utils/accesstoken";
 import { useAuth } from "../Context/authcontext";
 
 interface DefaultRootState {
@@ -24,6 +24,11 @@ export const Employees = () => {
     fetchToken(setisAuth, dispatch(getEmployees()));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    dispatch(getEmployees());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [getToken()]);
 
   useEffect(() => {
     setLoading(false);
